@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="order_type" table="x_inmis_im_itad_imitad_hardware" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>order_type</element>
+            <name>x_inmis_im_itad_imitad_hardware</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-09-24 12:56:20</sys_created_on>
+            <sys_id>23f31500dbe79c108a521fe9689619e7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>order_type</sys_name>
+            <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+            <sys_update_name>sys_choice_x_inmis_im_itad_imitad_hardware_order_type</sys_update_name>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-09-24 12:56:20</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>order_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Pickup</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_imitad_hardware</name>
+            <sequence>0</sequence>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-09-24 12:56:20</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>c8e31100dbe79c108a521fe968961964</sys_id>
+            <sys_mod_count>5</sys_mod_count>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-09-28 06:47:02</sys_updated_on>
+            <value>Pickup</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>order_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Delivery</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_imitad_hardware</name>
+            <sequence>1</sequence>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-09-24 12:56:52</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>23f3ddccdba79c108a521fe96896191b</sys_id>
+            <sys_mod_count>5</sys_mod_count>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-09-28 06:46:58</sys_updated_on>
+            <value>Delivery</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>order_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Box Reclaim</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_imitad_hardware</name>
+            <sequence>2</sequence>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-09-24 12:57:13</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>d314d500dbe79c108a521fe968961915</sys_id>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-09-24 12:58:05</sys_updated_on>
+            <value>Box Reclaim</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>order_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Reclaim Label only(No Box)</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_imitad_hardware</name>
+            <sequence>3</sequence>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-09-24 12:57:44</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>2434d500dbe79c108a521fe968961922</sys_id>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-10-28 06:58:52</sys_updated_on>
+            <value>Reclaim Label only(No Box)</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>order_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Reclaim Label eMail(No Box)</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_imitad_hardware</name>
+            <sequence>4</sequence>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-09-24 12:58:31</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>58549500dbe79c108a521fe968961946</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-09-24 12:58:43</sys_updated_on>
+            <value>Reclaim Label eMail(No Box)</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>

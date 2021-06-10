@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="issue_with" table="x_inmis_im_itad_my_request" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>issue_with</element>
+            <name>x_inmis_im_itad_my_request</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-06-18 10:05:14</sys_created_on>
+            <sys_id>5557fe31dbfd405067166ac2ca9619b3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>issue_with</sys_name>
+            <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+            <sys_update_name>sys_choice_x_inmis_im_itad_my_request_issue_with</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-06-18 10:05:14</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>issue_with</element>
+            <hint>Issue in registering customer for IM-ITAD integration</hint>
+            <inactive>false</inactive>
+            <label>Customer Registration</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_my_request</name>
+            <sequence>0</sequence>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-06-18 10:05:14</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>6ada032adb0efb0067166ac2ca961945</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-11-11 14:49:29</sys_updated_on>
+            <value>customer_registration</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>issue_with</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Box/Label Order</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_my_request</name>
+            <sequence>1</sequence>
+            <sys_created_by>Ruthvic.voladri@ness.com</sys_created_by>
+            <sys_created_on>2021-03-22 07:33:11</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>0f2eb1a91bc724100eafb99e0a4bcb68</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-04-05 13:07:11</sys_updated_on>
+            <value>Box/label order</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>issue_with</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Erasure as a Service</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_my_request</name>
+            <sequence>2</sequence>
+            <sys_created_by>Ruthvic.voladri@ness.com</sys_created_by>
+            <sys_created_on>2021-03-22 07:33:37</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>25be75291bc724100eafb99e0a4bcbd5</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-03-22 12:39:17</sys_updated_on>
+            <value>Erasure as a Service</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>issue_with</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Onsite Jobs</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_my_request</name>
+            <sequence>3</sequence>
+            <sys_created_by>Ruthvic.voladri@ness.com</sys_created_by>
+            <sys_created_on>2021-03-22 07:33:59</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>fece75a91bc724100eafb99e0a4bcb84</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-03-22 12:39:22</sys_updated_on>
+            <value>Onsite Jobs</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>issue_with</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Create/Update Location</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_my_request</name>
+            <sequence>4</sequence>
+            <sys_created_by>Ruthvic.voladri@ness.com</sys_created_by>
+            <sys_created_on>2021-03-22 07:34:22</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>e8eeb1a91bc724100eafb99e0a4bcb6d</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-04-05 13:07:28</sys_updated_on>
+            <value>Create/Update location</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>issue_with</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Workorder Submission</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_my_request</name>
+            <sequence>5</sequence>
+            <sys_created_by>Ruthvic.voladri@ness.com</sys_created_by>
+            <sys_created_on>2021-03-22 07:35:06</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>d30ff9a91bc724100eafb99e0a4bcb11</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-03-22 12:39:31</sys_updated_on>
+            <value>Workorder Submission</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>issue_with</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Misc</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_my_request</name>
+            <sequence>6</sequence>
+            <sys_created_by>Ruthvic.voladri@ness.com</sys_created_by>
+            <sys_created_on>2021-03-22 12:39:55</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>10c40be51b8b24100eafb99e0a4bcb92</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-03-22 12:40:09</sys_updated_on>
+            <value>Misc</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>

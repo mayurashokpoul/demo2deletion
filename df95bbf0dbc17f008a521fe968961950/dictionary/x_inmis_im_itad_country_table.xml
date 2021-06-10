@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element extends="sys_import_set_row" label="Country table" max_length="40" name="x_inmis_im_itad_country_table" sizeclass="0" type="collection">
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=iCountryID" label="iCountryID" max_length="40" name="u_icountryid" type="integer"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vCountryCode" label="vCountryCode" max_length="40" name="u_vcountrycode" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vCountryName" label="vCountryName" max_length="40" name="u_vcountryname" type="string"/>
+    </element>
+</database>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_embedded_help_role">
+    <sys_embedded_help_role action="INSERT_OR_UPDATE">
+        <order>1000</order>
+        <role display_value="x_inmis_im_itad.imitad_erasure_initiator" name="x_inmis_im_itad.imitad_erasure_initiator">a4c7a955dbccac108a521fe96896199a</role>
+        <sys_class_name>sys_embedded_help_role</sys_class_name>
+        <sys_created_by>Ruthvic.voladri@ness.com</sys_created_by>
+        <sys_created_on>2020-10-23 08:07:27</sys_created_on>
+        <sys_id>bef76191db00ec108a521fe9689619eb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>a4c7a955dbccac108a521fe96896199a</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_embedded_help_role_bef76191db00ec108a521fe9689619eb</sys_update_name>
+        <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+        <sys_updated_on>2020-10-23 08:07:27</sys_updated_on>
+    </sys_embedded_help_role>
+</record_update>

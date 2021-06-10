@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml,application/x-www-form-urlencoded,text/plain</consumes>
+        <consumes_customized>true</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>04b080e0dbf7d01067166ac2ca96194e</enforce_acl>
+        <http_method>POST</http_method>
+        <name>StatusUpdate</name>
+        <operation_script>function toXMLString(o, leaveBlanks) {&#13;
+    var toXml = function(v, name, ind) {&#13;
+        if (typeof(v) == "function")&#13;
+            return "";&#13;
+&#13;
+        var xml = "";&#13;
+        if (v instanceof Array) {&#13;
+            for (var i = 0, n = v.length; i &lt; n; i++)&#13;
+                xml += ind + toXml(v[i], name, ind + "\t") + "\n";&#13;
+        } else if (typeof(v) == "object") {&#13;
+            var hasChild = false;&#13;
+            xml += ind + "&lt;" + name;&#13;
+            for (var m in v) {&#13;
+                if (m.charAt(0) == "@")&#13;
+                    xml += " " + m.substr(1) + "=\"" + v[m].toString() + "\"";&#13;
+                else&#13;
+                    hasChild = true;&#13;
+            }&#13;
+            xml += hasChild ? "&gt;" : "/&gt;";&#13;
+            if (hasChild) {&#13;
+                for (var m in v) {&#13;
+                    if (m == "#text")&#13;
+                        xml += v[m];&#13;
+                    else if (m == "#cdata")&#13;
+                        xml += "&lt;![CDATA[" + v[m] + "]]&gt;";&#13;
+                    else if (m.charAt(0) != "@")&#13;
+                        xml += toXml(v[m], m, ind + "\t");&#13;
+                }&#13;
+                xml += (xml.charAt(xml.length - 1) == "\n" ? ind : "") + "&lt;/" + name + "&gt;";&#13;
+            }&#13;
+        } else {&#13;
+            xml += ind + "&lt;" + name + "&gt;" + v.toString() + "&lt;/" + name + "&gt;";&#13;
+        }&#13;
+        return xml;&#13;
+    };&#13;
+&#13;
+    xml = '&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;';&#13;
+    for (var m in o)&#13;
+        xml += toXml(o[m], m, "");&#13;
+&#13;
+    if (leaveBlanks)&#13;
+        return xml;&#13;
+&#13;
+    return xml.replace(/\t|\n/g, "");&#13;
+&#13;
+}&#13;
+&#13;
+(function process( /*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {&#13;
+&#13;
+    try {&#13;
+        var restAPIBody = new RESTPlainTextUtil().getTextBody(request);&#13;
+&#13;
+        //   gs.info('Request Body of API : ' + restAPIBody);&#13;
+&#13;
+        var queryParams = request.queryParams;&#13;
+        var obj = {};&#13;
+&#13;
+        var agentID = queryParams.id;&#13;
+        var status = queryParams.status;&#13;
+        gs.info('Agent ID:' + agentID + ', Request Body of queryParams of Status Update: ' + JSON.stringify(queryParams));&#13;
+        obj.id = agentID;&#13;
+        obj.response = 'ok';&#13;
+        obj.bmc_user = gs.getProperty('x_inmis_im_itad.bmc_user').toString();&#13;
+        //  obj.bmc_password = gs.getProperty('x_inmis_im_itad.bmc_password').toString();&#13;
+        var encryptedPass = gs.getProperty("x_inmis_im_itad.bmc_password");&#13;
+       // obj.bmc_password = new GlideEncrypter().decrypt(encryptedPass);&#13;
+		obj.bmc_password = gs.getProperty("x_inmis_im_itad.bmc_password");&#13;
+		&#13;
+		&#13;
+&#13;
+// 		var pro = new GlideRecord('sys_properties');&#13;
+// 		pro.addEncodedQuery('nameLIKEpass^name=x_inmis_im_itad.bmc_password');&#13;
+// 		pro.query();&#13;
+// 		if(pro.next()){&#13;
+// 			gs.info('test : ' + pro.value);&#13;
+&#13;
+// 		obj.bmc_password = pro.value;&#13;
+// 		}&#13;
+        var IMITADHardwareAsset = new GlideRecord('x_inmis_im_itad_imitad_hardware');&#13;
+        IMITADHardwareAsset.addEncodedQuery('erasure_status=Scheduled^agent_id=' + agentID);&#13;
+        IMITADHardwareAsset.query();&#13;
+        if (IMITADHardwareAsset.next()) {&#13;
+            if (status == 'ok') {&#13;
+                obj.response = 'activate';&#13;
+            } else if (status == 'activate_failed') {&#13;
+                IMITADHardwareAsset.erasure_status = "Scheduled";&#13;
+            } else if (status == 'activate_success') {&#13;
+                IMITADHardwareAsset.erasure_status = "Completed";&#13;
+                var hardwareAsset = new GlideRecord('alm_hardware');&#13;
+                if (hardwareAsset.get(IMITADHardwareAsset.getValue('hardware_assets'))) {&#13;
+                    hardwareAsset.substatus = "Erased";&#13;
+                    hardwareAsset.update();&#13;
+                }&#13;
+            }&#13;
+            IMITADHardwareAsset.update();&#13;
+        }&#13;
+&#13;
+        queryParams = {&#13;
+            blancco: obj&#13;
+        };&#13;
+&#13;
+&#13;
+&#13;
+        response.setContentType('application/xml');&#13;
+        var writer = response.getStreamWriter();&#13;
+        writer.writeString(toXMLString(queryParams));&#13;
+&#13;
+        var responseBody = queryParams;&#13;
+        responseBody.blancco.bmc_user = "XXXXXXXXXXXXX";&#13;
+        responseBody.blancco.bmc_password = "XXXXXXXXXXXXX";&#13;
+        gs.info('Response to Blancco: ' + JSON.stringify(responseBody));&#13;
+&#13;
+    } catch (e) {&#13;
+        var error = '&gt;&gt;&gt;Exception occured [StatusUpdate API]: ' + e;&#13;
+        gs.info('Status Update Error:' + error);&#13;
+        response.setBody(error);&#13;
+    }&#13;
+})(request, response);</operation_script>
+        <operation_uri>/api/x_inmis_im_itad/blancco_service/StatusUpdate</operation_uri>
+        <produces>application/json,application/xml,text/xml,application/x-www-form-urlencoded</produces>
+        <produces_customized>true</produces_customized>
+        <relative_path>/StatusUpdate</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-11-11 08:57:03</sys_created_on>
+        <sys_id>fbb8639fdb98a0108a521fe96896196c</sys_id>
+        <sys_mod_count>27</sys_mod_count>
+        <sys_name>StatusUpdate</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_ws_operation_fbb8639fdb98a0108a521fe96896196c</sys_update_name>
+        <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+        <sys_updated_on>2021-02-24 15:04:31</sys_updated_on>
+        <web_service_definition display_value="Blancco Service">cbbcd3c4db3f901067166ac2ca96195c</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

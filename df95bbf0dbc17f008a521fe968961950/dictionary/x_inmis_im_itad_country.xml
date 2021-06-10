@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Country" max_length="40" name="x_inmis_im_itad_country" sizeclass="0" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Active" max_length="40" name="active" type="boolean"/>
+        <element label="CountryCode" max_length="40" name="countrycode" type="string"/>
+        <element label="CountryID" max_length="40" name="countryid" type="string"/>
+        <element display="true" label="CountryName" max_length="40" name="countryname" type="string"/>
+        <index name="index">
+            <element name="countryid"/>
+        </index>
+    </element>
+</database>

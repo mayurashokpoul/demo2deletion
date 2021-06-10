@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>false</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_inmis_im_itad_imitad_location</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>IngramMicro LocationCreateUpdate</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions>x_inmis_im_itad.imitad_admin,x_inmis_im_itad.imitad_box_admin</role_conditions>
+        <script><![CDATA[function jsonEncode(str) {
+    str = new global.JSON().encode(str);
+    return str.substring(1, str.length - 1);
+}
+
+
+
+(function executeRule(current, previous /*null when async*/ ) {
+    try {
+        var authenticationDetails = new IngramUtils().tokenValidation(current);
+        gs.info('Location create/update API request started');
+        gs.addErrorMessage('Ruthvic');
+        var r = new sn_ws.RESTMessageV2('x_inmis_im_itad.IngramMirco Location create update', 'post');
+        r.setStringParameterNoEscape('Token', authenticationDetails.Token);
+        r.setStringParameterNoEscape('SourceID', authenticationDetails.sourceid);
+        r.setStringParameterNoEscape('Facility', current.itad_facility.facilityid.toString());
+        r.setStringParameterNoEscape('Currency', current.currency.currencyid.toString());
+        r.setStringParameterNoEscape('billingAdd1', jsonEncode(current.getValue('address_1')));
+        r.setStringParameterNoEscape('locationCity', current.location.city.toString());
+        r.setStringParameterNoEscape('billingAdd3', jsonEncode(current.getValue('address_3')) );
+        r.setStringParameterNoEscape('locationAdd3', '');
+        r.setStringParameterNoEscape('billingAdd2', jsonEncode(current.getValue('address_2')));
+        r.setStringParameterNoEscape('locationID', current.itad_locationid == "" ? "0" : current.itad_locationid.toString());
+        r.setStringParameterNoEscape('billToName', current.billing_name.toString());
+        r.setStringParameterNoEscape('locationAdd2', '');
+        r.setStringParameterNoEscape('locationAdd1', current.location.street.toString());
+        r.setStringParameterNoEscape('locationDesc', current.location.name.toString());
+        r.setStringParameterNoEscape('IsCOIRequired', current.coi_required.toString());
+        r.setStringParameterNoEscape('IsUnionLabourRequired', current.unionlabour_required.toString());
+        r.setStringParameterNoEscape('IsDockAvailable', current.dock_available.toString());
+        r.setStringParameterNoEscape('IsTimeLimitRequiredToLoadDock', current.loading_timelimit.toString());
+        r.setStringParameterNoEscape('IsPalletJackAvailable', current.palletjack_available.toString());
+        r.setStringParameterNoEscape('IsSchedulingRequired', current.scheduling_required.toString());
+        r.setStringParameterNoEscape('CanHandcartsBeUtilizedFromBuildingEquipment', current.handcarts_required.toString());
+        r.setStringParameterNoEscape('IsLiftGateNeeded', current.liftgate_required.toString());
+        r.setStringParameterNoEscape('IsFreightElevatorAvailable', current.freightelevator_available.toString());
+        r.setStringParameterNoEscape('IsPassengerElevatorAvailable', current.passengerelevator_available.toString());
+        r.setStringParameterNoEscape('ForkliftAvailable', current.forklift_available.toString());
+        r.setStringParameterNoEscape('IsLoadingbaydockhavingStandardHeight', current.standard_height.toString());
+        r.setStringParameterNoEscape('Weight', current.weight.toString());
+        r.setStringParameterNoEscape('PostalCode', current.zip.toString());
+        r.setStringParameterNoEscape('EmailID', current.email_id.toString());
+        r.setStringParameterNoEscape('IsPickupLocation', current.pickup_location);
+        r.setStringParameterNoEscape('IsBillingLocation', current.billing_location.toString());
+        r.setStringParameterNoEscape('IsShippingLocation', current.shipping_location.toString());
+        r.setStringParameterNoEscape('ZipPostalCode', current.location.zip.toString());
+        r.setStringParameterNoEscape('TimeZone', current.time_zone.timezoneid.toString());
+        r.setStringParameterNoEscape('BillingCity', current.city.toString());
+        r.setStringParameterNoEscape('BillingState', current.state.stateid.toString());
+        r.setStringParameterNoEscape('pickupcontact', current.pickup_contact_ref.toString());
+        r.setStringParameterNoEscape('primarycontact', current.primary_contact.toString());
+        r.setStringParameterNoEscape('alternativecontact', current.alternate_contact.toString());
+        r.setStringParameterNoEscape('LocationNotes', jsonEncode(current.getValue('location_notes')));
+        r.setStringParameterNoEscape('CreateLocationbaseUrl', gs.getProperty('x_inmis_im_itad.CreateLocation'));
+		
+        var response = r.execute();
+        var responseBody = response.getBody();
+        var httpStatus = response.getStatusCode();
+        var requestBody = JSON.parse(r.getRequestBody());
+		requestBody.LocationInformation.Token = "XXXXXXXXXXXXXX";
+		requestBody.BillingInformation.EmailID = "XXXXXXXXXXXXXX";
+		requestBody.ContactInformation.PickUpContactName = "XXXXXXXXXXXXXX";
+		requestBody.ContactInformation.PrimaryContactName = "XXXXXXXXXXXXXX";
+		requestBody.ContactInformation.AlternativeContactName = "XXXXXXXXXXXXXX";
+		
+        gs.info('Location requestBody:' + JSON.stringify(requestBody));
+        gs.info("Location responseBody : " + responseBody);
+
+			var readResponse = JSON.parse(responseBody);
+
+        var imLocIDUpdate = new GlideRecord('x_inmis_im_itad_imitad_location');
+        imLocIDUpdate.addQuery('sys_id', current.sys_id);
+        imLocIDUpdate.query();
+        if (imLocIDUpdate.next()) {
+            imLocIDUpdate.setValue('itad_locationid', readResponse.LocationID);
+
+            if (readResponse.FacilityInfo.Address2 == "") {
+                imLocIDUpdate.setValue('itad_facilityaddress', readResponse.FacilityInfo.Address1 + "" + readResponse.FacilityInfo.Address2 + " " + readResponse.FacilityInfo.Address3 + "\r\n" + readResponse.FacilityInfo.City + "\r\n" + readResponse.FacilityInfo.StateDesc + " " + readResponse.FacilityInfo.ZipCode + " \r\n" + readResponse.FacilityInfo.CountryName);
+
+
+            } else {
+                imLocIDUpdate.setValue('itad_facilityaddress', readResponse.FacilityInfo.Address1 + "\r\n" + readResponse.FacilityInfo.Address2 + " " + readResponse.FacilityInfo.Address3 + "\r\n " + readResponse.FacilityInfo.City + "\r\n" + readResponse.FacilityInfo.StateDesc + " " + readResponse.FacilityInfo.ZipCode + " \r\n" + readResponse.FacilityInfo.CountryName);
+            }
+            imLocIDUpdate.update();
+        }
+
+        gs.info('Location created/updated API successful');
+   
+    } catch (ex) {
+        var message = ex.message;
+        gs.error(message);
+        gs.info("Location BR [IngramMicro LocationCreateUpdate]: " + ex);
+    }
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-05-12 14:35:01</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>30fbda28dbbc941067166ac2ca961918</sys_id>
+        <sys_mod_count>45</sys_mod_count>
+        <sys_name>IngramMicro LocationCreateUpdate</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_script_30fbda28dbbc941067166ac2ca961918</sys_update_name>
+        <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+        <sys_updated_on>2021-04-09 12:12:11</sys_updated_on>
+        <template/>
+        <when>async</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=30fbda28dbbc941067166ac2ca961918"/>
+</record_update>

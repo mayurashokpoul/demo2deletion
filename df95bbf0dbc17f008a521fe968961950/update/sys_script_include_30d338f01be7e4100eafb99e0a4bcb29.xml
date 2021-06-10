@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_inmis_im_itad.IMITADLocationFilterDetailUtils</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>IMITADLocationFilterDetailUtils</name>
+        <script><![CDATA[var IMITADLocationFilterDetailUtils = Class.create();
+IMITADLocationFilterDetailUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	
+	locationReferenceQualifier : function()
+	{
+		var qString = "";
+		var grLocation = new GlideRecord('x_inmis_im_itad_filter');
+		grLocation.addQuery('table','cmn_location');
+		grLocation.query();
+		while(grLocation.next())
+		{
+				qString = "^"+grLocation.u_filter;
+		}
+		
+		return qString;
+	},
+	
+	locationModuleFilter : function()
+	{
+		var Data = "";
+		var qString = "";
+		var sysIDs = [];
+	
+		var grproperty = new GlideRecord('x_inmis_im_itad_filter');
+		grproperty.addQuery('table','cmn_location');
+		grproperty.query();
+		while(grproperty.next())
+		{
+				qString = "^"+grproperty.u_filter;
+		}
+		
+		if (qString != '')
+		{
+				var grLocation = new GlideRecord('cmn_location');
+				grLocation.addEncodedQuery(qString);
+				grLocation.query();
+				while(grLocation.next())
+				{
+					sysIDs.push(grLocation.getValue('sys_id'));
+				}
+			return sysIDs;
+		}else
+			{
+				var grL = new GlideRecord('cmn_location');
+				grL.query();
+				while(grL.next())
+				{
+					sysIDs.push(grL.getValue('sys_id'));
+				}
+			return sysIDs;
+			}
+	},
+
+    type: 'IMITADLocationFilterDetailUtils'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>mayur.poul</sys_created_by>
+        <sys_created_on>2021-04-13 14:48:38</sys_created_on>
+        <sys_id>30d338f01be7e4100eafb99e0a4bcb29</sys_id>
+        <sys_mod_count>31</sys_mod_count>
+        <sys_name>IMITADLocationFilterDetailUtils</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_script_include_30d338f01be7e4100eafb99e0a4bcb29</sys_update_name>
+        <sys_updated_by>mayur.poul</sys_updated_by>
+        <sys_updated_on>2021-04-29 03:02:25</sys_updated_on>
+    </sys_script_include>
+</record_update>

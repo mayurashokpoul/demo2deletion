@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="x_inmis_im_itad_ref_main" version="2" view="">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>choice_field</element>
+            <list_id display_value="x_inmis_im_itad_ref_main" element="NULL" name="x_inmis_im_itad_ref_main" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">f4cd15acdb0390508a521fe9689619c2</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-09-01 06:24:35</sys_created_on>
+            <sys_id>b0cd15acdb0390508a521fe9689619c3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-09-01 06:24:35</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>choice</element>
+            <list_id display_value="x_inmis_im_itad_ref_main" element="NULL" name="x_inmis_im_itad_ref_main" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">f4cd15acdb0390508a521fe9689619c2</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-09-01 06:24:35</sys_created_on>
+            <sys_id>34cd15acdb0390508a521fe9689619c3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-09-01 06:24:35</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>company</element>
+            <list_id display_value="x_inmis_im_itad_ref_main" element="NULL" name="x_inmis_im_itad_ref_main" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">f4cd15acdb0390508a521fe9689619c2</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-09-01 06:24:35</sys_created_on>
+            <sys_id>b4cd15acdb0390508a521fe9689619c3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-09-01 06:24:35</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>source_id</element>
+            <list_id display_value="x_inmis_im_itad_ref_main" element="NULL" name="x_inmis_im_itad_ref_main" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">f4cd15acdb0390508a521fe9689619c2</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-09-01 06:24:35</sys_created_on>
+            <sys_id>38cd15acdb0390508a521fe9689619c3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-09-01 06:24:35</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_domain</element>
+            <list_id display_value="x_inmis_im_itad_ref_main" element="NULL" name="x_inmis_im_itad_ref_main" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">f4cd15acdb0390508a521fe9689619c2</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>4</position>
+            <sum>false</sum>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-09-01 06:24:35</sys_created_on>
+            <sys_id>b8cd15acdb0390508a521fe9689619c3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-09-01 06:24:35</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_inmis_im_itad_ref_main</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-09-01 06:24:35</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>f4cd15acdb0390508a521fe9689619c2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_inmis_im_itad_ref_main</sys_name>
+            <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+            <sys_update_name>sys_ui_list_x_inmis_im_itad_ref_main_null</sys_update_name>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-09-01 06:24:35</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

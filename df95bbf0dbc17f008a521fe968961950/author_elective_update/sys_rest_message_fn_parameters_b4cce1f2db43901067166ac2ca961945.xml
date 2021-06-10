@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn_parameters">
+    <sys_rest_message_fn_parameters action="DELETE">
+        <name>Manufacturer</name>
+        <rest_message_function display_value="CreateBoxLabelOrder">e4eae172db43901067166ac2ca96198e</rest_message_function>
+        <sys_class_name>sys_rest_message_fn_parameters</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-09-08 07:16:27</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>b4cce1f2db43901067166ac2ca961945</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Manufacturer</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_rest_message_fn_parameters_b4cce1f2db43901067166ac2ca961945</sys_update_name>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-09-08 07:28:10</sys_updated_on>
+        <type>string</type>
+        <value>Dell Inc..</value>
+    </sys_rest_message_fn_parameters>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</application>
+        <file_path/>
+        <instance_id>c821e244dbe52b846578f22ebf9619bf</instance_id>
+        <instance_name>ven02711</instance_name>
+        <name>sys_rest_message_fn_parameters_b4cce1f2db43901067166ac2ca961945</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn_parameters"><sys_rest_message_fn_parameters action="INSERT_OR_UPDATE"><name>Manufacturer</name><rest_message_function display_value="CreateBoxLabelOrder">e4eae172db43901067166ac2ca96198e</rest_message_function><sys_class_name>sys_rest_message_fn_parameters</sys_class_name><sys_created_by>Munimohan.Bathala@ness.com</sys_created_by><sys_created_on>2020-09-08 07:16:27</sys_created_on><sys_customer_update>false</sys_customer_update><sys_id>b4cce1f2db43901067166ac2ca961945</sys_id><sys_mod_count>1</sys_mod_count><sys_name>Manufacturer</sys_name><sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package><sys_policy/><sys_replace_on_upgrade>false</sys_replace_on_upgrade><sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope><sys_update_name>sys_rest_message_fn_parameters_b4cce1f2db43901067166ac2ca961945</sys_update_name><sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by><sys_updated_on>2020-09-08 07:28:10</sys_updated_on><type>string</type><value>Dell Inc..</value></sys_rest_message_fn_parameters></record_update>]]></payload>
+        <payload_hash>-135850320</payload_hash>
+        <record_name>Manufacturer</record_name>
+        <reverted_from/>
+        <source>9f35e822db47501067166ac2ca961908</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-09-08 07:28:10</sys_created_on>
+        <sys_id>dc7f2936db43901067166ac2ca9619be</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1746c9d6c4a0000001</sys_recorded_at>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-09-08 07:28:10</sys_updated_on>
+        <type>Variable Substitutions</type>
+        <update_guid>d47f2936ef439010fcea5bbfcb165bbe</update_guid>
+        <update_guid_history>d47f2936ef439010fcea5bbfcb165bbe:-135850320,b0cce1f26d4390100fa50467446ef046:1984541038</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-09-11 09:52:12</sys_created_on>
+        <sys_db_object display_value="" name="sys_rest_message_fn_parameters">sys_rest_message_fn_parameters</sys_db_object>
+        <sys_id>02935d89c74647a486c6c4dfdcad5810</sys_id>
+        <sys_metadata>b4cce1f2db43901067166ac2ca961945</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Manufacturer</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_parent display_value="CreateBoxLabelOrder">e4eae172db43901067166ac2ca96198e</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_scope_delete display_value="">754b5651fdcb480ea4d7b0c2cca0f181</sys_scope_delete>
+        <sys_update_name>sys_rest_message_fn_parameters_b4cce1f2db43901067166ac2ca961945</sys_update_name>
+        <sys_update_version display_value="sys_rest_message_fn_parameters_b4cce1f2db43901067166ac2ca961945">dc7f2936db43901067166ac2ca9619be</sys_update_version>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-09-11 09:52:12</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

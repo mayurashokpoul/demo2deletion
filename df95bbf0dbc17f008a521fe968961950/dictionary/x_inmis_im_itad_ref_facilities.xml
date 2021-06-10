@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Ref_Facilities" max_length="40" name="x_inmis_im_itad_ref_facilities" sizeclass="0" type="collection">
+        <element label="CountryId" max_length="4" name="countryid" type="string"/>
+        <element label="FacilityAddress" max_length="100" name="facilityaddress" type="string"/>
+        <element label="FacilityAddress3" max_length="500" name="facilityaddress3" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="FacilityAddressStatus" max_length="40" name="facilityaddressstatus" type="boolean"/>
+        <element label="FacilityCity" max_length="50" name="facilitycity" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="FacilityCodeMap" max_length="4" name="facilitycodemap" type="integer"/>
+        <element display="true" label="FacilityDescripition" max_length="75" name="facilitydescripition" type="string"/>
+        <element label="FacilityHelpDesc" max_length="100" name="facilityhelpdesc" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="FacilityID" max_length="4" name="facilityid" type="integer"/>
+        <element label="FacilityPhysicalLoc" max_length="50" name="facilityphysicalloc" type="string"/>
+        <element label="FacilityState" max_length="50" name="facilitystate" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="FacilityStatus" max_length="40" name="facilitystatus" type="boolean"/>
+        <element label="FacilityZip" max_length="50" name="facilityzip" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="HolidayMasterID" max_length="4" name="holidaymasterid" type="integer"/>
+        <element label="Phone" max_length="20" name="phone" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="TenantID" max_length="4" name="tenantid" type="integer"/>
+        <element attributes="edge_encryption_enabled=true" label="TimezoneID" max_length="4" name="timezoneid" type="integer"/>
+        <element attributes="edge_encryption_enabled=true" label="WeightType" max_length="4" name="weighttype" type="boolean"/>
+        <index name="index">
+            <element name="facilityid"/>
+        </index>
+    </element>
+</database>

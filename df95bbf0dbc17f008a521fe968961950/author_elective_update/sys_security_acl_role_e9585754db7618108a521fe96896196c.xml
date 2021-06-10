@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="DELETE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-08-19 10:25:57</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>e9585754db7618108a521fe96896196c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_inmis_im_itad_ref_main.x_inmis_im_itad.IMITAD_Box_Admin</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_security_acl display_value="x_inmis_im_itad_ref_main">6d585754db7618108a521fe968961969</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_e9585754db7618108a521fe96896196c</sys_update_name>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-08-19 10:25:57</sys_updated_on>
+        <sys_user_role display_value="x_inmis_im_itad.IMITAD_Box_Admin" name="x_inmis_im_itad.IMITAD_Box_Admin">1965ad3adb2a14108a521fe9689619b1</sys_user_role>
+        <transaction_id/>
+    </sys_security_acl_role>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</application>
+        <file_path/>
+        <instance_id>c821e244dbe52b846578f22ebf9619bf</instance_id>
+        <instance_name>ven02711</instance_name>
+        <name>sys_security_acl_role_e9585754db7618108a521fe96896196c</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role"><sys_security_acl_role action="INSERT_OR_UPDATE"><sys_class_name>sys_security_acl_role</sys_class_name><sys_created_by>Munimohan.Bathala@ness.com</sys_created_by><sys_created_on>2020-08-19 10:25:57</sys_created_on><sys_customer_update>false</sys_customer_update><sys_id>e9585754db7618108a521fe96896196c</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_inmis_im_itad_ref_main.x_inmis_im_itad.IMITAD_Box_Admin</sys_name><sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package><sys_policy/><sys_replace_on_upgrade>false</sys_replace_on_upgrade><sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope><sys_security_acl display_value="x_inmis_im_itad_ref_main">6d585754db7618108a521fe968961969</sys_security_acl><sys_update_name>sys_security_acl_role_e9585754db7618108a521fe96896196c</sys_update_name><sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by><sys_updated_on>2020-08-19 10:25:57</sys_updated_on><sys_user_role display_value="x_inmis_im_itad.IMITAD_Box_Admin" name="x_inmis_im_itad.IMITAD_Box_Admin">1965ad3adb2a14108a521fe9689619b1</sys_user_role><transaction_id/></sys_security_acl_role></record_update>]]></payload>
+        <payload_hash>794725317</payload_hash>
+        <record_name>x_inmis_im_itad_ref_main.x_inmis_im_itad.IMITAD_Box_Admin</record_name>
+        <reverted_from/>
+        <source>7fc870bedba614108a521fe968961916</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-08-19 10:25:57</sys_created_on>
+        <sys_id>a1585754db7618108a521fe96896196f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1740640fffb0000001</sys_recorded_at>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-08-19 10:25:57</sys_updated_on>
+        <type>Access Roles</type>
+        <update_guid>e9585754097618100b6b9f834b150d6e</update_guid>
+        <update_guid_history>e9585754097618100b6b9f834b150d6e:794725317</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">e2781b54db7618108a521fe968961937</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-08-19 10:26:34</sys_created_on>
+        <sys_db_object display_value="" name="sys_security_acl_role">sys_security_acl_role</sys_db_object>
+        <sys_id>132d4a6d80ed407587c0de45e11e96d1</sys_id>
+        <sys_metadata>e9585754db7618108a521fe96896196c</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_inmis_im_itad_ref_main.x_inmis_im_itad.IMITAD_Box_Admin</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_parent display_value="">6d585754db7618108a521fe968961969</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_scope_delete display_value="">754b5651fdcb480ea4d7b0c2cca0f181</sys_scope_delete>
+        <sys_update_name>sys_security_acl_role_e9585754db7618108a521fe96896196c</sys_update_name>
+        <sys_update_version display_value="sys_security_acl_role_e9585754db7618108a521fe96896196c">a1585754db7618108a521fe96896196f</sys_update_version>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-08-19 10:26:34</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

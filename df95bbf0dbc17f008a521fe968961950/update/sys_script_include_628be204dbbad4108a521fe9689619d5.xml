@@ -1,0 +1,1371 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_inmis_im_itad.BoxLabelUtils</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description>BoxLabelUtils</description>
+        <name>BoxLabelUtils</name>
+        <script><![CDATA[var BoxLabelUtils = Class.create();
+BoxLabelUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+
+    getLocation: function() {
+        var loc = this.getParameter('sysparm_value');
+        var obj = {};
+        var gr = new GlideRecord('x_inmis_im_itad_imitad_location');
+        if (gr.get(loc)) {
+            var address = gr.location.street.split(',');
+            obj['street'] = address[0];
+            obj['street2'] = address[1] ? address[1] : '';
+            obj['street3'] = address[2] ? address[2] : '';
+            obj['city'] = gr.location.city.toString();
+            obj['state'] = gr.location.state.toString();
+            obj['postalCode'] = gr.location.zip.toString();
+            obj['country'] = this._getCountry('countryname', gr.location.country.toString());
+
+        }
+        return JSON.stringify(obj);
+    },
+
+    _checkLocationinReturnSetFacility: function(defaultFacility) {
+        var facility = new GlideRecord('x_inmis_im_itad_return_facility_setup');
+        facility.addEncodedQuery('active=true^facility=' + defaultFacility);
+        facility.query();
+        if (facility.next()) {
+            return facility;
+        } else {
+            return false;
+        }
+
+    },
+
+    _getCountry: function(field, countryID) {
+        var countryName = new GlideRecord('x_inmis_im_itad_country');
+        if (countryName.get(field, countryID)) {
+            return countryName.getValue('sys_id');
+        }
+        return '';
+    },
+
+    getReturnFlags: function() {
+        try {
+            var obj = {};
+            obj.returnAddressFlag = false;
+            var returnTo = this.getParameter('sysparm_returnTo');
+            var refMain = new GlideRecord('x_inmis_im_itad_ref_main');
+            refMain.addEncodedQuery('active=true^sys_id=' + returnTo);
+            refMain.query();
+            if (refMain.next()) {
+                var returnSetup = new GlideRecord('x_inmis_im_itad_return_setup');
+                returnSetup.addEncodedQuery('active=true^return_to_desc=' + refMain.getValue('choice'));
+                returnSetup.query();
+                if (returnSetup.next()) {
+                    if (returnSetup.getValue('returns_to_type') == "Custom Location") {
+                        //this is for custom Location 
+                        if (returnSetup.getValue('fixed_return_address') == 1) {
+                            obj.returnAddressFlag = true;
+                            obj.returnToAddress1 = returnSetup.getValue('return_to_address_1');
+                            obj.returnToAddress2 = returnSetup.getValue('return_to_address_2');
+                            obj.returnToAddress3 = '';
+                            obj.returnToCity = returnSetup.getValue('return_to_city');
+                            obj.returnToState = returnSetup.getValue('return_to_state');
+                            obj.returnToPotalCode = returnSetup.getValue('return_to_postal_code');
+                            obj.returnToCountry = returnSetup.getValue('return_to_country');
+                            obj.returnToContact = returnSetup.getValue('return_to_contact');
+                            obj.returnToContactEmail = returnSetup.getValue('return_to_contact_email');
+                            obj.returnToContactPhone = returnSetup.getValue('return_to_contact_phone');
+                        }
+
+                        obj.disableReturnAddresDetials = returnSetup.getValue('disable_return_address_details');
+                        obj.disableReturnContactDetails = returnSetup.getValue('disable_return_contact_details');
+                        obj.ShiptoSourceLocation = returnSetup.getValue('ship_to_source_location');
+                    } else if (returnSetup.getValue('returns_to_type') == "Source Location") {
+                        obj.ReturntoSourceLocation = returnSetup.getValue('return_to_source_location');
+                        var returnSetup1 = new GlideRecord('x_inmis_im_itad_return_setup');
+                        returnSetup1.addEncodedQuery('active=true^return_to_desc=' + refMain.getValue('choice') + '^ordershiptocountry=NULL');
+                        returnSetup1.query();
+                        if (returnSetup1.next()) {
+                            if (returnSetup1.getValue('fixed_return_address') == 1) {
+                                obj.returnAddressFlag = true;
+                                obj.returnToAddress1 = returnSetup1.getValue('return_to_address_1');
+                                obj.returnToAddress2 = returnSetup1.getValue('return_to_address_2');
+                                obj.returnToAddress3 = '';
+                                obj.returnToCity = returnSetup1.getValue('return_to_city');
+                                obj.returnToState = returnSetup1.getValue('return_to_state');
+                                obj.returnToPotalCode = returnSetup1.getValue('return_to_postal_code');
+                                obj.returnToCountry = returnSetup1.getValue('return_to_country');
+                                obj.returnToContact = returnSetup1.getValue('return_to_contact');
+                                obj.returnToContactEmail = returnSetup1.getValue('return_to_contact_email');
+                                obj.returnToContactPhone = returnSetup1.getValue('return_to_contact_phone');
+
+
+                                obj.disableReturnAddresDetials = returnSetup1.getValue('disable_return_address_details');
+                                obj.disableReturnContactDetails = returnSetup1.getValue('disable_return_contact_details');
+                            }
+                        }
+
+                    } else {
+                        obj.ReturntoSourceLocation = 0;
+                    }
+
+                    obj.ShiptoSourceLocation = returnSetup.getValue('ship_to_source_location');
+
+                }
+            }
+
+            return new global.JSON().encode(obj);
+        } catch (e) {
+            gs.info('>>Exception occured [getReturnFlags]:' + e);
+        }
+
+    },
+
+    _getCountryCode: function(shippingCountry, name) {
+        var country = new GlideRecord('x_inmis_im_itad_country');
+        if (country.get(shippingCountry)) {
+            return country.getValue(name);
+        }
+    },
+
+    getNCBLocationDetails: function() {
+        try {
+            var obj1 = {};
+            obj1.returnAddressFlag = false;
+            var state = this.getParameter('sysparm_state');
+            var shippingCountry = this.getParameter('sysparm_shippingCountry');
+            var shippingCountryCode = this._getCountryCode(shippingCountry, 'countryid');
+            var returnTo = this.getParameter('sysparm_returnTo');
+            var shippingCountryName = this._getCountryCode(shippingCountry, 'countryname');
+            //gs.info('shippingCountry: ' + shippingCountry +', shippingCountryCode: ' + shippingCountryCode +', shippingCountryName: ' + shippingCountryName +', returnTo: ' + returnTo);
+
+            var refMain = new GlideRecord('x_inmis_im_itad_ref_main');
+            if (refMain.get(returnTo)) {
+                var returnDescription = refMain.getValue('choice');
+                if (returnDescription == "Ingram Micro ITAD") {
+                    var returnSetup = new GlideRecord('x_inmis_im_itad_return_setup');
+                    returnSetup.addEncodedQuery('return_to_desc=' + refMain.getValue('choice') + '^return_to_country=' + shippingCountryName + '^NQreturn_to_countryISEMPTY^return_to_desc=' + refMain.getValue('choice'));
+                    returnSetup.query();
+                    if (returnSetup.next()) {
+                        //gs.info('muni test : ' + returnSetup.getValue('vfixedreturntobyfacility') +', test fNCB : '+returnSetup.getValue('nearest_cb_facility'));
+                        if (returnSetup.getValue('nearest_cb_facility') == 1) {
+                            var boxOrder = new GlideAggregate('x_inmis_im_itad_ref_facilitiesstatemapping');
+                            boxOrder.addAggregate('COUNT'),
+                                boxOrder.addEncodedQuery('statecode=' + state + '^countrycode=' + shippingCountryCode + '^NQstatecode=All States^countrycode=' + shippingCountryCode + '^NQstatecodeISEMPTY');
+                            boxOrder.query();
+                            if (boxOrder.next()) {
+
+                                var count = boxOrder.getAggregate('COUNT');
+                            }
+                            var facilityStateMapping = new GlideRecord('x_inmis_im_itad_ref_facilitiesstatemapping');
+                            facilityStateMapping.addEncodedQuery('statecode=' + state + '^countrycode=' + shippingCountryCode + '^NQstatecode=All States^countrycode=' + shippingCountryCode + '^NQstatecodeISEMPTY');
+                            facilityStateMapping.query();
+                            //  var count = facilityStateMapping.getRowCount();
+                            if (count < 2) {
+                                if (facilityStateMapping.next()) {
+                                    var facility = new GlideRecord('x_inmis_im_itad_ref_facilities');
+                                    if (facility.get('facilityid', facilityStateMapping.getValue('facilityid'))) {
+                                        var facilitySetup = new GlideRecord('x_inmis_im_itad_return_facility_setup');
+                                        facilitySetup.addEncodedQuery('active=true^facilityid=' + facilityStateMapping.getValue('facilityid'));
+                                        facilitySetup.query();
+                                        if (facilitySetup.next()) {
+                                            obj1.returnAddressFlag = true;
+                                            obj1.returnToAddress1 = facility.getValue('facilityaddress');
+                                            obj1.returnToAddress2 = '';
+                                            obj1.returnToAddress3 = facility.getValue('facilityaddress3');
+                                            obj1.returnToCity = facility.getValue('facilitycity');
+                                            obj1.returnToState = facility.getValue('facilitystate');
+                                            obj1.returnToPotalCode = facility.getValue('facilityzip');
+                                            obj1.returnToCountry = this._getCountry('countryid', facility.getValue('countryid'));
+                                            obj1.returnContactName = facilitySetup.getValue('contact_name');
+                                            obj1.returnContactEmail = facilitySetup.getValue('contact_email');
+                                            obj1.returnContactPhone = facilitySetup.getValue('contact_phone');
+                                        }
+                                    }
+                                } else {
+                                    obj1.errorMessage = "The selected shipping location's nearest Ingram's facility is not mapped. Please contact account management team for mapping and resubmit the order.";
+
+                                }
+
+                            } else {
+                                obj1.errorMessage = "The selected shipping location's nearest Ingram's facility is not mapped. Please contact account management team for mapping and resubmit the order.";
+
+                            }
+
+                        } else {
+                            var facility = new GlideRecord('x_inmis_im_itad_ref_facilities');
+                            facility.addEncodedQuery('sys_id=' + returnSetup.getValue('vfixedreturntobyfacility'));
+                            facility.query();
+                            if (facility.next()) { //facilitydescripition
+                                obj1.returnAddressFlag = true;
+                                obj1.returnToAddress1 = facility.getValue('facilityaddress');
+                                obj1.returnToAddress2 = '';
+                                obj1.returnToAddress3 = facility.getValue('facilityaddress3');
+                                obj1.returnToCity = facility.getValue('facilitycity');
+                                obj1.returnToState = facility.getValue('facilitystate');
+                                obj1.returnToPotalCode = facility.getValue('facilityzip');
+                                obj1.returnToCountry = this._getCountry('countryid', facility.getValue('countryid'));
+                                var facilitySetup = new GlideRecord('x_inmis_im_itad_return_facility_setup');
+                                facilitySetup.addEncodedQuery('active=true^facility=' + returnSetup.getValue('vfixedreturntobyfacility'));
+                                facilitySetup.query();
+                                if (facilitySetup.next()) {
+                                    obj1.returnContactName = facilitySetup.getValue('contact_name');
+                                    obj1.returnContactEmail = facilitySetup.getValue('contact_email');
+                                    obj1.returnContactPhone = facilitySetup.getValue('contact_phone');
+                                }
+                            }
+                        }
+
+
+                    }
+
+
+
+                }
+            }
+            return new global.JSON().encode(obj1);
+        } catch (e) {
+            gs.info('>>Exception occured [getNCBLocationDetails]:' + e);
+        }
+    },
+
+    getPropertyValue: function() {
+        return gs.getProperty("glide.sys.domain.partitioning") == 'true';
+    },
+
+    checkOrderType: function() {
+        var type = false;
+        var orderType = this.getParameter('sysparm_returnTo');
+        var refMainRecord = new GlideRecord('x_inmis_im_itad_ref_main');
+        if (refMainRecord.get(orderType)) {
+            var str = refMainRecord.getValue('choice').toString().toLowerCase().trim();
+            if (str == 'box reclaim') {
+                type = true;
+            }
+        }
+        return type;
+    },
+
+    validateEnterQuantity: function() {
+        var flag = true;
+        var company = this.getParameter('sysparm_company');
+        var quantity = this.getParameter('sysparm_enterQuantitySum');
+        var parts = new GlideRecord('x_inmis_im_itad_non_serialized_parts');
+        if (gs.getProperty("glide.sys.domain.partitioning") == 'true') {
+            parts.addEncodedQuery('maxboxcount>=' + quantity + '^company=' + company);
+        } else {
+            parts.addEncodedQuery('maxboxcount>=' + quantity);
+        }
+        parts.query();
+        if (!parts.next()) {
+            flag = false;
+        }
+
+        return flag;
+    },
+
+    insertReturnAssets: function() {
+        try {
+            var boxLabelSysid = this.getParameter('sysparm_boxLabelSysID');
+            var partList = this.getParameter('sysparm_partList');
+            var parseList = JSON.parse(partList);
+            for (var i = 0; i < parseList.length; i++) {
+                for (var j = 0; j < parseList[i].enterQuantity; j++) {
+                    var returnAssets = new GlideRecord('x_inmis_im_itad_return_asset_details');
+                    returnAssets.initialize();
+                    returnAssets.box_label_order = boxLabelSysid;
+                    returnAssets.box_description = parseList[i].partName;
+                    returnAssets.insert();
+                }
+            }
+            return "";
+        } catch (e) {
+            gs.info('>>>Exception occured [insertReturnAssets]: ' + e, 'muni');
+        }
+    },
+
+    setDomain: function(obj, customerRegistration) {
+        obj.company = customerRegistration.getValue('company');
+        obj.sys_domain = customerRegistration.company.sys_domain;
+    },
+
+
+    getChoiceList: function(field) {
+        if (gs.getProperty("glide.sys.domain.partitioning") == 'true') {
+            return 'active=true^choice_field=' + field + '^company=' + new IngramUtils().getCompanyValue();
+        } else {
+            return 'active=true^choice_field=' + field;
+        }
+    },
+
+    getCompany: function() {
+        var cr = this.getParameter('sysparm_customerRegistration');
+        var companyValue = '';
+        var company = new GlideRecord('x_inmis_im_itad_customer_registration');
+        if (company.get(cr)) {
+            companyValue = company.getValue('company');
+        }
+        return companyValue;
+
+    },
+
+    createChoice: function(element, label, value, customerRegistration) {
+        var choice = new GlideRecord('x_inmis_im_itad_ref_main');
+        choice.addEncodedQuery('choice_field=' + element + '^choice_value=' + value + '^source_id=' + customerRegistration.getValue('source_id'));
+        choice.query();
+        if (choice.next()) {
+            choice.active = true;
+            choice.choice = label;
+            choice.choice_value = value;
+            choice.update();
+        } else {
+            choice.initialize();
+            choice.active = true;
+            choice.choice_field = element;
+            choice.choice = label;
+            choice.choice_value = value;
+            choice.source_id = customerRegistration.getValue('source_id');
+            if (gs.getProperty("glide.sys.domain.partitioning") == 'true') {
+                this.setDomain(choice, customerRegistration);
+            }
+            choice.insert();
+        }
+    },
+
+    getLocationSysID: function(location) {
+        var locationSysID = new GlideRecord('x_inmis_im_itad_ref_facilities');
+        if (locationSysID.get('facilitydescripition', location)) {
+            return locationSysID.getValue('sys_id');
+        } else {
+            return '';
+        }
+    },
+
+    getIMITADLocationFilter: function() {
+        var x = '';
+        if (gs.getUser().getRoles().indexOf('admin') >= 0 || gs.getUser().getRoles().indexOf('x_inmis_im_itad.imitad_box_admin') >= 0) {
+            x = 'itad_locationidISNOTEMPTY';
+        } else {
+            var gr = new GlideRecord('x_inmis_im_itad_m2m_locations_users');
+            gr.addQuery('user', gs.getUser().getID());
+            gr.query();
+            while (gr.next()) {
+                x += gr.getValue('location') + ',';
+            }
+            x = 'locationIN' + x.toString() + '^itad_locationidISNOTEMPTY';
+        }
+
+        if (gs.getProperty("glide.sys.domain.partitioning") == 'true') {
+            var company = new x_inmis_im_itad.IngramUtils().getCompanyValue();
+            x += '^company=' + company;
+        }
+        gs.info('x:' + x);
+        return x;
+    },
+
+    getReturnAssetFilterList: function() {
+        var list = '';
+        var locationList = '';
+        var encodedQuery;
+        var returnAsset = new GlideRecord('x_inmis_im_itad_return_asset_details');
+        returnAsset.query();
+        while (returnAsset.next()) {
+            list += returnAsset.getValue('return_asset') + ',';
+        }
+        if (gs.getUser().getRoles().indexOf('admin') >= 0 || gs.getUser().getRoles().indexOf('x_inmis_im_itad.imitad_box_admin') >= 0) {
+            encodedQuery = 'sys_idNOT IN' + list + '^install_statusNOT IN7'; //
+        } else {
+            var gr = new GlideRecord('x_inmis_im_itad_m2m_locations_users');
+            gr.addQuery('user', gs.getUser().getID());
+            gr.query();
+            while (gr.next()) {
+                locationList += gr.getValue('location') + ',';
+            }
+            encodedQuery = 'sys_idNOT IN' + list + '^install_statusNOT IN7^locationIN' + locationList;
+        }
+
+        if (gs.getProperty("glide.sys.domain.partitioning") == 'true') {
+            var company = new x_inmis_im_itad.IngramUtils().getCompanyValue();
+            encodedQuery = encodedQuery + '^company=' + company;
+        }
+        gs.info('encodedQuery: ' + encodedQuery);
+        return encodedQuery;
+    },
+
+    disableRecords: function(table, encodedQuery) {
+        var record = new GlideRecord(table);
+        record.addEncodedQuery(encodedQuery);
+        record.query();
+        while (record.next()) {
+            record.active = false;
+            record.setWorkflow(false);
+            record.autoSysFields();
+            record.update();
+        }
+    },
+
+    pullBoxLabelMasterData: function(customerRegistration) {
+        try {
+            gs.info('Box/Label API started');
+            var authenticationDetails = new IngramUtils().tokenValidation(customerRegistration);
+
+            var requestBody = {};
+            requestBody.BoxLabelMasterDataUrl = gs.getProperty('x_inmis_im_itad.BoxLabelOrderMasterData');
+            requestBody.SourceID = authenticationDetails.sourceid;
+            requestBody.Token = "XXXXXXXXXXX";
+            gs.info('Box/Label Requested Body: ' + JSON.stringify(requestBody));
+
+            var r = new sn_ws.RESTMessageV2('x_inmis_im_itad.BoxLabelOrderMasterData', 'BoxLabelOrderMasterData');
+            r.setStringParameterNoEscape('BoxLabelOrderMasterData', gs.getProperty('x_inmis_im_itad.BoxLabelOrderMasterData'));
+            r.setStringParameterNoEscape('SourceID', authenticationDetails.sourceid);
+            r.setStringParameterNoEscape('Token', authenticationDetails.Token);
+
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+
+            gs.info("Box/Label responseBody: " + responseBody);
+
+            var readResponse = JSON.parse(responseBody);
+
+            if (response.haveError()) {
+                gs.info('Box/Label Error: ' + response.getErrorMessage());
+                gs.addErrorMessage('Error occured while pulling Box/Label data from Blue IQ');
+
+            } else if (readResponse.ResponseCode == "0" || readResponse.ErrorMessage == "") {
+
+                //Configuration things    //Create Choices
+                var encodedQuery;
+                var orderTypes = readResponse.OrderType;
+                var ServiceTypesList = [];
+                if (orderTypes) {
+                    encodedQuery = 'choice_field=order_type^source_id=' + customerRegistration.getValue('source_id');
+                    this.disableRecords('x_inmis_im_itad_ref_main', encodedQuery);
+                    for (var i = 0; i < orderTypes.length; i++) {
+                        ServiceTypesList.push(orderTypes[i].ServiceType);
+                        this.createChoice('order_type', orderTypes[i].ServiceType, orderTypes[i].CustomerServiceID, customerRegistration);
+                    }
+                }
+
+                var shipmentTypes = readResponse.ShipmentTypes;
+                var shipmentTypesList = [];
+                if (shipmentTypes) {
+                    encodedQuery = 'choice_field=shipment_types^source_id=' + customerRegistration.getValue('source_id');
+                    this.disableRecords('x_inmis_im_itad_ref_main', encodedQuery);
+                    for (var j = 0; j < shipmentTypes.length; j++) {
+                        shipmentTypesList.push(shipmentTypes[j].Description);
+                        this.createChoice('shipment_types', shipmentTypes[j].Description, shipmentTypes[j].ShipmentTypeID, customerRegistration);
+
+                    }
+                }
+
+                var returnTochoice = readResponse.ReturnsTo;
+                if (returnTochoice) {
+                    encodedQuery = 'choice_field=return_to^source_id=' + customerRegistration.getValue('source_id');
+                    this.disableRecords('x_inmis_im_itad_ref_main', encodedQuery);
+                    for (var n = 0; n < returnTochoice.length; n++) {
+                        this.createChoice('return_to', returnTochoice[n].Description, returnTochoice[n].RefMainID, customerRegistration);
+                    }
+                }
+
+                var returnSignatureChoice = readResponse.ReturnSignature;
+                if (returnSignatureChoice) {
+                    encodedQuery = 'choice_field=return_signature^source_id=' + customerRegistration.getValue('source_id');
+                    this.disableRecords('x_inmis_im_itad_ref_main', encodedQuery);
+                    for (var p = 0; p < returnSignatureChoice.length; p++) {
+                        this.createChoice('return_signature', returnSignatureChoice[p].Description, returnSignatureChoice[p].RefMainID, customerRegistration);
+                    }
+                }
+                var signatureRequiredChoice = readResponse.SignatureRequired;
+                if (signatureRequiredChoice) {
+                    encodedQuery = 'choice_field=signature_required^source_id=' + customerRegistration.getValue('source_id');
+                    this.disableRecords('x_inmis_im_itad_ref_main', encodedQuery);
+                    for (var q = 0; q < signatureRequiredChoice.length; q++) {
+                        this.createChoice('signature_required', signatureRequiredChoice[q].Description, signatureRequiredChoice[q].RefMainID, customerRegistration);
+                    }
+                }
+                var shipMethod = readResponse.ShipMethod;
+                if (shipMethod) {
+                    encodedQuery = 'choice_field=ship_method^source_id=' + customerRegistration.getValue('source_id');
+                    this.disableRecords('x_inmis_im_itad_ref_main', encodedQuery);
+                    for (var s = 0; s < shipMethod.length; s++) {
+                        this.createChoice('ship_method', shipMethod[s].Description, shipMethod[s].RefMainID, customerRegistration);
+                    }
+                }
+                var returnMethod = readResponse.ReturnMethod;
+                if (returnMethod) {
+                    encodedQuery = 'choice_field=return_method^source_id=' + customerRegistration.getValue('source_id');
+                    this.disableRecords('x_inmis_im_itad_ref_main', encodedQuery);
+                    for (var t = 0; t < returnMethod.length; t++) {
+                        this.createChoice('return_method', returnMethod[t].Description, returnMethod[t].RefMainID, customerRegistration);
+                    }
+                }
+
+                //Insert data into Source Configuration table
+                encodedQuery = "active=true^source_id=" + customerRegistration.getValue('source_id');
+                this.disableRecords('x_inmis_im_itad_source_configuration', encodedQuery);
+
+                var sourceConfig = new GlideRecord('x_inmis_im_itad_source_configuration');
+                if (sourceConfig.get('source_id', authenticationDetails.sourceid)) {
+                    sourceConfig.active = true;
+                    sourceConfig.max_boxes_allowed_on_order = readResponse.MaxBoxCount;
+                    sourceConfig.carrier_integrations = readResponse.CarrierIntegrationID;
+                    sourceConfig.freight_paid_by = readResponse.FreightPaidById;
+                    sourceConfig.carrier_account_number = readResponse.CarrierAccountNumber;
+                    sourceConfig.service_types_string = ServiceTypesList.join(';').toString();
+                    sourceConfig.shipment_types_string = shipmentTypesList.join(';').toString();
+                    sourceConfig.setWorkflow(false);
+                    sourceConfig.autoSysFields(false);
+                    sourceConfig.update();
+                } else {
+                    sourceConfig.initialize();
+                    sourceConfig.active = true;
+                    sourceConfig.max_boxes_allowed_on_order = readResponse.MaxBoxCount;
+                    sourceConfig.carrier_integrations = readResponse.CarrierIntegrationID;
+                    sourceConfig.freight_paid_by = readResponse.FreightPaidById;
+                    sourceConfig.carrier_account_number = readResponse.CarrierAccountNumber;
+                    sourceConfig.service_types_string = ServiceTypesList.join(';').toString();
+                    sourceConfig.shipment_types_string = shipmentTypesList.join(';').toString();
+                    if (gs.getProperty("glide.sys.domain.partitioning") == 'true') {
+                        this.setDomain(sourceConfig, customerRegistration);
+                    }
+                    sourceConfig.source_id = authenticationDetails.sourceid;
+                    sourceConfig.setWorkflow(false);
+                    sourceConfig.autoSysFields(false);
+                    sourceConfig.insert();
+                }
+
+
+                //Insert data into Return Setup table		 
+                encodedQuery = "active=true^source_id=" + customerRegistration.getValue('source_id');
+                this.disableRecords('x_inmis_im_itad_return_setup', encodedQuery);
+                /*
+                                var returnSetupArray = readResponse.ReturnSetup;
+                                if (returnSetupArray) {
+                                    for (var k = 0; k < returnSetupArray.length; k++) {
+                                        var returnSetup = new GlideRecord('x_inmis_im_itad_return_setup');
+                                        returnSetup.addEncodedQuery('return_configuration=' + returnSetupArray[k].ReturnConfiguration + '^source_id=' + authenticationDetails.sourceid);
+                                        returnSetup.query();
+                                        if (returnSetup.next()) {
+                                            returnSetup.active = true;
+                                            returnSetup.return_configuration = returnSetupArray[k].ReturnConfiguration;
+                                            returnSetup.returns_to_type = returnSetupArray[k].ReturnToType;
+                                            returnSetup.return_to_desc = returnSetupArray[k].ReturnToDescription;
+                                            returnSetup.require_default_facility = returnSetupArray[k].RequiredDefaultFacility.toString().toLowerCase();
+                                            returnSetup.return_to = returnSetupArray[k].ReturnTo;
+                                            returnSetup.source_id = returnSetupArray[k].SourceID;
+                                            returnSetup.default_facility = this.getLocationSysID(returnSetupArray[k].DefaultFacility);
+                                            returnSetup.nearest_cb_facility = returnSetupArray[k].ReturnToNearestCBFacility.toString().toLowerCase();
+                                            returnSetup.fixed_facility_for_usa = this.getLocationSysID(returnSetupArray[k].FixedFacilityForUSA);
+                                            returnSetup.disable_return_address_details = returnSetupArray[k].DisableReturnAddressDetails.toString().toLowerCase();
+                                            returnSetup.disable_return_contact_details = returnSetupArray[k].DisableReturnContactDetails.toString().toLowerCase();
+                                            returnSetup.return_to_source_location = returnSetupArray[k].IsReturnToSourceLocation.toString().toLowerCase();
+                                            returnSetup.ship_to_source_location = returnSetupArray[k].IsShipToSourceLocation.toString().toLowerCase();
+                                            returnSetup.fixed_return_address = returnSetupArray[k].IsFixedReturnAddress.toString().toLowerCase();
+                                            returnSetup.return_to_address_1 = returnSetupArray[k].ReturnToAddress1;
+                                            returnSetup.return_to_address_2 = returnSetupArray[k].ReturnToAddress2;
+                                            returnSetup.return_to_city = returnSetupArray[k].ReturnToCity;
+                                            returnSetup.return_to_state = returnSetupArray[k].ReturnToState;
+                                            returnSetup.return_to_country = returnSetupArray[k].ReturnToCountry;
+                                            returnSetup.return_to_postal_code = returnSetupArray[k].ReturnToZip;
+                                            returnSetup.return_to_contact = returnSetupArray[k].ReturnContact;
+                                            returnSetup.return_to_contact_email = returnSetupArray[k].ReturnContactEmail;
+                                            returnSetup.return_to_contact_phone = returnSetupArray[k].ReturnContactPhone;
+                                            returnSetup.update();
+
+                                        } else {
+                                            returnSetup.initialize();
+                                            returnSetup.active = true;
+                                            returnSetup.return_configuration = returnSetupArray[k].ReturnConfiguration;
+                                            returnSetup.returns_to_type = returnSetupArray[k].ReturnToType;
+                                            returnSetup.return_to_desc = returnSetupArray[k].ReturnToDescription;
+                                            returnSetup.require_default_facility = returnSetupArray[k].RequiredDefaultFacility.toString().toLowerCase();
+                                            returnSetup.return_to = returnSetupArray[k].ReturnTo;
+                                            returnSetup.source_id = returnSetupArray[k].SourceID;
+                                            returnSetup.default_facility = this.getLocationSysID(returnSetupArray[k].DefaultFacility);
+                                            returnSetup.nearest_cb_facility = returnSetupArray[k].ReturnToNearestCBFacility.toString().toLowerCase();
+                                            returnSetup.fixed_facility_for_usa = this.getLocationSysID(returnSetupArray[k].FixedFacilityForUSA);
+                                            returnSetup.disable_return_address_details = returnSetupArray[k].DisableReturnAddressDetails.toString().toLowerCase();
+                                            returnSetup.disable_return_contact_details = returnSetupArray[k].DisableReturnContactDetails.toString().toLowerCase();
+                                            returnSetup.return_to_source_location = returnSetupArray[k].IsReturnToSourceLocation.toString().toLowerCase();
+                                            returnSetup.ship_to_source_location = returnSetupArray[k].IsShipToSourceLocation.toString().toLowerCase();
+                                            returnSetup.fixed_return_address = returnSetupArray[k].IsFixedReturnAddress.toString().toLowerCase();
+                                            returnSetup.return_to_address_1 = returnSetupArray[k].ReturnToAddress1;
+                                            returnSetup.return_to_address_2 = returnSetupArray[k].ReturnToAddress2;
+                                            returnSetup.return_to_city = returnSetupArray[k].ReturnToCity;
+                                            returnSetup.return_to_state = returnSetupArray[k].ReturnToState;
+                                            returnSetup.return_to_country = returnSetupArray[k].ReturnToCountry;
+                                            returnSetup.return_to_postal_code = returnSetupArray[k].ReturnToZip;
+                                            returnSetup.return_to_contact = returnSetupArray[k].ReturnContact;
+                                            returnSetup.return_to_contact_email = returnSetupArray[k].ReturnContactEmail;
+                                            returnSetup.return_to_contact_phone = returnSetupArray[k].ReturnContactPhone;
+                                            if (gs.getProperty("glide.sys.domain.partitioning") == 'true') {
+                                                this.setDomain(returnSetup, customerRegistration);
+                                            }
+                                            returnSetup.insert();
+                                        }
+                                    }
+
+                                }
+                				*/
+
+                // US6417 changes in the content  
+
+                var returnFulfilSetupArray = readResponse.OrderFulfilmentReturnSetup;
+                if (returnFulfilSetupArray) {
+                    for (var k = 0; k < returnFulfilSetupArray.length; k++) {
+                        var returnFulfilSetup = new GlideRecord('x_inmis_im_itad_return_setup');
+                        returnFulfilSetup.addEncodedQuery('return_configuration=' + returnFulfilSetupArray[k].ReturnConfiguration + '^boxreturnsetupid=' + returnFulfilSetupArray[k].BoxReturnSetupID + '^source_id=' + authenticationDetails.sourceid);
+                        returnFulfilSetup.query();
+                        if (returnFulfilSetup.next()) {
+                            returnFulfilSetup.active = true;
+                            returnFulfilSetup.boxreturnsetupid = returnFulfilSetupArray[k].BoxReturnSetupID;
+                            returnFulfilSetup.return_configuration = returnFulfilSetupArray[k].ReturnConfiguration;
+                            returnFulfilSetup.returns_to_type = returnFulfilSetupArray[k].ReturnToType;
+                            returnFulfilSetup.return_to_desc = returnFulfilSetupArray[k].ReturnToDescription;
+                            //  returnFulfilSetup.require_default_facility = returnFulfilSetupArray[k].RequiredDefaultFacility.toString().toLowerCase();
+                            returnFulfilSetup.return_to = returnFulfilSetupArray[k].ReturnToTypeID;
+                            returnFulfilSetup.source_id = returnFulfilSetupArray[k].SourceID;
+                            returnFulfilSetup.ordershiptocountry = returnFulfilSetupArray[k].OrderShipToCountry;
+                            returnFulfilSetup.ifulfillcountryid = returnFulfilSetupArray[k].iFulfillCountryID;
+                            returnFulfilSetup.fulfilledbynearestfacility = returnFulfilSetupArray[k].FulfilledbyNearestFacility.toString().toLowerCase();
+                            returnFulfilSetup.ireturntocountryid = returnFulfilSetupArray[k].iReturnToCountryID;
+                            returnFulfilSetup.return_to_country = returnFulfilSetupArray[k].ReturnOrderCountry;
+                            returnFulfilSetup.ifixedfulfillmentfacility = returnFulfilSetupArray[k].iFixedFulfillmentFacility;
+                            returnFulfilSetup.fixedfullfillmentfacility = returnFulfilSetupArray[k].FixedFullFillmentFacility;
+                            returnFulfilSetup.ifixedreturntofacility = returnFulfilSetupArray[k].iFixedReturnToFacility;
+                            //    returnFulfilSetup.default_facility = this.getLocationSysID(returnFulfilSetupArray[k].DefaultFacility);
+                            returnFulfilSetup.nearest_cb_facility = returnFulfilSetupArray[k].ReturnToNearestCBFacility.toString().toLowerCase();
+                            returnFulfilSetup.vfixedreturntobyfacility = this.getLocationSysID(returnFulfilSetupArray[k].vFixedReturnTobyFacility);
+                            returnFulfilSetup.fixed_return_address = returnFulfilSetupArray[k].bIsFixedAddress.toString().toLowerCase();
+                            //   returnFulfilSetup.fixed_facility_for_usa = this.getLocationSysID(returnFulfilSetupArray[k].FixedFacilityForUSA);
+                            returnFulfilSetup.disable_return_address_details = returnFulfilSetupArray[k].bIsDisableReturnAddressDetails.toString().toLowerCase();
+                            returnFulfilSetup.disable_return_contact_details = returnFulfilSetupArray[k].bIsDisableReturnContactDetails.toString().toLowerCase();
+                            returnFulfilSetup.return_to_source_location = returnFulfilSetupArray[k].bIsReturnToSourceLocation.toString().toLowerCase();
+                            returnFulfilSetup.ship_to_source_location = returnFulfilSetupArray[k].IsShipToSourceLocation.toString().toLowerCase();
+                            returnFulfilSetup.fixed_return_address = returnFulfilSetupArray[k].bIsFixedAddress.toString().toLowerCase();
+                            returnFulfilSetup.return_to_address_1 = returnFulfilSetupArray[k].vReturnToAddress1;
+                            returnFulfilSetup.return_to_address_2 = returnFulfilSetupArray[k].vReturnToAddress2;
+                            returnFulfilSetup.return_to_city = returnFulfilSetupArray[k].vReturnToCity;
+                            returnFulfilSetup.return_to_state = returnFulfilSetupArray[k].vReturnToState;
+                            returnFulfilSetup.ireturntocountryid = returnFulfilSetupArray[k].iReturnToCountry;
+                            returnFulfilSetup.return_to_postal_code = returnFulfilSetupArray[k].vReturnToZip;
+                            returnFulfilSetup.return_to_contact = returnFulfilSetupArray[k].vReturnContact;
+                            returnFulfilSetup.return_to_contact_email = returnFulfilSetupArray[k].vReturnContactEmail;
+                            returnFulfilSetup.return_to_contact_phone = returnFulfilSetupArray[k].vReturnContactPhone;
+                            returnFulfilSetup.update();
+
+                        } else {
+                            returnFulfilSetup.initialize();
+                            returnFulfilSetup.active = true;
+
+                            returnFulfilSetup.boxreturnsetupid = returnFulfilSetupArray[k].BoxReturnSetupID;
+                            returnFulfilSetup.return_configuration = returnFulfilSetupArray[k].ReturnConfiguration;
+                            returnFulfilSetup.returns_to_type = returnFulfilSetupArray[k].ReturnToType;
+                            returnFulfilSetup.return_to_desc = returnFulfilSetupArray[k].ReturnToDescription;
+                            //  returnFulfilSetup.require_default_facility = returnFulfilSetupArray[k].RequiredDefaultFacility.toString().toLowerCase();
+                            returnFulfilSetup.return_to = returnFulfilSetupArray[k].ReturnToTypeID;
+                            returnFulfilSetup.source_id = returnFulfilSetupArray[k].SourceID;
+                            returnFulfilSetup.ordershiptocountry = returnFulfilSetupArray[k].OrderShipToCountry;
+                            returnFulfilSetup.ifulfillcountryid = returnFulfilSetupArray[k].iFulfillCountryID;
+                            returnFulfilSetup.fulfilledbynearestfacility = returnFulfilSetupArray[k].FulfilledbyNearestFacility.toString().toLowerCase();
+                            returnFulfilSetup.ireturntocountryid = returnFulfilSetupArray[k].iReturnToCountryID;
+                            returnFulfilSetup.return_to_country = returnFulfilSetupArray[k].ReturnOrderCountry;
+                            returnFulfilSetup.ifixedfulfillmentfacility = returnFulfilSetupArray[k].iFixedFulfillmentFacility;
+                            returnFulfilSetup.fixedfullfillmentfacility = returnFulfilSetupArray[k].FixedFullFillmentFacility;
+                            returnFulfilSetup.ifixedreturntofacility = returnFulfilSetupArray[k].iFixedReturnToFacility;
+                            //    returnFulfilSetup.default_facility = this.getLocationSysID(returnFulfilSetupArray[k].DefaultFacility);
+                            returnFulfilSetup.nearest_cb_facility = returnFulfilSetupArray[k].ReturnToNearestCBFacility.toString().toLowerCase();
+                            returnFulfilSetup.vfixedreturntobyfacility = this.getLocationSysID(returnFulfilSetupArray[k].vFixedReturnTobyFacility);
+                            returnFulfilSetup.fixed_return_address = returnFulfilSetupArray[k].bIsFixedAddress.toString().toLowerCase();
+                            //   returnFulfilSetup.fixed_facility_for_usa = this.getLocationSysID(returnFulfilSetupArray[k].FixedFacilityForUSA);
+                            returnFulfilSetup.disable_return_address_details = returnFulfilSetupArray[k].bIsDisableReturnAddressDetails.toString().toLowerCase();
+                            returnFulfilSetup.disable_return_contact_details = returnFulfilSetupArray[k].bIsDisableReturnContactDetails.toString().toLowerCase();
+                            returnFulfilSetup.return_to_source_location = returnFulfilSetupArray[k].bIsReturnToSourceLocation.toString().toLowerCase();
+                            returnFulfilSetup.ship_to_source_location = returnFulfilSetupArray[k].IsShipToSourceLocation.toString().toLowerCase();
+                            returnFulfilSetup.fixed_return_address = returnFulfilSetupArray[k].bIsFixedAddress.toString().toLowerCase();
+                            returnFulfilSetup.return_to_address_1 = returnFulfilSetupArray[k].vReturnToAddress1;
+                            returnFulfilSetup.return_to_address_2 = returnFulfilSetupArray[k].vReturnToAddress2;
+                            returnFulfilSetup.return_to_city = returnFulfilSetupArray[k].vReturnToCity;
+                            returnFulfilSetup.return_to_state = returnFulfilSetupArray[k].vReturnToState;
+                            returnFulfilSetup.ireturntocountryid = returnFulfilSetupArray[k].iReturnToCountry;
+                            returnFulfilSetup.return_to_postal_code = returnFulfilSetupArray[k].vReturnToZip;
+                            returnFulfilSetup.return_to_contact = returnFulfilSetupArray[k].vReturnContact;
+                            returnFulfilSetup.return_to_contact_email = returnFulfilSetupArray[k].vReturnContactEmail;
+                            returnFulfilSetup.return_to_contact_phone = returnFulfilSetupArray[k].vReturnContactPhone;
+                            if (gs.getProperty("glide.sys.domain.partitioning") == 'true') {
+                                this.setDomain(returnFulfilSetup, customerRegistration);
+                            }
+                            returnFulfilSetup.insert();
+                        }
+                    }
+
+                }
+
+                //Insert data into Return Facility Setup table
+                encodedQuery = "active=true^source_id=" + customerRegistration.getValue('source_id');
+                this.disableRecords('x_inmis_im_itad_return_facility_setup', encodedQuery);
+
+                var facilitySetup = readResponse.ReturnFacilitySetup;
+                if (facilitySetup) {
+                    for (var l = 0; l < facilitySetup.length; l++) {
+                        var returnFacilitySetup = new GlideRecord('x_inmis_im_itad_return_facility_setup');
+                        returnFacilitySetup.addEncodedQuery('source_id=' + authenticationDetails.sourceid + '^facilityid=' + facilitySetup[l].FacilityID);
+                        returnFacilitySetup.query();
+                        if (returnFacilitySetup.next()) {
+                            returnFacilitySetup.active = true;
+                            returnFacilitySetup.source_id = facilitySetup[l].SourceId;
+                            returnFacilitySetup.facilityid = facilitySetup[l].FacilityID;
+                            returnFacilitySetup.facility = this.getLocationSysID(facilitySetup[l].FacilityDescripition);
+                            returnFacilitySetup.contact_name = facilitySetup[l].ContactName;
+                            returnFacilitySetup.contact_email = facilitySetup[l].ContactEmail;
+                            returnFacilitySetup.contact_phone = facilitySetup[l].ContactPhone;
+                            returnFacilitySetup.update();
+
+                        } else {
+                            returnFacilitySetup.initialize();
+                            returnFacilitySetup.active = true;
+                            returnFacilitySetup.source_id = facilitySetup[l].SourceId;
+                            returnFacilitySetup.facilityid = facilitySetup[l].FacilityID;
+                            returnFacilitySetup.facility = this.getLocationSysID(facilitySetup[l].FacilityDescripition);
+                            returnFacilitySetup.contact_name = facilitySetup[l].ContactName;
+                            returnFacilitySetup.contact_email = facilitySetup[l].ContactEmail;
+                            returnFacilitySetup.contact_phone = facilitySetup[l].ContactPhone;
+                            if (gs.getProperty("glide.sys.domain.partitioning") == 'true') {
+                                this.setDomain(returnFacilitySetup, customerRegistration);
+                            }
+                            returnFacilitySetup.insert();
+                        }
+                    }
+                }
+                //Insert data into Non-Serialized Parts table
+                encodedQuery = "active=true^source_id=" + customerRegistration.getValue('source_id');
+                this.disableRecords('x_inmis_im_itad_non_serialized_parts', encodedQuery);
+
+                var partDescription = readResponse.PartDescription;
+                if (partDescription) {
+                    for (var m = 0; m < partDescription.length; m++) {
+                        var parts = new GlideRecord('x_inmis_im_itad_non_serialized_parts');
+                        parts.addEncodedQuery('source_id=' + authenticationDetails.sourceid + '^partnumber=' + partDescription[m].PartNumber);
+                        parts.query();
+                        if (parts.next()) {
+                            parts.active = true;
+                            parts.partnumber = partDescription[m].PartNumber;
+                            parts.part_description = partDescription[m].ShortDescription;
+                            parts.maxboxcount = partDescription[m].MaxBoxCount;
+                            parts.tooltiphelp = partDescription[m].ToolTipHelp;
+                            parts.rowindex = partDescription[m].RowIndex;
+                            parts.setWorkflow(false);
+                            parts.autoSysFields(false);
+                            parts.update();
+                        } else {
+                            parts.initialize();
+                            parts.active = true;
+                            parts.source_id = authenticationDetails.sourceid;
+                            parts.partnumber = partDescription[m].PartNumber;
+                            parts.part_description = partDescription[m].ShortDescription;
+                            parts.maxboxcount = partDescription[m].MaxBoxCount;
+                            parts.tooltiphelp = partDescription[m].ToolTipHelp;
+                            parts.rowindex = partDescription[m].RowIndex;
+                            if (gs.getProperty("glide.sys.domain.partitioning") == 'true') {
+                                this.setDomain(parts, customerRegistration);
+                            }
+                            parts.setWorkflow(false);
+                            parts.autoSysFields(false);
+                            parts.insert();
+                        }
+                    }
+                }
+            }
+
+            gs.info('Box/Label API END');
+
+        } catch (ex) {
+            gs.info('>>Exception occured [pullBoxLabelMasterData]: ' + ex);
+        }
+    },
+
+    _getBoxDescriptionValue: function(BoxDescription) {
+        var part = new GlideRecord('x_inmis_im_itad_non_serialized_parts');
+        part.addEncodedQuery('sys_id=' + BoxDescription);
+        part.query();
+        if (part.next()) {
+            return part.getValue('partnumber');
+        } else {
+            return '';
+        }
+
+    },
+
+    _jsonEncode: function(str) {
+        str = new global.JSON().encode(str);
+        return str.substring(1, str.length - 1);
+    },
+
+    CreateBoxLabelOrder: function(current) {
+        try {
+            gs.info('Box/Label Create API started' + current.sys_id);
+            var array = [];
+            var SerializedAssetLevelInformation = [];
+
+            var returnAsset = new GlideRecord('x_inmis_im_itad_return_asset_details');
+            returnAsset.addEncodedQuery('box_label_order=' + current.sys_id);
+            returnAsset.query();
+            while (returnAsset.next()) {
+                var assetInformation = {};
+                array.push(returnAsset.getValue('return_asset'));
+                assetInformation.vAssetSourceKey = returnAsset.getValue('return_asset');
+                assetInformation.AssetType = returnAsset.getValue('asset_type');
+                assetInformation.Model = returnAsset.getValue('model');
+                assetInformation.Manufacturer = returnAsset.getValue('manufacturer');
+                assetInformation.SerialNumber = returnAsset.getValue('serial_no');
+                assetInformation.AssetTag = returnAsset.getValue('asset_tag');
+                assetInformation.NSPartnumber = (current.order_type.choice == "Box Reclaim") ? this._getBoxDescriptionValue(returnAsset.getValue('box_part_description')) : '';
+                assetInformation.MfgPartNumber = returnAsset.getValue('mfg_part');
+
+                SerializedAssetLevelInformation.push(assetInformation);
+            }
+            //Get token details
+            var authenticationDetails = new IngramUtils().tokenValidation(current);
+
+            var r = new sn_ws.RESTMessageV2('x_inmis_im_itad.CreateBoxLabelOrder', 'CreateBoxLabelOrder');
+            r.setStringParameterNoEscape('RequestID', current.number);
+            r.setStringParameterNoEscape('CustomerID', "");
+            r.setStringParameterNoEscape('StreetAddressLine2', this._jsonEncode(current.getValue('shipping_address2')));
+            r.setStringParameterNoEscape('ReturnContactName', current.return_contact);
+            r.setStringParameterNoEscape('ReturnStreetAddressLine2', this._jsonEncode(current.getValue('return_address2')));
+            r.setStringParameterNoEscape('OrderNote', this._jsonEncode(current.getValue('order_notes')));
+            r.setStringParameterNoEscape('Email', current.shipping_contact_email);
+            r.setStringParameterNoEscape('TransactionID', '11');
+            r.setStringParameterNoEscape('PhoneNumber', current.shipping_contact_phone);
+            r.setStringParameterNoEscape('ReturnReason', this._jsonEncode(current.getValue('return_reason')));
+            r.setStringParameterNoEscape('SourceID', authenticationDetails.sourceid);
+            r.setStringParameterNoEscape('State', current.shipping_state);
+            r.setStringParameterNoEscape('SerializedAssetLevelInformation', JSON.stringify(SerializedAssetLevelInformation));
+            r.setStringParameterNoEscape('ReturnEmail', current.return_contact_email);
+            r.setStringParameterNoEscape('CCEmail', current.cc_email);
+            r.setStringParameterNoEscape('CreateBoxLabelOrder', gs.getProperty('x_inmis_im_itad.CreateBoxLabelOrder'));
+            r.setStringParameterNoEscape('Token', authenticationDetails.Token);
+            r.setStringParameterNoEscape('FirstName', current.shipping_contact); ///
+            r.setStringParameterNoEscape('ReturnPostalCode', current.return_postal_code);
+            r.setStringParameterNoEscape('Phone', current.requested_by.phone);
+            r.setStringParameterNoEscape('Country', current.shipping_country.countryname);
+            r.setStringParameterNoEscape('RequestorEmail', current.requestor_email);
+            r.setStringParameterNoEscape('PostalCode', current.shipping_postal_code);
+            r.setStringParameterNoEscape('ServiceTypeID', current.order_type.choice_value);
+            r.setStringParameterNoEscape('ReturnStreetAddressLine1', this._jsonEncode(current.getValue('return_address')));
+            r.setStringParameterNoEscape('ReturnCountry', current.return_country.countryname);
+            r.setStringParameterNoEscape('ShipReferenceNo', current.ship_reference_no);
+            r.setStringParameterNoEscape('ReturnState', current.return_state);
+            r.setStringParameterNoEscape('GenerateFedexLabel', 'false');
+            r.setStringParameterNoEscape('ContactName', current.shipping_contact); //
+            r.setStringParameterNoEscape('City', current.shipping_city);
+            r.setStringParameterNoEscape('StreetAddressLine1', this._jsonEncode(current.getValue('shipping_address')));
+            r.setStringParameterNoEscape('ReturnCity', current.return_city);
+            r.setStringParameterNoEscape('Name', current.requested_by.name);
+            r.setStringParameterNoEscape('ReturnTo', current.return_to.choice_value);
+            r.setStringParameterNoEscape('LastName', current.shipping_contact); ///
+            r.setStringParameterNoEscape('SignatureRequired', current.signature_required.choice_value);
+            r.setStringParameterNoEscape('ReturnSignature', current.return_signature.choice_value);
+            r.setStringParameterNoEscape('CustomerOrderNo', current.customer_order_no);
+            r.setStringParameterNoEscape('IntegrationService', "ServiceNow");
+
+
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+
+            var RequestBody = JSON.parse(r.getRequestBody());
+            RequestBody.Token = "XXXXXXXXXXX";
+            RequestBody.Requestor.Name = "XXXXXXXXXXX";
+            RequestBody.Requestor.RequestorEmail = "XXXXXXXXXXX";
+            RequestBody.Requestor.Phone = "XXXXXXXXXXX";
+            RequestBody.ReturnAddress.ReturnEmail = "XXXXXXXXXXX";
+            RequestBody.ReturnAddress.ReturnNumber = "XXXXXXXXXXX";
+            RequestBody.PrimaryContacts.FirstName = "XXXXXXXXXXX";
+            RequestBody.PrimaryContacts.LastName = "XXXXXXXXXXX";
+            RequestBody.PrimaryContacts.PhoneNumber = "XXXXXXXXXXX";
+            RequestBody.PrimaryContacts.Email = "XXXXXXXXXXX";
+            RequestBody.PrimaryContacts.CCEmail = "XXXXXXXXXXX";
+
+            gs.info('Box/Label create RequestBody:' + JSON.stringify(RequestBody));
+            gs.info("Box/Label create responseBody: " + responseBody);
+            var readResponse = JSON.parse(responseBody);
+            var FailedReason = '';
+            var OrderID = '';
+            if (response.haveError()) {
+                gs.info('Box/Label Create API Error: ' + response.getErrorMessage());
+                gs.addErrorMessage('Error occured while creation Box/Label Order');
+
+            } else if (readResponse.ResponseCode == "0" || readResponse.ErrorMessage == "") {
+                OrderID = readResponse.OrderID;
+                // To create/update IMITAD Hardware  records once we got response from blue IQ
+                for (var x = 0; x < array.length; x++) {
+                    var IMITADHardware = new GlideRecord('x_inmis_im_itad_imitad_hardware');
+                    IMITADHardware.addQuery('hardware_assets', array[x]);
+                    IMITADHardware.query();
+                    if (IMITADHardware.next()) {
+                        IMITADHardware.workorder = current.number;
+                        IMITADHardware.order_type = current.order_type.choice;
+                        IMITADHardware.workorder_status = 'Submitted';
+						IMITADHardware.order_date = new GlideDateTime();
+                        IMITADHardware.update();
+                    } else {
+                        IMITADHardware.initialize();
+                        IMITADHardware.hardware_assets = array[x];
+                        IMITADHardware.workorder = current.number;
+                        IMITADHardware.order_type = current.order_type.choice;
+                        IMITADHardware.workorder_status = 'Submitted';
+						IMITADHardware.order_date = new GlideDateTime().getDate();
+                        IMITADHardware.insert();
+                    }
+
+                    //To change status of assets on submit
+                    var grupdate = new GlideRecord('alm_asset');
+                    grupdate.addQuery('sys_id', array[x]);
+                    grupdate.query();
+                    if (grupdate.next()) {
+                        grupdate.setValue('install_status', 6);
+                        if (current.order_type.choice == "Box Reclaim") {
+                            grupdate.substatus = 'Return Box-Requested';
+                        } else {
+                            grupdate.substatus = 'Return Label-Requested';
+                        }
+                        // grupdate.setValue('substatus', 'Return Box-Requested');
+                        grupdate.update();
+                    }
+                }
+
+            } else if (readResponse.ResponseCode == "3" && readResponse.ErrorMessage != "") {
+                FailedReason = readResponse.ErrorMessage;
+
+            } else if (readResponse.ResponseCode == "2" && readResponse.ErrorMessage != "") {
+
+                FailedReason = readResponse.ErrorMessage + '\n' + JSON.stringify(readResponse.Error);
+            }
+
+            if (OrderID != '' || FailedReason != '') {
+                var BoxLabelorder = new GlideRecord('x_inmis_im_itad_box_label_order');
+                if (BoxLabelorder.get(current.getValue('sys_id'))) {
+                    BoxLabelorder.im_order_id = OrderID;
+                    if (FailedReason != '') {
+                        BoxLabelorder.failed_reason = FailedReason;
+                        BoxLabelorder.box_label_order_status = 'failed';
+                    } else {
+                        BoxLabelorder.failed_reason = '';
+                    }
+                    BoxLabelorder.setWorkflow(false);
+                    BoxLabelorder.update();
+                }
+
+
+                gs.info('Box/Label Order Creation API END');
+            }
+        } catch (ex) {
+            var message = ex.message;
+            gs.info('>>>Exception ouccured [CreateBoxLabelOrderAPI]: ' + ex);
+        }
+    },
+    _updateAPIStatus: function(JobDetails, domain) {
+        try {
+            gs.info('Update API Status Started');
+            var authenticationDetails = new IngramUtils().tokenValidation(domain);
+            var count = 0;
+            var r = new sn_ws.RESTMessageV2('x_inmis_im_itad.UpdateApiStatus', 'UpdateApiStatus');
+            r.setStringParameterNoEscape('JobDetails', JSON.stringify(JobDetails));
+            r.setStringParameterNoEscape('Token', authenticationDetails.Token);
+            r.setStringParameterNoEscape('UpdateApiStatus', gs.getProperty('x_inmis_im_itad.UpdateApiStatus'));
+
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+
+            var requestBody = JSON.parse(r.getRequestBody());
+            requestBody.Token = "XXXXXXXXXXX";
+
+            gs.info('Update API Request Body: ' + JSON.stringify(requestBody));
+            gs.info('Update API Response Body:' + responseBody);
+            var readResponse = JSON.parse(responseBody);
+
+            if (response.haveError()) {
+                if (count < 3) {
+                    gs.info('count: ' + count);
+                    count++;
+                    this._updateAPIStatus(JobDetails, domain);
+                }
+            } else if (readResponse.ResponseCode == "0" || readResponse.ErrorMessage == "") {
+                gs.info('Update API Status is Successful');
+            }
+
+            gs.info('Update API Status END');
+
+        } catch (ex) {
+            gs.info('>>Exception occured [_updateAPIStatus]: ' + ex);
+        }
+
+    },
+
+    _updateResponseStatus: function(OrderDetails, domain) {
+        try {
+            gs.info('Update Response Status Started');
+            var authenticationDetails = new IngramUtils().tokenValidation(domain);
+            var count = 0;
+            var r = new sn_ws.RESTMessageV2('x_inmis_im_itad.UpdateResponse', 'UpdateResponse');
+            r.setStringParameterNoEscape('OrderDetails', JSON.stringify(OrderDetails));
+            r.setStringParameterNoEscape('Token', authenticationDetails.Token);
+            r.setStringParameterNoEscape('UpdateResponse', gs.getProperty('x_inmis_im_itad.UpdateResponse'));
+
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+
+            var requestBody = JSON.parse(r.getRequestBody());
+            requestBody.Token = "XXXXXXXXXXX";
+
+            gs.info('Update Response Request Body: ' + JSON.stringify(requestBody));
+            gs.info('Update Response Response Body:' + responseBody);
+            var readResponse = JSON.parse(responseBody);
+
+            if (response.haveError()) {
+                if (count < 3) {
+                    gs.info('count: ' + count);
+                    count++;
+                    this._updateResponseStatus(OrderDetails, domain);
+                }
+            } else if (readResponse.ResponseCode == "0" || readResponse.ErrorMessage == "") {
+                gs.info('Update Response Status is Successful');
+            }
+
+            gs.info('Update Response Status END');
+
+        } catch (ex) {
+            gs.info('>>Exception occured [_updateResponseStatus]: ' + ex);
+        }
+
+    },
+
+    pullBoxLabelOrderUpdateData: function(domain, Status) {
+        try {
+            gs.info(Status + ' API started');
+            var authenticationDetails = new IngramUtils().tokenValidation(domain);
+
+            var requestBody = {};
+            requestBody.OrderStatusDatabaseUrl = gs.getProperty('x_inmis_im_itad.OrderStatus');
+            requestBody.SourceID = authenticationDetails.sourceid;
+            requestBody.Token = "XXXXXXXXXXX";
+            requestBody.CustomerID = 0;
+            requestBody.Status = Status;
+
+            gs.info(Status + ' Requested Body: ' + JSON.stringify(requestBody));
+
+            var r = new sn_ws.RESTMessageV2('x_inmis_im_itad.OrderStatusDatabaseUrl', 'OrderStatusData');
+            r.setStringParameterNoEscape('OrderStatusDatabaseUrl', gs.getProperty('x_inmis_im_itad.OrderStatus'));
+            r.setStringParameterNoEscape('SourceID', authenticationDetails.sourceid);
+            r.setStringParameterNoEscape('Token', authenticationDetails.Token);
+            r.setStringParameterNoEscape('CustomerID', '0');
+            r.setStringParameterNoEscape('Status', Status);
+
+
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+
+            gs.info(Status + " readResponse: " + responseBody);
+
+            var readResponse = JSON.parse(responseBody);
+
+            if (response.haveError()) {
+                gs.info(Status + ' Error: ' + response.getErrorMessage());
+                gs.addErrorMessage('Error occured while pulling ' + Status + ' data from Blue IQ');
+
+            } else if (readResponse.ResponseCode == "0" || readResponse.ErrorMessage == "") {
+                var OrderDetails1 = [];
+                var orderStatusData = readResponse.InputArguments;
+                if (orderStatusData) {
+                    for (var i = 0; i < orderStatusData.length; i++) {
+                        var obj = {
+                            "SourceID": "",
+                            "OrderID": "",
+                            "Event": Status,
+                            "ResponseDescription": "OK",
+                            "ResponseCode": "200",
+                            "APICallStatus": "SUCCESS"
+                        };
+                        var SourceID = orderStatusData[i].SourceID;
+                        var IMOrderId = orderStatusData[i].IMOrderId;
+                        var OrderStatus = orderStatusData[i].OrderStatus;
+                        var RequestNumber = orderStatusData[i].RequestNumber;
+                        var ShippedDate = orderStatusData[i].ShippedDate; 
+						var TrackingNumber = orderStatusData[i].TrackingNumber; 
+                        var Tracking = orderStatusData[i].Tracking;
+                        var TrackingNo = Tracking[0].TrackingNo;
+                        var ReturnTracking = Tracking[0].ReturnTracking;
+
+
+                        obj.SourceID = SourceID.toString();
+                        obj.OrderID = IMOrderId.toString();
+
+                        OrderDetails1.push(obj);
+
+                        var orderUpdate = new GlideRecord('x_inmis_im_itad_box_or_label_order_update');
+                        orderUpdate.initialize();
+                        orderUpdate.requestnumber = RequestNumber;
+                        orderUpdate.imorderid = IMOrderId;
+                        orderUpdate.orderstatus = OrderStatus;
+                        orderUpdate.shippeddate = ShippedDate;
+						orderUpdate.trackingnumber = TrackingNumber;
+                        orderUpdate.tracking = TrackingNo;
+                        orderUpdate.return_tracking = ReturnTracking;
+                        orderUpdate.insert();
+
+                    }
+
+                    this._updateResponseStatus(OrderDetails1, domain);
+                }
+            }
+
+            gs.info(Status + ' API END');
+
+        } catch (ex) {
+            gs.info('>>Exception occured [pullBoxLabelOrderUpdateData]: ' + ex);
+        }
+    },
+
+    pullBoxLabelOrderAssetLevelData: function(domain) {
+        try {
+            gs.info('Asset Level API started');
+            var authenticationDetails = new IngramUtils().tokenValidation(domain);
+
+            var requestBody = {};
+            requestBody.AssetStatusDatabaseUrl = gs.getProperty('x_inmis_im_itad.AssetStatus');
+            requestBody.SourceID = authenticationDetails.sourceid;
+            requestBody.Token = "XXXXXXXXXXX";
+            requestBody.CustomerID = 0;
+            requestBody.Status = "SITES";
+
+            gs.info('Asset Level Requested Body: ' + JSON.stringify(requestBody));
+
+            var r = new sn_ws.RESTMessageV2('x_inmis_im_itad.AssetStatusDatabaseUrl', 'AssetStatusData');
+            r.setStringParameterNoEscape('AssetStatusDatabaseUrl', gs.getProperty('x_inmis_im_itad.AssetStatus'));
+            r.setStringParameterNoEscape('SourceID', authenticationDetails.sourceid);
+            r.setStringParameterNoEscape('Token', authenticationDetails.Token);
+            r.setStringParameterNoEscape('CustomerID', '0');
+            r.setStringParameterNoEscape('Status', "SITES");
+
+
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+
+            gs.info("Asset Level readResponse: " + responseBody);
+
+            var readResponse = JSON.parse(responseBody);
+
+            if (response.haveError()) {
+                gs.info('Asset Level Error: ' + response.getErrorMessage());
+                gs.addErrorMessage('Error occured while pulling Asset Level data from Blue IQ');
+
+            } else if (readResponse.ResponseCode == "0" || readResponse.ErrorMessage == "") {
+                var OrderDetails = [];
+                var assetData = readResponse.InputArguments;
+                if (assetData) {
+                    var updateAssetStatus = "";
+                    for (var i = 0; i < assetData.length; i++) {
+                        var SourceID = assetData[i].SourceID;
+                        var IMOrderId = assetData[i].IMOrderId;
+                        var RequestNumber = assetData[i].RequestNumber;
+                        var vAssetSourceKey = assetData[i].vAssetSourceKey;
+                        var CustomerID = assetData[i].CustomerID;
+                        var AssetTag = assetData[i].AssetTag;
+                        var SerialNumber = assetData[i].SerialNumber;
+                        var OwnershipType = assetData[i].OwnershipType;
+                        var Facility = assetData[i].Facility;
+                        var State = assetData[i].State;
+                        var SubState = assetData[i].SubState;
+                        var StockRoom = assetData[i].StockRoom;
+                        var Site = assetData[i].Site;
+                        // 						var Tracking = assetData[i].Tracking;
+                        // 						var TrackingNumber = Tracking[0].TrackingNumber;
+                        // 						var ReturnTracking = Tracking[0].ReturnTracking;
+
+                        var obj1 = {
+                            "SourceID": "",
+                            "OrderID": "",
+                            "Event": Site,
+                            "ResponseDescription": "OK",
+                            "ResponseCode": "200",
+                            "APICallStatus": "SUCCESS"
+                        };
+                        obj1.SourceID = SourceID.toString();
+                        obj1.OrderID = IMOrderId.toString();
+
+                        OrderDetails.push(obj1);
+                        var assetRecordData = new GlideRecord('x_inmis_im_itad_box_or_label_asset_update');
+                        assetRecordData.initialize();
+                        assetRecordData.sourceid = SourceID;
+                        assetRecordData.imorderid = IMOrderId;
+                        assetRecordData.customerid = CustomerID;
+                        assetRecordData.requestnumber = RequestNumber;
+                        assetRecordData.vassetsourcekey = vAssetSourceKey;
+                        assetRecordData.assettag = AssetTag;
+                        assetRecordData.serialnumber = SerialNumber;
+                        assetRecordData.ownershiptype = OwnershipType;
+                        assetRecordData.facility = Facility;
+                        assetRecordData.state = State;
+                        assetRecordData.substate = SubState;
+                        assetRecordData.stockroom = StockRoom;
+                        assetRecordData.site = Site;
+                        // 						assetRecordData.tracking = TrackingNumber;
+                        // 						assetRecordData.return_tracking = ReturnTracking;
+                        assetRecordData.insert();
+
+                        if (Site == "SORT") {
+                            updateAssetStatus = new x_inmis_im_itad.UpdateAssetStatus().updateStatusFromBR(vAssetSourceKey, 6, 'Received by Vendor'); // state 6 is In Stock
+                        } else if (OwnershipType == "Reusable Asset" || OwnershipType == "Lease Asset") {
+                            updateAssetStatus = new x_inmis_im_itad.UpdateAssetStatus().updateStatusFromBR(vAssetSourceKey, 6, 'available'); // state 6 is In Stock
+                        } else if (OwnershipType == "NA") {
+                            updateAssetStatus = new x_inmis_im_itad.UpdateAssetStatus().updateStatusFromBR(vAssetSourceKey, 9, 'pending_disposal'); // sate  9 is In transit
+                        }
+
+                    }
+
+                    this._updateResponseStatus(OrderDetails, domain);
+                }
+            }
+
+        } catch (ex) {
+            gs.info('>>Exception occured [pullBoxLabelOrderAssetLevelData]: ' + ex);
+        }
+    },
+
+
+
+    pullBoxLabelOrderInvoicedData: function(domain) {
+        try {
+            gs.info('Invoiced API started');
+            var authenticationDetails = new IngramUtils().tokenValidation(domain);
+
+            var requestBody = {};
+            requestBody.InvoicedDatabaseUrl = gs.getProperty('x_inmis_im_itad.Invoiced');
+            requestBody.SourceID = authenticationDetails.sourceid;
+            requestBody.Token = "XXXXXXXXXXX";
+            gs.info('Invoiced Requested Body: ' + JSON.stringify(requestBody));
+
+            var r = new sn_ws.RESTMessageV2('x_inmis_im_itad.InvoicedData', 'InvoicedData');
+            r.setStringParameterNoEscape('InvoicedDatabaseUrl', gs.getProperty('x_inmis_im_itad.Invoiced'));
+            r.setStringParameterNoEscape('Token', authenticationDetails.Token);
+            r.setStringParameterNoEscape('SourceID', authenticationDetails.sourceid);
+
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+            gs.info("Invoiced responseBody: " + responseBody);
+
+            var readResponse = JSON.parse(responseBody);
+
+            if (response.haveError()) {
+                gs.info('Invoiced Error: ' + response.getErrorMessage());
+                gs.addErrorMessage('Error occured while pulling Invoiced data from Blue IQ');
+
+            } else if (readResponse.ResponseCode == "0" || readResponse.ErrorMessage == "") {
+                var JobDetails = [];
+                var invoicedData = readResponse.AuditedData;
+                if (invoicedData) {
+                    for (var i = 0; i < invoicedData.length; i++) {
+                        var obj = {
+                            "SourceID": "",
+                            "JobID": "",
+                            "Event": "Invoiced",
+                            "ResponseDescription": "OK",
+                            "ResponseCode": "200",
+                            "APICallStatus": "SUCCESS"
+                        };
+                        var IMJobId = invoicedData[i].ijobid;
+                        var AssetSold = invoicedData[i].AssetSold;
+                        var ReferenceID = invoicedData[i].ReferenceID;
+                        var vRequestNumber = invoicedData[i].vRequestNumber;
+                        var JobStatus = invoicedData[i].JobStatus;
+                        var vAssetSourceKey = invoicedData[i].vAssetSourceKey;
+                        var PartNumber = invoicedData[i].PartNumber;
+                        var Missing = invoicedData[i].Missing;
+                        var AuditedBy = invoicedData[i].AuditedBy;
+                        var AuditedOnUTC = invoicedData[i].AuditedOnUTC;
+                        var ConditionCode = invoicedData[i].ConditionCode;
+                        var ConditionRemarks = invoicedData[i].ConditionRemarks;
+                        var RecoveryValue = parseFloat(invoicedData[i].RecoveryValueUSD);
+                        RecoveryValue = RecoveryValue.toFixed(2);
+                        var ProcessingFees = parseFloat(invoicedData[i].ProcessingFees);
+                        ProcessingFees = ProcessingFees.toFixed(2);
+                        var Currency = invoicedData[i].Currency;
+                        var TestStatus = invoicedData[i].TestStatus;
+                        var Weight = invoicedData[i].Weight;
+                        var WeightUnit = invoicedData[i].WeightUnit;
+                        var TestRemarks = invoicedData[i].TestRemarks;
+                        var MSRP = invoicedData[i].MSRP;
+
+                        obj.SourceID = authenticationDetails.sourceid.toString();
+                        obj.JobID = IMJobId.toString();
+                        JobDetails.push(obj);
+                        //in the back end we are using report sent table only for invoiced
+                        var ReportsentUpdate = new GlideRecord('x_inmis_im_itad_inbound_reportsent');
+                        ReportsentUpdate.initialize();
+                        ReportsentUpdate.vassetsourcekey = vAssetSourceKey;
+                        ReportsentUpdate.referenceid = ReferenceID;
+                        ReportsentUpdate.partnumber = PartNumber;
+                        ReportsentUpdate.missing = Missing;
+                        //ReportsentUpdate.ownership = Ownership;
+                        ReportsentUpdate.auditedby = AuditedBy;
+                        ReportsentUpdate.auditedonutc = AuditedOnUTC;
+                        ReportsentUpdate.conditioncode = ConditionCode;
+                        ReportsentUpdate.conditionremarks = ConditionRemarks;
+                        //ReportsentUpdate.dispositioncode = DispositionCode;
+                        ReportsentUpdate.recoveryvalue = RecoveryValue;
+                        ReportsentUpdate.processingfees = ProcessingFees;
+                        ReportsentUpdate.currency = Currency;
+                        ReportsentUpdate.teststatus = TestStatus;
+                        ReportsentUpdate.testremarks = TestRemarks == "" ? " " : TestRemarks;
+                        ReportsentUpdate.weight = Weight;
+                        ReportsentUpdate.weightunit = WeightUnit;
+                        ReportsentUpdate.msrp = MSRP;
+                        ReportsentUpdate.requestnumber = vRequestNumber; // workorderID
+                        ReportsentUpdate.workorderstatus = JobStatus;
+                        ReportsentUpdate.insert();
+
+                        var updateAssetStatus;
+                        if (AssetSold == 1) {
+                            updateAssetStatus = new x_inmis_im_itad.UpdateAssetStatus().updateStatusFromBR(vAssetSourceKey, 7, 'sold');
+                        } else {
+                            updateAssetStatus = new x_inmis_im_itad.UpdateAssetStatus().updateStatusFromBR(vAssetSourceKey, 7, 'disposed');
+                        }
+
+
+                        var updateJobStatus = new x_inmis_im_itad.UpdateJobStatus().updateJobStatusFromBR(vRequestNumber, JobStatus);
+                    }
+
+                    this._updateAPIStatus(JobDetails, domain);
+                }
+            }
+
+            gs.info('Invoiced API END');
+
+        } catch (ex) {
+            gs.info('>>Exception occured [pullBoxLabelOrderInvoicedData]: ' + ex);
+        }
+    },
+
+    type: 'BoxLabelUtils'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-08-18 12:39:49</sys_created_on>
+        <sys_id>628be204dbbad4108a521fe9689619d5</sys_id>
+        <sys_mod_count>306</sys_mod_count>
+        <sys_name>BoxLabelUtils</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_script_include_628be204dbbad4108a521fe9689619d5</sys_update_name>
+        <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+        <sys_updated_on>2021-03-11 08:33:15</sys_updated_on>
+    </sys_script_include>
+</record_update>

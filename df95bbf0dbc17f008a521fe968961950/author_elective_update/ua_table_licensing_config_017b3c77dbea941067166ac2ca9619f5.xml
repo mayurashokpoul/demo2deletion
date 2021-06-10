@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="ua_table_licensing_config">
+    <ua_table_licensing_config action="DELETE">
+        <is_fulfillment>false</is_fulfillment>
+        <license_condition/>
+        <license_model>none</license_model>
+        <license_roles/>
+        <name>x_inmis_im_itad_part_description</name>
+        <op_delete>true</op_delete>
+        <op_insert>true</op_insert>
+        <op_update>true</op_update>
+        <owner_condition/>
+        <sys_class_name>ua_table_licensing_config</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-08-17 09:43:33</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>017b3c77dbea941067166ac2ca9619f5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_inmis_im_itad_part_description</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>ua_table_licensing_config_017b3c77dbea941067166ac2ca9619f5</sys_update_name>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-08-17 09:43:33</sys_updated_on>
+    </ua_table_licensing_config>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</application>
+        <file_path/>
+        <instance_id>c821e244dbe52b846578f22ebf9619bf</instance_id>
+        <instance_name>ven02711</instance_name>
+        <name>ua_table_licensing_config_017b3c77dbea941067166ac2ca9619f5</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="ua_table_licensing_config"><ua_table_licensing_config action="INSERT_OR_UPDATE"><is_fulfillment>false</is_fulfillment><license_condition/><license_model>none</license_model><license_roles/><name>x_inmis_im_itad_part_description</name><op_delete>true</op_delete><op_insert>true</op_insert><op_update>true</op_update><owner_condition/><sys_class_name>ua_table_licensing_config</sys_class_name><sys_created_by>Munimohan.Bathala@ness.com</sys_created_by><sys_created_on>2020-08-17 09:43:33</sys_created_on><sys_customer_update>false</sys_customer_update><sys_id>017b3c77dbea941067166ac2ca9619f5</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_inmis_im_itad_part_description</sys_name><sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package><sys_policy/><sys_replace_on_upgrade>false</sys_replace_on_upgrade><sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope><sys_update_name>ua_table_licensing_config_017b3c77dbea941067166ac2ca9619f5</sys_update_name><sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by><sys_updated_on>2020-08-17 09:43:33</sys_updated_on></ua_table_licensing_config></record_update>]]></payload>
+        <payload_hash>-854396244</payload_hash>
+        <record_name>x_inmis_im_itad_part_description</record_name>
+        <reverted_from/>
+        <source>7fc870bedba614108a521fe968961916</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-08-17 09:43:33</sys_created_on>
+        <sys_id>857b3c77dbea941067166ac2ca9619f6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>173fbcd76340000001</sys_recorded_at>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-08-17 09:43:33</sys_updated_on>
+        <type>Table Subscription Configuration</type>
+        <update_guid>cd7b3c770fea9410cf634413da8fedf5</update_guid>
+        <update_guid_history>cd7b3c770fea9410cf634413da8fedf5:-854396244</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-08-19 10:24:14</sys_created_on>
+        <sys_db_object display_value="" name="ua_table_licensing_config">ua_table_licensing_config</sys_db_object>
+        <sys_id>45a0e35f52d540c4938542d147f59d71</sys_id>
+        <sys_metadata>017b3c77dbea941067166ac2ca9619f5</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_inmis_im_itad_part_description</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_scope_delete display_value="">754b5651fdcb480ea4d7b0c2cca0f181</sys_scope_delete>
+        <sys_update_name>ua_table_licensing_config_017b3c77dbea941067166ac2ca9619f5</sys_update_name>
+        <sys_update_version display_value="ua_table_licensing_config_017b3c77dbea941067166ac2ca9619f5">857b3c77dbea941067166ac2ca9619f6</sys_update_version>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-08-19 10:24:14</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

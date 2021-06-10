@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_module">
+    <sys_app_module action="DELETE">
+        <active>true</active>
+        <application display_value="IM-ITAD">ce80c889dbc17f008a521fe968961955</application>
+        <assessment/>
+        <content_page/>
+        <device_type/>
+        <filter/>
+        <hint/>
+        <homepage/>
+        <image/>
+        <link_type>DIRECT</link_type>
+        <map_page/>
+        <mobile_title>IMITAD Location Filter</mobile_title>
+        <mobile_view_name>Mobile</mobile_view_name>
+        <name/>
+        <order>9</order>
+        <override_menu_roles>false</override_menu_roles>
+        <query>x_inmis_im_itad_IMITAD Location Filter.do</query>
+        <report/>
+        <roles>admin</roles>
+        <survey/>
+        <survey_overwrite>true</survey_overwrite>
+        <sys_class_name>sys_app_module</sys_class_name>
+        <sys_created_by>mayur.poul</sys_created_by>
+        <sys_created_on>2021-04-13 12:24:59</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>6e3458b01ba7e4100eafb99e0a4bcb6f</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Locations Filter</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_app_module_6e3458b01ba7e4100eafb99e0a4bcb6f</sys_update_name>
+        <sys_updated_by>mayur.poul</sys_updated_by>
+        <sys_updated_on>2021-04-26 06:12:38</sys_updated_on>
+        <timeline_page/>
+        <title>Locations Filter</title>
+        <uncancelable>false</uncancelable>
+        <view_name/>
+        <window_name/>
+    </sys_app_module>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</application>
+        <file_path/>
+        <instance_id>c821e244dbe52b846578f22ebf9619bf</instance_id>
+        <instance_name>ven02711</instance_name>
+        <name>sys_app_module_6e3458b01ba7e4100eafb99e0a4bcb6f</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_module"><sys_app_module action="INSERT_OR_UPDATE"><active>true</active><application display_value="IM-ITAD">ce80c889dbc17f008a521fe968961955</application><assessment/><content_page/><device_type/><filter/><hint/><homepage/><image/><link_type>DIRECT</link_type><map_page/><mobile_title>IMITAD Location Filter</mobile_title><mobile_view_name>Mobile</mobile_view_name><name/><order>9</order><override_menu_roles>false</override_menu_roles><query>x_inmis_im_itad_IMITAD Location Filter.do</query><report/><roles>admin</roles><survey/><survey_overwrite>true</survey_overwrite><sys_class_name>sys_app_module</sys_class_name><sys_created_by>mayur.poul</sys_created_by><sys_created_on>2021-04-13 12:24:59</sys_created_on><sys_customer_update>false</sys_customer_update><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>6e3458b01ba7e4100eafb99e0a4bcb6f</sys_id><sys_mod_count>5</sys_mod_count><sys_name>Locations Filter</sys_name><sys_overrides/><sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package><sys_policy/><sys_replace_on_upgrade>false</sys_replace_on_upgrade><sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope><sys_update_name>sys_app_module_6e3458b01ba7e4100eafb99e0a4bcb6f</sys_update_name><sys_updated_by>mayur.poul</sys_updated_by><sys_updated_on>2021-04-26 06:12:38</sys_updated_on><timeline_page/><title>Locations Filter</title><uncancelable>false</uncancelable><view_name/><window_name/></sys_app_module></record_update>]]></payload>
+        <payload_hash>1956887243</payload_hash>
+        <record_name>Locations Filter</record_name>
+        <reverted_from/>
+        <source>3bfeb02c1b9be8100eafb99e0a4bcb94</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>mayur.poul</sys_created_by>
+        <sys_created_on>2021-04-26 06:12:38</sys_created_on>
+        <sys_id>2cdbf9781bf760500eafb99e0a4bcb34</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1790cceee6b0000001</sys_recorded_at>
+        <sys_updated_by>mayur.poul</sys_updated_by>
+        <sys_updated_on>2021-04-26 06:12:38</sys_updated_on>
+        <type>Module</type>
+        <update_guid>64dbf978f4f7605005a2190712ff4834</update_guid>
+        <update_guid_history>64dbf978f4f7605005a2190712ff4834:1956887243,6b76a54555e32810511b392381038a50:1042450494,01e5ed0577e32810fbac3e3ccaef1d0c:2110081744,06aa48c916efe4105739efa6e2db4ad2:994052890,91a45cb008a7e4100da827b2b3864a05:40604217,8064d8b0a2a7e410d23481a3cf8d055f:355870177</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">745c40d5db37a01067166ac2ca96197c</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>mayur.poul</sys_created_by>
+        <sys_created_on>2021-04-27 11:22:27</sys_created_on>
+        <sys_db_object display_value="" name="sys_app_module">sys_app_module</sys_db_object>
+        <sys_id>430da38d35ce408f96813a4f90b63089</sys_id>
+        <sys_metadata>6e3458b01ba7e4100eafb99e0a4bcb6f</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Locations Filter</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_scope_delete display_value="">754b5651fdcb480ea4d7b0c2cca0f181</sys_scope_delete>
+        <sys_update_name>sys_app_module_6e3458b01ba7e4100eafb99e0a4bcb6f</sys_update_name>
+        <sys_update_version display_value="sys_app_module_6e3458b01ba7e4100eafb99e0a4bcb6f">2cdbf9781bf760500eafb99e0a4bcb34</sys_update_version>
+        <sys_updated_by>mayur.poul</sys_updated_by>
+        <sys_updated_on>2021-04-27 11:22:27</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

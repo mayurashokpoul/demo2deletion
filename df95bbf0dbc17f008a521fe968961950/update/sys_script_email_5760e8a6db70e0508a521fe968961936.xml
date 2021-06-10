@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_email">
+    <sys_script_email action="INSERT_OR_UPDATE">
+        <name>findRejectionUserComments</name>
+        <new_lines_to_html>false</new_lines_to_html>
+        <script><![CDATA[(function runMailScript( /* GlideRecord */ current, /* TemplatePrinter */ template,
+    /* Optional EmailOutbound */
+    email, /* Optional GlideRecord */ email_action,
+    /* Optional GlideRecord */
+    event) {
+
+    var str = 'The erasure request initiated for the hardware asset ' + current.hardware_assets.getDisplayValue() + ' and Serial# ' + current.agent_id + ' on ' + current.erasure_initiated_date;
+
+    var str1 = '';
+    var approver = new GlideRecord('sysapproval_approver');
+    approver.addEncodedQuery('document_id=' + current.getValue('sys_id') + '^state=rejected');
+    approver.query();
+    if (approver.next()) {
+		var comments = approver.comments.getJournalEntry(1).toString().split('(Comments)');
+		
+        str1 = ' has been rejected by ' + approver.approver.getDisplayValue() + ' with comments ' + comments[1];
+    }
+
+    str += str1;
+
+    template.print('<p><font size="2" face="arial">' + str +'</p>');
+
+
+
+})(current, template, email, email_action, event);]]></script>
+        <sys_class_name>sys_script_email</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-12-03 07:06:20</sys_created_on>
+        <sys_id>5760e8a6db70e0508a521fe968961936</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>findRejectionUserComments</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_script_email_5760e8a6db70e0508a521fe968961936</sys_update_name>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-12-03 07:15:17</sys_updated_on>
+    </sys_script_email>
+</record_update>

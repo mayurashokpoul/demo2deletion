@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="asset_type" table="x_inmis_im_itad_return_asset_details" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>asset_type</element>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:00:29</sys_created_on>
+            <sys_id>2712ba48dbbad4108a521fe9689619cf</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>asset_type</sys_name>
+            <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+            <sys_update_name>sys_choice_x_inmis_im_itad_return_asset_details_asset_type</sys_update_name>
+            <sys_updated_by>INVOLR00</sys_updated_by>
+            <sys_updated_on>2020-08-18 13:00:29</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>true</inactive>
+            <label>vcatdescription</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>0</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:00:29</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>d7e13208dbbad4108a521fe9689619af</sys_id>
+            <sys_mod_count>6</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 06:24:17</sys_updated_on>
+            <value>vcatdescription</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>All In One</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>1</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:01:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>7712f648dbbad4108a521fe96896199d</sys_id>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 06:35:49</sys_updated_on>
+            <value>All In One</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>CRT Monitor</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>2</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:01:51</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>9062be84dbbad4108a521fe9689619bc</sys_id>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 06:36:40</sys_updated_on>
+            <value>CRT Monitor</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Desktop</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>3</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:02:24</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>38827e48dbbad4108a521fe9689619c2</sys_id>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 06:36:50</sys_updated_on>
+            <value>Desktop</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Hard Drives</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>4</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:02:43</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>a38272c4dbbad4108a521fe968961973</sys_id>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 06:37:05</sys_updated_on>
+            <value>Hard Drives</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Laptop</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>5</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:03:01</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>9ca2fe48dbbad4108a521fe96896190a</sys_id>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 06:37:13</sys_updated_on>
+            <value>Laptop</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>LCD Monitor</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>6</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:03:17</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>b8b23a48dbbad4108a521fe96896198c</sys_id>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 08:33:51</sys_updated_on>
+            <value>LCD Monitor</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Netbooks</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>7</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:03:33</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>64c2f648dbbad4108a521fe9689619eb</sys_id>
+            <sys_mod_count>6</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 08:37:40</sys_updated_on>
+            <value>Netbooks</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Network Storage</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>8</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:04:32</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>74d2b288dbbad4108a521fe968961957</sys_id>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 08:38:00</sys_updated_on>
+            <value>Network Storage</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>true</inactive>
+            <label>Notebook</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>9</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:04:51</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>7e03fe48dbbad4108a521fe9689619e7</sys_id>
+            <sys_mod_count>5</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 08:38:15</sys_updated_on>
+            <value>Notebook</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>true</inactive>
+            <label>Notebooks</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>10</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:05:15</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>bb13fe48dbbad4108a521fe96896195e</sys_id>
+            <sys_mod_count>5</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 08:38:37</sys_updated_on>
+            <value>Notebooks</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Other</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>11</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:05:33</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>6133b688dbbad4108a521fe96896191f</sys_id>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 08:38:52</sys_updated_on>
+            <value>Other</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>true</inactive>
+            <label>PC</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>12</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:05:48</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>7d433288dbbad4108a521fe9689619b6</sys_id>
+            <sys_mod_count>5</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 08:39:06</sys_updated_on>
+            <value>PC</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Printers</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>13</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:06:04</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>9153b688dbbad4108a521fe968961944</sys_id>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 08:39:25</sys_updated_on>
+            <value>Printers</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Servers</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>14</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:06:19</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>61633a88dbbad4108a521fe9689619f7</sys_id>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 08:39:39</sys_updated_on>
+            <value>Servers</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Storage Enclosures &amp; RAID Arrays</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>15</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:06:37</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>c1737a88dbbad4108a521fe96896191d</sys_id>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 08:39:58</sys_updated_on>
+            <value>Storage Enclosures &amp; RAID Arrays</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Tablets</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>16</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:06:52</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>1183b688dbbad4108a521fe96896199a</sys_id>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 08:41:18</sys_updated_on>
+            <value>Tablets</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Tape Drives</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>17</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:07:07</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>11937a88dbbad4108a521fe9689619f1</sys_id>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 08:41:35</sys_updated_on>
+            <value>Tape Drives</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>asset_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>WAH Kit</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <sequence>18</sequence>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-18 13:07:24</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>f0a3fa88dbbad4108a521fe968961931</sys_id>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-02-26 08:41:49</sys_updated_on>
+            <value>WAH Kit</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>

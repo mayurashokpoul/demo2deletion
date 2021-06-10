@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Return Asset Details" max_length="40" name="x_inmis_im_itad_return_asset_details" sizeclass="0" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Active" max_length="40" name="active" type="boolean"/>
+        <element display="true" label="Asset Tag" max_length="75" name="asset_tag" type="string"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Asset Type" max_length="100" name="asset_type" type="choice">
+            <choice>
+                <element inactive="true" inactive_on_update="true" label="vcatdescription" sequence="0" value="vcatdescription"/>
+                <element inactive_on_update="false" label="All In One" sequence="1" value="All In One"/>
+                <element inactive_on_update="false" label="CRT Monitor" sequence="2" value="CRT Monitor"/>
+                <element inactive_on_update="false" label="Desktop" sequence="3" value="Desktop"/>
+                <element inactive_on_update="false" label="Hard Drives" sequence="4" value="Hard Drives"/>
+                <element inactive_on_update="false" label="Laptop" sequence="5" value="Laptop"/>
+                <element inactive_on_update="false" label="LCD Monitor" sequence="6" value="LCD Monitor"/>
+                <element inactive_on_update="false" label="Netbooks" sequence="7" value="Netbooks"/>
+                <element inactive_on_update="false" label="Network Storage" sequence="8" value="Network Storage"/>
+                <element inactive="true" inactive_on_update="true" label="Notebook" sequence="9" value="Notebook"/>
+                <element inactive="true" inactive_on_update="true" label="Notebooks" sequence="10" value="Notebooks"/>
+                <element inactive_on_update="false" label="Other" sequence="11" value="Other"/>
+                <element inactive="true" inactive_on_update="true" label="PC" sequence="12" value="PC"/>
+                <element inactive_on_update="false" label="Printers" sequence="13" value="Printers"/>
+                <element inactive_on_update="false" label="Servers" sequence="14" value="Servers"/>
+                <element inactive_on_update="false" label="Storage Enclosures &amp; RAID Arrays" sequence="15" value="Storage Enclosures &amp; RAID Arrays"/>
+                <element inactive_on_update="false" label="Tablets" sequence="16" value="Tablets"/>
+                <element inactive_on_update="false" label="Tape Drives" sequence="17" value="Tape Drives"/>
+                <element inactive_on_update="false" label="WAH Kit" sequence="18" value="WAH Kit"/>
+            </choice>
+        </element>
+        <element label="Asset Description" max_length="50" name="box_description" type="string"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Box/Label Order" max_length="32" name="box_label_order" reference="x_inmis_im_itad_box_label_order" type="reference"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" choice="1" label="Box Part Description" max_length="32" name="box_part_description" reference="x_inmis_im_itad_non_serialized_parts" type="reference">
+            <choice/>
+        </element>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Company" max_length="32" name="company" reference="core_company" type="reference"/>
+        <element label="Manufacturer" max_length="100" name="manufacturer" type="string"/>
+        <element label="Mfg.Part#" max_length="50" name="mfg_part" type="string"/>
+        <element label="Model#" max_length="50" name="model" type="string"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Return Asset" max_length="32" name="return_asset" reference="alm_hardware" reference_qual="javascript: new BoxLabelUtils().getReturnAssetFilterList();" type="reference" use_reference_qualifier="advanced"/>
+        <element label="Serial No" max_length="50" name="serial_no" type="string"/>
+        <element label="Source ID" max_length="40" name="source_id" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Domain" max_length="32" name="sys_domain" type="domain_id"/>
+        <index name="index">
+            <element name="return_asset"/>
+        </index>
+        <index name="index2">
+            <element name="sys_domain"/>
+        </index>
+        <index name="index3">
+            <element name="box_label_order"/>
+        </index>
+        <index name="index4">
+            <element name="company"/>
+        </index>
+        <index name="index5">
+            <element name="box_part_description"/>
+        </index>
+    </element>
+</database>

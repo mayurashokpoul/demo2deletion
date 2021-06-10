@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl">
+    <sys_security_acl action="DELETE">
+        <active>true</active>
+        <admin_overrides>false</admin_overrides>
+        <advanced>true</advanced>
+        <condition/>
+        <description>Default access control on x_inmis_im_itad_imitad_hardware</description>
+        <name>x_inmis_im_itad_imitad_hardware</name>
+        <operation display_value="write">write</operation>
+        <script><![CDATA[answer = false;]]></script>
+        <sys_class_name>sys_security_acl</sys_class_name>
+        <sys_created_by>INMITG00</sys_created_by>
+        <sys_created_on>2020-04-30 06:02:04</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>b5737aa4db68dc1067166ac2ca961902</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>x_inmis_im_itad_imitad_hardware</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_security_acl_b5737aa4db68dc1067166ac2ca961902</sys_update_name>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-06-24 13:51:52</sys_updated_on>
+        <type display_value="record">record</type>
+    </sys_security_acl>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</application>
+        <file_path/>
+        <instance_id>c821e244dbe52b846578f22ebf9619bf</instance_id>
+        <instance_name>ven02711</instance_name>
+        <name>sys_security_acl_b5737aa4db68dc1067166ac2ca961902</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_security_acl"&gt;&lt;sys_security_acl action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;admin_overrides&gt;false&lt;/admin_overrides&gt;&lt;advanced&gt;true&lt;/advanced&gt;&lt;condition/&gt;&lt;description&gt;Default access control on x_inmis_im_itad_imitad_hardware&lt;/description&gt;&lt;name&gt;x_inmis_im_itad_imitad_hardware&lt;/name&gt;&lt;operation display_value="write"&gt;write&lt;/operation&gt;&lt;script&gt;&lt;![CDATA[answer = false;]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_security_acl&lt;/sys_class_name&gt;&lt;sys_created_by&gt;INMITG00&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-04-30 06:02:04&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;false&lt;/sys_customer_update&gt;&lt;sys_id&gt;b5737aa4db68dc1067166ac2ca961902&lt;/sys_id&gt;&lt;sys_mod_count&gt;2&lt;/sys_mod_count&gt;&lt;sys_name&gt;x_inmis_im_itad_imitad_hardware&lt;/sys_name&gt;&lt;sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad"&gt;df95bbf0dbc17f008a521fe968961950&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Ingram Micro IT Asset Disposition"&gt;df95bbf0dbc17f008a521fe968961950&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_security_acl_b5737aa4db68dc1067166ac2ca961902&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;Munimohan.Bathala@ness.com&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-06-24 13:51:52&lt;/sys_updated_on&gt;&lt;type display_value="record"&gt;record&lt;/type&gt;&lt;/sys_security_acl&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>787545909</payload_hash>
+        <record_name>x_inmis_im_itad_imitad_hardware</record_name>
+        <reverted_from/>
+        <source>7a2db8d8dbb5d4508a521fe968961997</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-06-24 13:51:52</sys_created_on>
+        <sys_id>807ee316db21d0508a521fe9689619de</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_recorded_at>172e69966710000001</sys_recorded_at>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-07-06 11:54:09</sys_updated_on>
+        <type>Access Control</type>
+        <update_guid>c87ee316ef21d050e6b5558f01d711dd</update_guid>
+        <update_guid_history>c87ee316ef21d050e6b5558f01d711dd:787545909,1a4e27167721d050063c5f20d25634ed:-24767068,86737aa4dd68dc10b4cfc51de8818204:-1769682771</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-12-02 07:40:00</sys_created_on>
+        <sys_db_object display_value="" name="sys_security_acl">sys_security_acl</sys_db_object>
+        <sys_id>230dee690a824cccbf03cc5511ef64e1</sys_id>
+        <sys_metadata>b5737aa4db68dc1067166ac2ca961902</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_inmis_im_itad_imitad_hardware</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_parent display_value="x_inmis_im_itad_imitad_hardware">02737aa4db68dc1067166ac2ca96190e</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_scope_delete display_value="">754b5651fdcb480ea4d7b0c2cca0f181</sys_scope_delete>
+        <sys_update_name>sys_security_acl_b5737aa4db68dc1067166ac2ca961902</sys_update_name>
+        <sys_update_version display_value="sys_security_acl_b5737aa4db68dc1067166ac2ca961902">807ee316db21d0508a521fe9689619de</sys_update_version>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-12-02 07:40:00</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

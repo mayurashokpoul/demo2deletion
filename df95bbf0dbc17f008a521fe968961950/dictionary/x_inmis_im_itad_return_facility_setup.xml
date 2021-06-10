@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Return Facility Setup" max_length="40" name="x_inmis_im_itad_return_facility_setup" sizeclass="0" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Active" max_length="40" name="active" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Company" max_length="32" name="company" reference="core_company" type="reference"/>
+        <element label="Contact Email" max_length="50" name="contact_email" type="string"/>
+        <element label="Contact Name" max_length="50" name="contact_name" type="string"/>
+        <element label="Contact Phone" max_length="20" name="contact_phone" type="string"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Facility" max_length="32" name="facility" reference="x_inmis_im_itad_ref_facilities" type="reference"/>
+        <element label="FacilityID" max_length="40" name="facilityid" type="string"/>
+        <element label="Source ID" max_length="40" name="source_id" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Domain" max_length="32" name="sys_domain" type="domain_id"/>
+        <index name="index">
+            <element name="sys_domain"/>
+        </index>
+        <index name="index2">
+            <element name="company"/>
+        </index>
+        <index name="index3">
+            <element name="facility"/>
+        </index>
+    </element>
+</database>

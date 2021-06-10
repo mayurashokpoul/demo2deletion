@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_inmis_im_itad.RESTPlainTextUtil</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>RESTPlainTextUtil</name>
+        <script><![CDATA[var RESTPlainTextUtil = Class.create();
+RESTPlainTextUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	/**
+	 * @description Get the body of a text/plain REST request as a string.
+	 * @param {sn_ws.RESTAPIRequest} request The RESTAPIRequest object (the whole request object, not just the body).  
+	 * @param {boolean} [trim=false] Whether to trim the resulting body string before returning it. 
+	 * @returns {string} The request body as a string. If the trim argument is specified and set to a truthy value, the request body will be trimmed before being returned. 
+	 */
+	getTextBody: function(request, trim) {
+		var reqBodyLine;
+		var reqBodyString = '';
+		var streamBody = request.body.dataStream;
+		var gtrRequestBodyReader = new GlideTextReader(streamBody);
+		
+		//get first line
+		reqBodyLine = gtrRequestBodyReader.readLine();
+		while(typeof reqBodyLine == 'string') {
+			reqBodyString += reqBodyLine + '\n';
+			
+			//get next line
+			reqBodyLine = gtrRequestBodyReader.readLine();
+		}
+		
+		return trim ? reqBodyString.trim() : reqBodyString;
+	},
+	
+	type: 'RESTPlainTextUtil'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-10-23 10:51:41</sys_created_on>
+        <sys_id>027dc695dbc8ac1067166ac2ca9619ae</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>RESTPlainTextUtil</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_script_include_027dc695dbc8ac1067166ac2ca9619ae</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-06-09 18:10:08</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="" section_id="d914d56adb87501067166ac2ca96190b" sys_domain="global" table="x_inmis_im_itad_ref_main" version="3" view="sys_popup">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>choice</element>
+            <position>0</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-09-07 10:51:59</sys_created_on>
+            <sys_id>54841922dbc7501067166ac2ca9619a6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_inmis_im_itad_ref_main" sys_domain="global" view="c7402b100a0a0b8400cf971d83ee4384">d914d56adb87501067166ac2ca96190b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-09-07 10:51:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption/>
+            <header>false</header>
+            <name>x_inmis_im_itad_ref_main</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-09-07 10:50:08</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>d914d56adb87501067166ac2ca96190b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_inmis_im_itad_ref_main</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+            <sys_update_name>sys_ui_section_d914d56adb87501067166ac2ca96190b</sys_update_name>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-09-07 10:50:08</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Sys_popup" name="sys_popup">c7402b100a0a0b8400cf971d83ee4384</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

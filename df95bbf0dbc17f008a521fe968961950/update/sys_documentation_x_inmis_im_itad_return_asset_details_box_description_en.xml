@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="box_description" label="Asset Description" language="en" table="x_inmis_im_itad_return_asset_details">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>box_description</element>
+            <help/>
+            <hint/>
+            <label>Asset Description</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_return_asset_details</name>
+            <plural>Asset Descriptions</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-17 10:38:22</sys_created_on>
+            <sys_id>8c08c573db6e94108a521fe968961942</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_name>Asset Description</sys_name>
+            <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+            <sys_update_name>sys_documentation_x_inmis_im_itad_return_asset_details_box_description_en</sys_update_name>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-10-05 09:54:16</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

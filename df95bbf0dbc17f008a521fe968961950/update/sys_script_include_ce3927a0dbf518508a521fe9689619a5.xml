@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_inmis_im_itad.WOIntegrationDataLoad</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>WOIntegrationDataLoad</name>
+        <script><![CDATA[var WOIntegrationDataLoad = Class.create();
+WOIntegrationDataLoad.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+
+    _updateAPIStatus: function(JobDetails) {
+        try {
+            gs.info('Update API Status Started');
+            var authenticationDetails = new IngramUtils().tokenValidation();
+            var count = 0;
+            var r = new sn_ws.RESTMessageV2('x_inmis_im_itad.UpdateApiStatus', 'UpdateApiStatus');
+            r.setStringParameterNoEscape('JobDetails', JSON.stringify(JobDetails));
+            r.setStringParameterNoEscape('Token', authenticationDetails.Token);
+            r.setStringParameterNoEscape('UpdateApiStatus', gs.getProperty('x_inmis_im_itad.UpdateApiStatus'));
+
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+
+            var requestBody = JSON.parse(r.getRequestBody());
+            requestBody.Token = "XXXXXXXXXXX";
+
+            gs.info('Update API Request Body: ' + JSON.stringify(requestBody));
+            gs.info('Update API Response Body:' + responseBody);
+            var readResponse = JSON.parse(responseBody);
+
+            if (response.haveError()) {
+                if (count < 3) {
+                    gs.info('count: ' + count);
+                    count++;
+                    this._updateAPIStatus(JobDetails);
+                }
+            } else if (readResponse.ResponseCode == "0" || readResponse.ErrorMessage == "") {
+                gs.info('Update API Status is Successful');
+            }
+
+            gs.info('Update API Status END');
+
+        } catch (ex) {
+            gs.info('>>Exception occured [_updateAPIStatus]: ' + ex);
+        }
+
+    },
+
+    pullWorkOrderScheduleData: function(domain) {
+        try {
+            gs.info('Scheduled API started');
+            var authenticationDetails = new IngramUtils().tokenValidation(domain);
+
+            var requestBody = {};
+            requestBody.ScheduledDatabaseUrl = gs.getProperty('x_inmis_im_itad.Scheduled');
+            requestBody.SourceID = authenticationDetails.sourceid;
+            requestBody.Token = "XXXXXXXXXXX";
+            gs.info('Scheduled Requested Body: ' + JSON.stringify(requestBody));
+
+            var r = new sn_ws.RESTMessageV2('x_inmis_im_itad.ScheduledData', 'ScheduledData');
+            r.setStringParameterNoEscape('ScheduledDatabaseUrl', gs.getProperty('x_inmis_im_itad.Scheduled'));
+            r.setStringParameterNoEscape('SourceID', authenticationDetails.sourceid);
+            r.setStringParameterNoEscape('Token', authenticationDetails.Token);
+
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+
+            gs.info("Scheduled readResponse: " + responseBody);
+
+            var readResponse = JSON.parse(responseBody);
+
+            if (response.haveError()) {
+                gs.info('Scheduled Error: ' + response.getErrorMessage());
+                gs.addErrorMessage('Error occured while pulling Scheduled data from Blue IQ');
+
+            } else if (readResponse.ResponseCode == "0" || readResponse.ErrorMessage == "") {
+                var JobDetails = [];
+                var scheduledData = readResponse.InputArguments;
+                if (scheduledData) {
+                    for (var i = 0; i < scheduledData.length; i++) {
+                        var obj = {
+                            "SourceID": "",
+                            "JobID": "",
+                            "Event": "Scheduled",
+                            "ResponseDescription": "OK",
+                            "ResponseCode": "200",
+                            "APICallStatus": "SUCCESS"
+                        };
+                        var SourceID = scheduledData[i].SourceID;
+                        var IMJobId = scheduledData[i].IMJobId;
+                        var TimeBetweenFrom = scheduledData[i].TimeBetweenFrom;
+                        var TimeBetweenTo = scheduledData[i].TimeBetweenTo;
+                        var gd = new GlideDate();
+                        var pickupConfirmedDate = gd.getByFormat("dd-MM-yyyy");
+                        var Confirmedwith = scheduledData[i].Confirmedwith;
+                        var Confirmedby = scheduledData[i].Confirmedby;
+                        var JobStatus = scheduledData[i].JobStatus;
+                        var RequestNumber = scheduledData[i].RequestNumber;
+
+                        obj.SourceID = SourceID.toString();
+                        obj.JobID = IMJobId.toString();
+
+                        JobDetails.push(obj);
+
+                        var scheduleUpdate = new GlideRecord('x_inmis_im_itad_inbound_scheduled');
+                        scheduleUpdate.initialize();
+                        scheduleUpdate.sourceid = SourceID;
+                        scheduleUpdate.im_jobid = IMJobId;
+                        scheduleUpdate.time_from = TimeBetweenFrom;
+                        scheduleUpdate.time_to = TimeBetweenTo;
+                        scheduleUpdate.pickup_confirmed = pickupConfirmedDate;
+                        scheduleUpdate.confirmed_with = Confirmedwith;
+                        scheduleUpdate.confirmed_by = Confirmedby;
+                        scheduleUpdate.job_status = JobStatus;
+                        scheduleUpdate.request_number = RequestNumber;
+                        scheduleUpdate.insert();
+
+                    }
+
+                    this._updateAPIStatus(JobDetails);
+                }
+            }
+
+            gs.info('Scheduled API END');
+
+        } catch (ex) {
+            gs.info('>>Exception occured [pullWorkOrderScheduleData]: ' + ex);
+        }
+    },
+
+    pullWorkOrderReceivedData: function(domain) {
+        try {
+            gs.info('Received API started');
+            var authenticationDetails = new IngramUtils().tokenValidation(domain);
+
+            var requestBody = {};
+            requestBody.ReceivedDatabaseUrl = gs.getProperty('x_inmis_im_itad.Received');
+            requestBody.SourceID = authenticationDetails.sourceid;
+            requestBody.Token = "XXXXXXXXXXX";
+            gs.info('Received Requested Body: ' + JSON.stringify(requestBody));
+
+            var r = new sn_ws.RESTMessageV2('x_inmis_im_itad.ReceivedData', 'ReceivedData');
+            r.setStringParameterNoEscape('ReceivedDatabaseUrl', gs.getProperty('x_inmis_im_itad.Received'));
+            r.setStringParameterNoEscape('SourceID', authenticationDetails.sourceid);
+            r.setStringParameterNoEscape('Token', authenticationDetails.Token);
+
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+            gs.info("Received responseBody: " + responseBody);
+
+            var readResponse = JSON.parse(responseBody);
+
+            if (response.haveError()) {
+                gs.info('Received Error: ' + response.getErrorMessage());
+                gs.addErrorMessage('Error occured while pulling Received data from Blue IQ');
+
+            } else if (readResponse.ResponseCode == "0" || readResponse.ErrorMessage == "") {
+                var JobDetails = [];
+                var receivedData = readResponse.InputArguments;
+                if (receivedData) {
+                    for (var i = 0; i < receivedData.length; i++) {
+                        var obj = {
+                            "SourceID": "",
+                            "JobID": "",
+                            "Event": "Received",
+                            "ResponseDescription": "OK",
+                            "ResponseCode": "200",
+                            "APICallStatus": "SUCCESS"
+                        };
+                        var SourceID = receivedData[i].SourceID;
+                        var IMJobId = receivedData[i].IMJobId;
+                        var JobStatus = receivedData[i].JobStatus;
+                        var LoadID = receivedData[i].LoadID;
+                        var PalletCount = receivedData[i].PalletCount;
+                        var ReceivedBy = receivedData[i].ReceivedBy;
+                        var ReceivedOnUTC = receivedData[i].ReceivedOnUTC;
+                        var RequestNumber = receivedData[i].RequestNumber;
+                        var Facility = receivedData[i].Facility;
+
+                        obj.SourceID = SourceID.toString();
+                        obj.JobID = IMJobId.toString();
+                        JobDetails.push(obj);
+
+                        var receivedUpdate = new GlideRecord('x_inmis_im_itad_inbound_received');
+                        receivedUpdate.initialize();
+                        receivedUpdate.sourceid = SourceID;
+                        receivedUpdate.im_jobid = IMJobId;
+                        receivedUpdate.job_status = JobStatus;
+                        receivedUpdate.loadid = LoadID;
+                        receivedUpdate.pallet_count = PalletCount;
+                        receivedUpdate.received_by = ReceivedBy;
+                        receivedUpdate.received_on = ReceivedOnUTC;
+                        receivedUpdate.request_number = RequestNumber;
+                        receivedUpdate.facility = Facility;
+                        receivedUpdate.insert();
+                    }
+
+                    this._updateAPIStatus(JobDetails);
+                }
+            }
+
+            gs.info('Received API END');
+
+        } catch (ex) {
+            gs.info('>>Exception occured [pullWorkOrderReceivedData]: ' + ex);
+        }
+    },
+
+    pullWorkOrderInvoicedData: function(domain) {
+        try {
+            gs.info('Invoiced API started');
+            var authenticationDetails = new IngramUtils().tokenValidation(domain);
+
+            var requestBody = {};
+            requestBody.InvoicedDatabaseUrl = gs.getProperty('x_inmis_im_itad.Invoiced');
+            requestBody.SourceID = authenticationDetails.sourceid;
+            requestBody.Token = "XXXXXXXXXXX";
+            gs.info('Invoiced Requested Body: ' + JSON.stringify(requestBody));
+
+            var r = new sn_ws.RESTMessageV2('x_inmis_im_itad.InvoicedData', 'InvoicedData');
+            r.setStringParameterNoEscape('InvoicedDatabaseUrl', gs.getProperty('x_inmis_im_itad.Invoiced'));
+            r.setStringParameterNoEscape('Token', authenticationDetails.Token);
+            r.setStringParameterNoEscape('SourceID', authenticationDetails.sourceid);
+
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+            gs.info("Invoiced responseBody: " + responseBody);
+
+            var readResponse = JSON.parse(responseBody);
+
+            if (response.haveError()) {
+                gs.info('Invoiced Error: ' + response.getErrorMessage());
+                gs.addErrorMessage('Error occured while pulling Invoiced data from Blue IQ');
+
+            } else if (readResponse.ResponseCode == "0" || readResponse.ErrorMessage == "") {
+                var JobDetails = [];
+                var invoicedData = readResponse.AuditedData;
+                if (invoicedData) {
+                    for (var i = 0; i < invoicedData.length; i++) {
+                        var obj = {
+                            "SourceID": "",
+                            "JobID": "",
+                            "Event": "Invoiced",
+                            "ResponseDescription": "OK",
+                            "ResponseCode": "200",
+                            "APICallStatus": "SUCCESS"
+                        };
+                        var IMJobId = invoicedData[i].ijobid;
+                        var AssetSold = invoicedData[i].AssetSold;
+                        var ReferenceID = invoicedData[i].ReferenceID;
+                        var vRequestNumber = invoicedData[i].vRequestNumber;
+                        var JobStatus = invoicedData[i].JobStatus;
+                        var vAssetSourceKey = invoicedData[i].vAssetSourceKey;
+                        var PartNumber = invoicedData[i].PartNumber;
+                        var Missing = invoicedData[i].Missing;
+                        var AuditedBy = invoicedData[i].AuditedBy;
+                        var AuditedOnUTC = invoicedData[i].AuditedOnUTC;
+                        var ConditionCode = invoicedData[i].ConditionCode;
+                        var ConditionRemarks = invoicedData[i].ConditionRemarks;
+                        var RecoveryValue = parseFloat(invoicedData[i].RecoveryValueUSD);
+                        RecoveryValue = RecoveryValue.toFixed(2);
+                        var ProcessingFees = parseFloat(invoicedData[i].ProcessingFees);
+                        ProcessingFees = ProcessingFees.toFixed(2);
+                        var Currency = invoicedData[i].Currency;
+                        var TestStatus = invoicedData[i].TestStatus;
+                        var Weight = invoicedData[i].Weight;
+                        var WeightUnit = invoicedData[i].WeightUnit;
+                        var TestRemarks = invoicedData[i].TestRemarks;
+                        var MSRP = invoicedData[i].MSRP;
+
+                        obj.SourceID = authenticationDetails.sourceid.toString();
+                        obj.JobID = IMJobId.toString();
+                        JobDetails.push(obj);
+                        //in the back end we are using report sent table only for invoiced
+                        var ReportsentUpdate = new GlideRecord('x_inmis_im_itad_inbound_reportsent');
+                        ReportsentUpdate.initialize();
+                        ReportsentUpdate.vassetsourcekey = vAssetSourceKey;
+                        ReportsentUpdate.referenceid = ReferenceID;
+                        ReportsentUpdate.partnumber = PartNumber;
+                        ReportsentUpdate.missing = Missing;
+                        //ReportsentUpdate.ownership = Ownership;
+                        ReportsentUpdate.auditedby = AuditedBy;
+                        ReportsentUpdate.auditedonutc = AuditedOnUTC;
+                        ReportsentUpdate.conditioncode = ConditionCode;
+                        ReportsentUpdate.conditionremarks = ConditionRemarks;
+                        //ReportsentUpdate.dispositioncode = DispositionCode;
+                        ReportsentUpdate.recoveryvalue = RecoveryValue;
+                        ReportsentUpdate.processingfees = ProcessingFees;
+                        ReportsentUpdate.currency = Currency;
+                        ReportsentUpdate.teststatus = TestStatus;
+                        ReportsentUpdate.testremarks = TestRemarks == "" ? " " : TestRemarks;
+                        ReportsentUpdate.weight = Weight;
+                        ReportsentUpdate.weightunit = WeightUnit;
+                        ReportsentUpdate.msrp = MSRP;
+                        ReportsentUpdate.requestnumber = vRequestNumber; // workorderID
+                        ReportsentUpdate.workorderstatus = JobStatus;
+                        ReportsentUpdate.insert();
+
+                        var updateAssetStatus;
+                        if (AssetSold == 1) {
+                            updateAssetStatus = new x_inmis_im_itad.UpdateAssetStatus().updateStatusFromBR(vAssetSourceKey, 7, 'sold');
+                        } else {
+                            updateAssetStatus = new x_inmis_im_itad.UpdateAssetStatus().updateStatusFromBR(vAssetSourceKey, 7, 'disposed');
+                        }
+
+
+                        var updateJobStatus = new x_inmis_im_itad.UpdateJobStatus().updateJobStatusFromBR(vRequestNumber, JobStatus);
+                    }
+
+                    this._updateAPIStatus(JobDetails);
+                }
+            }
+
+            gs.info('Invoiced API END');
+
+        } catch (ex) {
+            gs.info('>>Exception occured [pullWorkOrderInvoicedData]: ' + ex);
+        }
+    },
+
+    pullWorkOrderAttachmentData: function(domain) {
+        try {
+            gs.info('Attachment API started');
+            var authenticationDetails = new IngramUtils().tokenValidation(domain);
+
+            var requestBody = {};
+            requestBody.AttachmentDatabaseUrl = gs.getProperty('x_inmis_im_itad.Attachment');
+            requestBody.SourceID = authenticationDetails.sourceid;
+            requestBody.Token = "XXXXXXXXXXX";
+            gs.info('Attachment Requested Body: ' + JSON.stringify(requestBody));
+
+            var r = new sn_ws.RESTMessageV2('x_inmis_im_itad.AttachmentData', 'AttachmentData');
+            r.setStringParameterNoEscape('AttachmentDatabaseUrl', gs.getProperty('x_inmis_im_itad.Attachment'));
+            r.setStringParameterNoEscape('SourceID', authenticationDetails.sourceid);
+            r.setStringParameterNoEscape('Token', authenticationDetails.Token);
+
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+            gs.info("Attachment responseBody: " + responseBody);
+
+            var readResponse = JSON.parse(responseBody);
+
+            if (response.haveError()) {
+                gs.info('Attachment Error: ' + response.getErrorMessage());
+                gs.addErrorMessage('Error occured while pulling Attachment data from Blue IQ');
+
+            } else if (readResponse.ResponseCode == "0" || readResponse.ErrorMessage == "") {
+                var JobDetails = [];
+                var AttachmentData = readResponse.InputArguments;
+                if (AttachmentData) {
+                    for (var i = 0; i < AttachmentData.length; i++) {
+                        var obj = {
+                            "SourceID": "",
+                            "JobID": "",
+                            "Event": "Attachment",
+                            "ResponseDescription": "OK",
+                            "ResponseCode": "200",
+                            "APICallStatus": "SUCCESS"
+                        };
+                        var workOrderID = AttachmentData[i].RequestNumber.toString();
+                        var imJobID = AttachmentData[i].IMJobId.toString();
+                        var sourceID = AttachmentData[i].SourceID.toString();
+                        var jobStatus = AttachmentData[i].JobStatus;
+                        var filebytes = AttachmentData[i].FileBytes.toString();
+                        var filename = AttachmentData[i].FileName.toString();
+
+                        obj.SourceID = sourceID.toString();
+                        obj.JobID = imJobID.toString();
+                        JobDetails.push(obj);
+
+                        var attachmentInsert = new GlideRecord('x_inmis_im_itad_inbound_attachment');
+                        attachmentInsert.initialize();
+                        attachmentInsert.sourceid = sourceID;
+                        attachmentInsert.filebytes = filebytes.toString();
+                        attachmentInsert.filename = imJobID + "_" + filename.toString();
+                        attachmentInsert.request_number = workOrderID.toString();
+                        attachmentInsert.insert();
+
+                        if (jobStatus && jobStatus != null) {
+                            var updateJobStatus = new x_inmis_im_itad.UpdateJobStatus().updateJobStatusFromBR(workOrderID, jobStatus);
+                        }
+                    }
+
+                    this._updateAPIStatus(JobDetails);
+                }
+            }
+
+            gs.info('Attachment API END');
+
+        } catch (ex) {
+            gs.info('>>Exception occured [pullWorkOrderAttachmentData]: ' + ex);
+        }
+    },
+
+    pullWorkOrderAssetLevelAttachmentData: function(domain) {
+        try {
+            gs.info('AssetLevelAttachment API started');
+            var authenticationDetails = new IngramUtils().tokenValidation(domain);
+
+            var requestBody = {};
+            requestBody.AssetLevelAttachmentDatabaseUrl = gs.getProperty('x_inmis_im_itad.AssetLevelAttachment');
+            requestBody.SourceID = authenticationDetails.sourceid;
+            requestBody.Token = "XXXXXXXXXXX";
+            requestBody.Blancco = "null";
+            gs.info('AssetLevelAttachment Requested Body: ' + JSON.stringify(requestBody));
+
+            var r = new sn_ws.RESTMessageV2('x_inmis_im_itad.AssetLevelAttachmentData', 'AssetLevelAttachmentData');
+            r.setStringParameterNoEscape('AssetLevelAttachmentDatabaseUrl', gs.getProperty('x_inmis_im_itad.AssetLevelAttachment'));
+            r.setStringParameterNoEscape('SourceID', authenticationDetails.sourceid);
+            r.setStringParameterNoEscape('Token', authenticationDetails.Token);
+            r.setStringParameterNoEscape('Blancco', null);
+
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+            gs.info("AssetLevelAttachment responseBody: " + responseBody);
+
+            var readResponse = JSON.parse(responseBody);
+
+            if (response.haveError()) {
+                gs.info('AssetLevelAttachment Error: ' + response.getErrorMessage());
+                gs.addErrorMessage('Error occured while pulling AssetLevelAttachment data from Blue IQ');
+
+            } else if (readResponse.ResponseCode == "0" || readResponse.ErrorMessage == "") {
+                var JobDetails = [];
+                var AssetLevelAttachmentData = readResponse.InputArguments;
+                if (AssetLevelAttachmentData) {
+                    for (var i = 0; i < AssetLevelAttachmentData.length; i++) {
+                        if (AssetLevelAttachmentData[i].FileBytes != null) {
+
+                            var obj = {
+                                "SourceID": "",
+                                "JobID": "",
+                                "Event": "AssetLevelAttachment",
+                                "ResponseDescription": "OK",
+                                "ResponseCode": "200",
+                                "APICallStatus": "SUCCESS"
+                            };
+                            var IMJobId = AssetLevelAttachmentData[i].IMJobId;
+                            var AssetTag = AssetLevelAttachmentData[i].AssetTag;
+                            var SerialNumber = AssetLevelAttachmentData[i].SerialNumber;
+                            var ScanID = AssetLevelAttachmentData[i].ScanID;
+                            var filebytes = AssetLevelAttachmentData[i].FileBytes;
+                            var filename = AssetLevelAttachmentData[i].FileName;
+                            var sourceID = AssetLevelAttachmentData[i].SourceID;
+                            var blanccoError = AssetLevelAttachmentData[i].Blancco_Error;
+
+                            obj.SourceID = sourceID;
+                            obj.JobID = IMJobId;
+                            JobDetails.push(obj);
+
+                            var attachmentInsert = new GlideRecord('x_inmis_im_itad_inbound_assetlevelattach');
+                            attachmentInsert.initialize();
+                            attachmentInsert.u_source_id = sourceID;
+                            attachmentInsert.u_filebytes = filebytes;
+                            attachmentInsert.u_filename = SerialNumber + "_" + filename;
+                            attachmentInsert.u_serial_number = SerialNumber;
+                            attachmentInsert.u_asset_tag = AssetTag;
+                            attachmentInsert.u_scan_id = ScanID;
+                            attachmentInsert.blancco_error = blanccoError;
+                            attachmentInsert.insert();
+
+                        }
+                    }
+
+                    this._updateAPIStatus(JobDetails);
+                }
+            }
+
+            gs.info('AssetLevelAttachment API END');
+
+        } catch (ex) {
+            gs.info('>>Exception occured [pullWorkOrderAssetLevelAttachmentData]: ' + ex);
+        }
+    },
+
+
+    type: 'WOIntegrationDataLoad'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-07-01 13:19:45</sys_created_on>
+        <sys_id>ce3927a0dbf518508a521fe9689619a5</sys_id>
+        <sys_mod_count>51</sys_mod_count>
+        <sys_name>WOIntegrationDataLoad</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_script_include_ce3927a0dbf518508a521fe9689619a5</sys_update_name>
+        <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+        <sys_updated_on>2021-03-31 07:51:35</sys_updated_on>
+    </sys_script_include>
+</record_update>

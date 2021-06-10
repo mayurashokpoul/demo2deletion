@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[document.getElementById('inputLabel').setAttribute("class", "notrequired");
+//alert('Selected Records Sys_ids: ' + document.getElementById('flag').value);
+
+function checkMandatory() {
+    if (document.getElementById('erasure_expected_date').value != "") {
+        document.getElementById('inputLabel').setAttribute("class", "notrequired");
+    } else {
+        document.getElementById('inputLabel').setAttribute("class", "required");
+    }
+}
+
+
+function actionOK() {
+    try {
+        var erasureExpectedDateTime = gel("erasure_expected_date").value;
+
+        if (!erasureExpectedDateTime) {
+            alert('Please enter "Erasure Expected Date Time" value to initiate erasure.');
+            return false;
+        } else {
+			
+            var ga = new GlideAjax('x_inmis_im_itad.ErasureUtils');
+            ga.addParam('sysparm_name', 'checkDateDiff');
+            ga.addParam('sysparm_erasureExpectedDateTime', erasureExpectedDateTime);
+            ga.addParam('sysparm_listOfRecords', document.getElementById('flag').value);
+            ga.getXMLWait();
+          //  ga.getXML(GetAnswer);
+
+            var answer = ga.getAnswer();
+//             function GetAnswer(response) {
+//                 var answer = response.responseXML.documentElement.getAttribute("answer");
+//             }
+
+            //  alert('answer: ' + answer);
+            if (answer.toString() == 'true') {
+                alert("Erasure expected date should be more than current date. Please check and initiate erasure again.");
+                return false;
+            } else {
+                alert('Selected assets has been scheduled for erasure successfully.');
+                GlideDialogWindow.get().destroy(); //Close the dialog window
+            }
+        }
+    } catch (e) {
+        //alert('>>>Exception occured: ' + e);
+    }
+}]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_inmis_im_itad_Erasure_Validation.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+ 
+	<style>
+		label.required::before {
+  content: '*';
+  font-size : 20px;
+
+  color: red;
+}
+label.notrequired::before {
+  content: '*';
+  font-size : 20px;
+  
+  color: grey;
+}
+	</style>
+
+	
+
+	<g:ui_form> 
+		<!-- Get values from dialog preferences passed in   -->
+  <g:evaluate var="jvar_selected_records"   expression="RP.getWindowProperties().selected_records" /> 
+		
+	<input type="hidden" id="flag" value="${jvar_selected_records}" />
+		<div>
+		<div style="float: left;  ">
+			<label for="input1" id="inputLabel"  >Erasure Expected Date Time: </label> </div>
+	<g:ui_date style=" width: 250px;" id="erasure_expected_date" name ="erasure_expected_date" value="${var ed = new GlideDateTime();
+
+ ed.addDaysLocalTime(5); ed.getDate();}" onChange="checkMandatory()"  />
+		
+		</div>
+		
+		<div class="modal-footer">
+	<span class="pull-right"> 
+		<button class="btn btn-default" id="cancel_button" onclick="GlideDialogWindow.get().destroy(); return false;" style="min-width: 5em;" title="Cancel" type="submit">
+			Cancel
+		</button>
+		<button class="btn btn-primary" id="ok_button" onclick="return actionOK()" style="min-width: 5em;" title="Click this to schedule Erasure" type="submit">
+			Schedule Erasure
+		</button>
+	</span>
+</div>
+	</g:ui_form>
+	
+	
+</j:jelly>]]></html>
+        <name>Erasure_Validation</name>
+        <processing_script><![CDATA[var urlOnStack = gs.getSession().getUrlOnStack();
+response.sendRedirect(urlOnStack);
+]]></processing_script>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-10-29 09:44:24</sys_created_on>
+        <sys_id>32d4fcd3db04a0108a521fe96896194a</sys_id>
+        <sys_mod_count>168</sys_mod_count>
+        <sys_name>Erasure_Validation</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_ui_page_32d4fcd3db04a0108a521fe96896194a</sys_update_name>
+        <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+        <sys_updated_on>2021-04-06 08:47:48</sys_updated_on>
+    </sys_ui_page>
+</record_update>

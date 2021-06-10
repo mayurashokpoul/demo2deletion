@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="trackingnumber" label="TrackingNumber" language="en" table="x_inmis_im_itad_box_or_label_order_update">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>trackingnumber</element>
+            <help/>
+            <hint/>
+            <label>TrackingNumber</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_box_or_label_order_update</name>
+            <plural>TrackingNumbers</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>Ruthvic.voladri@ness.com</sys_created_by>
+            <sys_created_on>2021-03-11 06:25:06</sys_created_on>
+            <sys_id>e2850546db3ae01067166ac2ca96199f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>TrackingNumber</sys_name>
+            <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+            <sys_update_name>sys_documentation_x_inmis_im_itad_box_or_label_order_update_trackingnumber_en</sys_update_name>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-03-11 06:25:06</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

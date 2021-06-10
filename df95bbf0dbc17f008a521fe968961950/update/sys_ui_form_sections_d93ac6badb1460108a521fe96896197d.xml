@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_form_sections form_id="d93ac6badb1460108a521fe96896197d" sys_domain="global" table="x_inmis_im_itad_imitad_hardware" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-11-09 12:43:35</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>913a4efadb1460108a521fe96896192a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_inmis_im_itad_imitad_hardware" name="x_inmis_im_itad_imitad_hardware" sys_domain="global" view="0cebef090a0006d40188d968934d3e9a">d93ac6badb1460108a521fe96896197d</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="x_inmis_im_itad_imitad_hardware" sys_domain="global" view="0cebef090a0006d40188d968934d3e9a">f0d982badb1460108a521fe9689619e9</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-11-09 12:43:35</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>x_inmis_im_itad_imitad_hardware</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-11-09 12:43:35</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>d93ac6badb1460108a521fe96896197d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_inmis_im_itad_imitad_hardware</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+            <sys_update_name>sys_ui_form_sections_d93ac6badb1460108a521fe96896197d</sys_update_name>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-11-09 12:43:35</sys_updated_on>
+            <sys_user/>
+            <view display_value="Approval" name="approval">0cebef090a0006d40188d968934d3e9a</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

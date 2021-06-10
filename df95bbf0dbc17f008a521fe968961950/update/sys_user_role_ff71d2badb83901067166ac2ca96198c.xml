@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_role">
+    <sys_user_role action="INSERT_OR_UPDATE">
+        <assignable_by/>
+        <can_delegate>true</can_delegate>
+        <description>Can manage hardware assets</description>
+        <elevated_privilege>false</elevated_privilege>
+        <grantable>true</grantable>
+        <includes_roles/>
+        <name>x_inmis_im_itad.asset</name>
+        <requires_subscription>-1</requires_subscription>
+        <scoped_admin>false</scoped_admin>
+        <suffix>asset</suffix>
+        <sys_class_name>sys_user_role</sys_class_name>
+        <sys_created_by>INVOLR00</sys_created_by>
+        <sys_created_on>2020-09-08 09:57:38</sys_created_on>
+        <sys_id>ff71d2badb83901067166ac2ca96198c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_inmis_im_itad.asset</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_user_role_ff71d2badb83901067166ac2ca96198c</sys_update_name>
+        <sys_updated_by>INVOLR00</sys_updated_by>
+        <sys_updated_on>2020-09-08 09:57:38</sys_updated_on>
+    </sys_user_role>
+</record_update>

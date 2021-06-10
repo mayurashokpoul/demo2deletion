@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_inmis_im_itad.ErasureUtils</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>ErasureUtils</name>
+        <script><![CDATA[var ErasureUtils = Class.create();
+ErasureUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+
+    validateAssetsStatus: function() {
+        var sysID = this.getParameter('SysID');
+        var result = {};
+        result.flag = false;
+        var array = [];
+        var hardware = new GlideRecord('alm_hardware'); //alm_hardware
+        hardware.addEncodedQuery('sys_idIN' + sysID + '^substatusINReady for Erasure,Erased,Awaiting Erasure');
+        hardware.query();
+        while (hardware.next()) {
+            array.push(hardware.getValue('serial_number'));
+        }
+        //gs.info('ruthvic'+array.toString()+array.length);
+        if (array.length != 0) {
+            result.flag = true;
+            result.message = "The selected asset(s) are already under erasure process. Please check the asset substate and try again: \n" + array.toString();
+        } else {
+            var count = 0;
+            var IMITADHardware = new GlideRecord('x_inmis_im_itad_imitad_hardware');
+            IMITADHardware.addEncodedQuery('hardware_assetsIN' + sysID);
+            IMITADHardware.query();
+            while (IMITADHardware.next()) {
+                if (IMITADHardware.agent_id == '') {
+                    array.push(IMITADHardware.hardware_assets.serial_number);
+                }
+                count = count + 1;
+            }
+            
+            if (array.length != 0 || count == 0) {
+                result.flag = true;
+                result.message = "Selected asset(s) does not have agent id hence cannot initiate erasure.Please contact IT support to install agent \n" + array.toString();
+            } else {
+                var hardware = new GlideRecord('alm_hardware'); //alm_hardware
+                hardware.addEncodedQuery('sys_idIN' + sysID);
+                hardware.query();
+                while (hardware.next()) {
+                    hardware.substatus = 'Ready for Erasure';
+                    hardware.update();
+
+                }
+            }
+        }
+        return new global.JSON().encode(result);
+    },
+
+    checkErasureStates: function() {
+        try {
+            var result = {};
+            result.flag = false;
+
+            var sysID = this.getParameter('SysID');
+            var IMITADSysid = sysID.toString().split(',');
+
+            var str = [];
+            var str1 = [];
+            for (var i = 0; i < IMITADSysid.length; i++) { //Ready for erasure
+                var IMITADHardware = new GlideRecord('x_inmis_im_itad_imitad_hardware');
+                IMITADHardware.addEncodedQuery('agent_idISNOTEMPTY^hardware_assets.substatus=Ready for erasure^sys_id=' + IMITADSysid[i] + '^NQerasure_statusINRejected,Cancelled^agent_idISNOTEMPTY^sys_id=' + IMITADSysid[i]);
+                IMITADHardware.query();
+                if (IMITADHardware.next()) {
+                    var assignedTo = IMITADHardware.hardware_assets.assigned_to;
+                    str.push(IMITADHardware.hardware_assets.serial_number); // <Serial#1>,<Serial#2> etc.
+                    //gs.addInfoMessage('assignedTo: ' + assignedTo);
+                    if (!assignedTo) {
+                        result.flag = true;
+                        result.msg = "The erasure approval cannot be initiated as assigned to value is empty. Please check for the following serial#: " + str.toString() + '.';
+                    }
+                } else {
+                    result.flag = true; // <Serial#1>, Serial#2> etc.
+                    var imitadHA = new GlideRecord('x_inmis_im_itad_imitad_hardware');
+                    if (imitadHA.get(IMITADSysid[i])) {
+                        str1.push(imitadHA.hardware_assets.serial_number);
+                        var message = "The erasure request cannot be processed successfully. Below are the possible cause of failures: \n1. Agent id is not mapped to a hardware asset for which erasure request is initiated OR \n2. Erasure request has already been initiated OR \n3. Selected hardware asset is not marked as 'Ready for Erasure'. \nPlease check for the following serial# and re-initiate the request. \n" + str1.toString() + '.';
+                        result.msg = message;
+                    }
+                }
+            }
+            gs.info('Result : ' + JSON.stringify(result));
+            return new global.JSON().encode(result);
+        } catch (e) {
+            gs.info('>>>Exception occured [checkErasureStates] : ' + e);
+        }
+    },
+
+
+    checkDateDiff: function() {
+        var DateFlag = false;
+        var sysIDs = this.getParameter('sysparm_listOfRecords');
+        var erasureExpectedDate = this.getParameter('sysparm_erasureExpectedDateTime');
+        gs.info("sysIDs: " + sysIDs);
+        var t = new GlideDateTime();
+        var f = new GlideDateTime(erasureExpectedDate.toString());
+//         var dur = GlideDateTime.subtract(t, f);
+//         var duration = dur.getNumericValue();
+//         var durationSeconds = (duration / 1000);
+        if (f <= t) {
+            DateFlag = true;
+        } else {
+            var imitadHA = new GlideRecord('x_inmis_im_itad_imitad_hardware');
+            imitadHA.addEncodedQuery('sys_idIN' + sysIDs);
+            imitadHA.query();
+            while (imitadHA.next()) {
+                imitadHA.erasure_status = "Initiated";
+                imitadHA.erasure_initiated_date = new GlideDateTime();
+                imitadHA.erasure_expected_date = erasureExpectedDate;
+                imitadHA.erasure_initiated_by = gs.getUserID();
+                imitadHA.update();
+
+                var hardwareAsset = new GlideRecord('alm_hardware');
+                if (hardwareAsset.get('sys_id', imitadHA.getValue('hardware_assets'))) {
+                    hardwareAsset.substatus = "Awaiting Erasure";
+                    hardwareAsset.update();
+                }
+            }
+        }
+        return DateFlag;
+    },
+
+    _getElgibleSerialForErasureReport: function(cutomerRegistration) {
+        try {
+            var serialObj = [];
+            var IMITADHardware = new GlideRecord('x_inmis_im_itad_imitad_hardware');
+            if (gs.getProperty("glide.sys.domain.partitioning") == 'true') {
+                IMITADHardware.addEncodedQuery('received_erasure_report=false^erasure_status=Completed^hardware_assets.substatus=Erased^company=' + cutomerRegistration.company);
+            } else {
+                IMITADHardware.addEncodedQuery('received_erasure_report=false^erasure_status=Completed^hardware_assets.substatus=Erased');
+            }
+            IMITADHardware.query();
+            while (IMITADHardware.next()) {
+                var obj = {};
+                obj.SerialNumber = IMITADHardware.getValue('agent_id');
+                serialObj.push(obj);
+            }
+            gs.info('serialObj: ' + JSON.stringify(serialObj));
+            return serialObj;
+
+        } catch (e) {
+            gs.info('>>Error occured [_getElgibleSerialForErasureReport] : ' + e);
+        }
+    },
+
+    pullErasureReport: function(domain) {
+        try {
+            var authenticationDetails = new IngramUtils().tokenValidation(domain);
+            var serialList = this._getElgibleSerialForErasureReport(domain);
+            var r = new sn_ws.RESTMessageV2('x_inmis_im_itad.AssetLevelAttachmentData', 'AssetLevelAttachmentData');
+            r.setStringParameterNoEscape('AssetLevelAttachmentDatabaseUrl', gs.getProperty('x_inmis_im_itad.AssetLevelAttachment'));
+            r.setStringParameterNoEscape('SourceID', authenticationDetails.sourceid);
+            r.setStringParameterNoEscape('Token', authenticationDetails.Token);
+            r.setStringParameterNoEscape('Blancco', JSON.stringify(serialList));
+
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+            var requestBody = JSON.parse(r.getRequestBody());
+            requestBody.Token = "XXXXXXXXXXX";
+            gs.info('Erasure Report Requested Body: ' + JSON.stringify(requestBody));
+
+            gs.info("Erasure Report responseBody: " + responseBody);
+
+            var readResponse = JSON.parse(responseBody);
+
+            if (response.haveError()) {
+                gs.info('Erasure Report Error: ' + response.getErrorMessage());
+                gs.addErrorMessage('Error occured while pulling Erasure Report data from Blue IQ');
+
+            } else if (readResponse.ResponseCode == "0" || readResponse.ErrorMessage == "") {
+                var JobDetails = [];
+                var AssetLevelAttachmentData = readResponse.InputArguments;
+                if (AssetLevelAttachmentData) {
+                    for (var i = 0; i < AssetLevelAttachmentData.length; i++) {
+                        if (AssetLevelAttachmentData[i].FileBytes != null) {
+                            //                         var obj = {
+                            //                             "SourceID": "",
+                            //                             "JobID": "",
+                            //                             "Event": "AssetLevelAttachment",
+                            //                             "ResponseDescription": "OK",
+                            //                             "ResponseCode": "200",
+                            //                             "APICallStatus": "SUCCESS"
+                            //                         };
+                            var IMJobId = AssetLevelAttachmentData[i].IMJobId;
+                            var AssetTag = AssetLevelAttachmentData[i].AssetTag;
+                            var SerialNumber = AssetLevelAttachmentData[i].SerialNumber;
+                            var ScanID = AssetLevelAttachmentData[i].ScanID;
+                            var filebytes = AssetLevelAttachmentData[i].FileBytes;
+                            var filename = AssetLevelAttachmentData[i].FileName;
+                            var sourceID = AssetLevelAttachmentData[i].SourceID;
+                            var blanccoError = AssetLevelAttachmentData[i].Blancco_Error;
+
+                            //                         obj.SourceID = sourceID.toString();
+                            //                         obj.JobID = IMJobId.toString();
+                            //                         JobDetails.push(obj);
+
+                            var attachmentInsert = new GlideRecord('x_inmis_im_itad_inbound_assetlevelattach');
+                            attachmentInsert.initialize();
+                            attachmentInsert.u_source_id = sourceID;
+                            attachmentInsert.u_filebytes = filebytes;
+                            attachmentInsert.u_filename = SerialNumber + "_" + filename;
+                            attachmentInsert.u_serial_number = SerialNumber;
+                            attachmentInsert.u_asset_tag = AssetTag;
+                            attachmentInsert.u_scan_id = ScanID;
+                            attachmentInsert.blancco_error = blanccoError;
+                            attachmentInsert.insert();
+
+                        }
+
+                        //                     this._updateAPIStatus(JobDetails);
+                    }
+                }
+            }
+
+            gs.info('Erasure Report API END');
+
+        } catch (ex) {
+            gs.info('>>Exception occured [pullErasureReport]: ' + ex);
+        }
+    },
+
+
+    type: 'ErasureUtils'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-10-28 13:59:57</sys_created_on>
+        <sys_id>a088ecc3db8860108a521fe968961935</sys_id>
+        <sys_mod_count>118</sys_mod_count>
+        <sys_name>ErasureUtils</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_script_include_a088ecc3db8860108a521fe968961935</sys_update_name>
+        <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+        <sys_updated_on>2021-04-09 07:15:23</sys_updated_on>
+    </sys_script_include>
+</record_update>

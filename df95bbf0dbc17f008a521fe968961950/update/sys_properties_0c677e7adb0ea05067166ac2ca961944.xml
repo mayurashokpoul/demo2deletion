@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description/>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_inmis_im_itad.ITAD Erasure Level 2 Approval group</name>
+        <read_roles>x_inmis_im_itad.imitad_erasure_initiator,x_inmis_im_itad.imitad_erasure_admin</read_roles>
+        <suffix>ITAD Erasure Level 2 Approval group</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>Ruthvic.voladri@ness.com</sys_created_by>
+        <sys_created_on>2021-02-04 15:51:31</sys_created_on>
+        <sys_id>0c677e7adb0ea05067166ac2ca961944</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_inmis_im_itad.ITAD Erasure Level 2 Approval group</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_properties_0c677e7adb0ea05067166ac2ca961944</sys_update_name>
+        <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+        <sys_updated_on>2021-02-04 15:51:31</sys_updated_on>
+        <type>string</type>
+        <value>882357fedb8460108a521fe96896194b</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=0c677e7adb0ea05067166ac2ca961944"/>
+</record_update>

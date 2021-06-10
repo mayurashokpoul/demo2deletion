@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_email">
+    <sys_script_email action="INSERT_OR_UPDATE">
+        <name>location_summary</name>
+        <new_lines_to_html>false</new_lines_to_html>
+        <script><![CDATA[(function runMailScript( /* GlideRecord */ current, /* TemplatePrinter */ template,
+    /* Optional EmailOutbound */
+    email, /* Optional GlideRecord */ email_action,
+    /* Optional GlideRecord */
+    event) {
+
+    // Add your code here
+    var sum = JSON.parse(event.parm2);
+    if (sum.successArr.length > 0) {
+        template.print("<b>Below Locations have been successfully Created/Updated</b><br>");
+        for (var i = 0; i < sum.successArr.length; i++) {
+            template.print(sum.successArr[i] + "<br>");
+        }
+    }
+    if (sum.failedArr.length > 0) {
+        template.print("<br><b>Below Locations have been failed to Create/Update</b><br>");
+        for (var j = 0; j < sum.failedArr.length; j++) {
+            template.print(sum.failedArr[j] + "<br>");
+        }
+    }
+
+})(current, template, email, email_action, event);]]></script>
+        <sys_class_name>sys_script_email</sys_class_name>
+        <sys_created_by>Ruthvic.voladri@ness.com</sys_created_by>
+        <sys_created_on>2021-04-17 18:02:51</sys_created_on>
+        <sys_id>8c088206db2f681067166ac2ca9619aa</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>location_summary</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_script_email_8c088206db2f681067166ac2ca9619aa</sys_update_name>
+        <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+        <sys_updated_on>2021-04-19 11:16:30</sys_updated_on>
+    </sys_script_email>
+</record_update>

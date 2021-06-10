@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysevent_email_template">
+    <sysevent_email_template action="DELETE">
+        <collection>sysapproval_approver</collection>
+        <email_layout display_value="Unsubscribe and Preferences">1410041f3b0b2200c869c2c703efc41e</email_layout>
+        <message/>
+        <message_html><![CDATA[<p>Approving: ${document_id}<br />Hi ${approver}</p>
+<p>&lt;div&gt;Hardware Asset: ${sysapproval.hardware_assets}&lt;/div&gt;</p>
+<p>&lt;div&gt;Agent Id: ${sysapproval.agent_id}&lt;/div&gt;</p>
+<p>&lt;div&gt;<label dir="ltr" for="sys_readonly.x_inmis_im_itad_imitad_hardware.erasure_initiated_date"><span title="" data-html="false" data-original-title="">Erasure Initiated Date</span></label>: ${sysapproval.erasure_initiated_date}&lt;/div&gt;&nbsp;</p>
+<p>&lt;div&gt;Erasure Expected Date : ${sysapproval.erasure_expected_date}&lt;/div&gt;</p>
+<p>&lt;div&gt;<label dir="ltr" for="sys_readonly.x_inmis_im_itad_imitad_hardware.erasure_status"><span title="" data-html="false" data-original-title="">Erasure Status</span></label>: ${sysapproval.erasure_status }&lt;/div&gt;</p>
+<p>&lt;div&gt;${mailto:mailto.approval}&lt;/div&gt;<br />&lt;div&gt;<br />&lt;div&gt;&lt;hr /&gt;&lt;/div&gt;<br />&lt;/div&gt;<br />&lt;div&gt;${mailto:mailto.rejection}&lt;/div&gt;</p>
+<p>&lt;div&gt;Approval Activity:&lt;/div&gt;<br />&lt;div&gt;${mail_script:approval_activity}&lt;/div&gt;</p>
+<p>&lt;div&gt;Click here to view Approval Request: ${URI}&lt;/div&gt;</p>]]></message_html>
+        <message_list/>
+        <message_text/>
+        <name>erasure.approve.role</name>
+        <sms_alternate/>
+        <subject>${sysapproval.sys_class_name} ${sysapproval} Approval Request</subject>
+        <sys_class_name>sysevent_email_template</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-11-12 12:30:21</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>95b3e573db58e0108a521fe968961992</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>erasure.approve.role</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sysevent_email_template_95b3e573db58e0108a521fe968961992</sys_update_name>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-11-12 12:37:00</sys_updated_on>
+        <sys_version>2</sys_version>
+    </sysevent_email_template>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</application>
+        <file_path/>
+        <instance_id>c821e244dbe52b846578f22ebf9619bf</instance_id>
+        <instance_name>ven02711</instance_name>
+        <name>sysevent_email_template_95b3e573db58e0108a521fe968961992</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sysevent_email_template"&gt;&lt;sysevent_email_template action="INSERT_OR_UPDATE"&gt;&lt;collection&gt;sysapproval_approver&lt;/collection&gt;&lt;email_layout display_value="Unsubscribe and Preferences"&gt;1410041f3b0b2200c869c2c703efc41e&lt;/email_layout&gt;&lt;message/&gt;&lt;message_html&gt;&lt;![CDATA[&lt;p&gt;Approving: ${document_id}&lt;br /&gt;Hi ${approver}&lt;/p&gt;
+&lt;p&gt;&amp;lt;div&amp;gt;Hardware Asset: ${sysapproval.hardware_assets}&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;div&amp;gt;Agent Id: ${sysapproval.agent_id}&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;div&amp;gt;&lt;label dir="ltr" for="sys_readonly.x_inmis_im_itad_imitad_hardware.erasure_initiated_date"&gt;&lt;span title="" data-html="false" data-original-title=""&gt;Erasure Initiated Date&lt;/span&gt;&lt;/label&gt;: ${sysapproval.erasure_initiated_date}&amp;lt;/div&amp;gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;lt;div&amp;gt;Erasure Expected Date : ${sysapproval.erasure_expected_date}&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;div&amp;gt;&lt;label dir="ltr" for="sys_readonly.x_inmis_im_itad_imitad_hardware.erasure_status"&gt;&lt;span title="" data-html="false" data-original-title=""&gt;Erasure Status&lt;/span&gt;&lt;/label&gt;: ${sysapproval.erasure_status }&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;div&amp;gt;${mailto:mailto.approval}&amp;lt;/div&amp;gt;&lt;br /&gt;&amp;lt;div&amp;gt;&lt;br /&gt;&amp;lt;div&amp;gt;&amp;lt;hr /&amp;gt;&amp;lt;/div&amp;gt;&lt;br /&gt;&amp;lt;/div&amp;gt;&lt;br /&gt;&amp;lt;div&amp;gt;${mailto:mailto.rejection}&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;div&amp;gt;Approval Activity:&amp;lt;/div&amp;gt;&lt;br /&gt;&amp;lt;div&amp;gt;${mail_script:approval_activity}&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;div&amp;gt;Click here to view Approval Request: ${URI}&amp;lt;/div&amp;gt;&lt;/p&gt;]]&gt;&lt;/message_html&gt;&lt;message_list/&gt;&lt;message_text/&gt;&lt;name&gt;erasure.approve.role&lt;/name&gt;&lt;sms_alternate/&gt;&lt;subject&gt;${sysapproval.sys_class_name} ${sysapproval} Approval Request&lt;/subject&gt;&lt;sys_class_name&gt;sysevent_email_template&lt;/sys_class_name&gt;&lt;sys_created_by&gt;Munimohan.Bathala@ness.com&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-11-12 12:30:21&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;false&lt;/sys_customer_update&gt;&lt;sys_id&gt;95b3e573db58e0108a521fe968961992&lt;/sys_id&gt;&lt;sys_mod_count&gt;3&lt;/sys_mod_count&gt;&lt;sys_name&gt;erasure.approve.role&lt;/sys_name&gt;&lt;sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad"&gt;df95bbf0dbc17f008a521fe968961950&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Ingram Micro IT Asset Disposition"&gt;df95bbf0dbc17f008a521fe968961950&lt;/sys_scope&gt;&lt;sys_update_name&gt;sysevent_email_template_95b3e573db58e0108a521fe968961992&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;Munimohan.Bathala@ness.com&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-11-12 12:37:00&lt;/sys_updated_on&gt;&lt;sys_version&gt;2&lt;/sys_version&gt;&lt;/sysevent_email_template&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-144741386</payload_hash>
+        <record_name>erasure.approve.role</record_name>
+        <reverted_from/>
+        <source>29fb3c3bdbd4e0108a521fe968961996</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-11-12 12:37:00</sys_created_on>
+        <sys_id>c67569b3db58e0108a521fe9689619cb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>175bc7588bb0000001</sys_recorded_at>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-11-12 12:37:00</sys_updated_on>
+        <type>Email Template</type>
+        <update_guid>ce7569b31e58e01078f991dfd9087fca</update_guid>
+        <update_guid_history>ce7569b31e58e01078f991dfd9087fca:-144741386,51c4e573be58e0104eb92ff690889f20:-1024448572,3114e973ec58e01055586f9d177173da:-806834979,a8f3a9739a58e01024d873712d972119:923773705</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-11-12 12:57:18</sys_created_on>
+        <sys_db_object display_value="" name="sysevent_email_template">sysevent_email_template</sys_db_object>
+        <sys_id>611af47070c24da0bd3fc655c27f3100</sys_id>
+        <sys_metadata>95b3e573db58e0108a521fe968961992</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>erasure.approve.role</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_parent display_value="">b9e7668cdb2123008a521fe968961954</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_scope_delete display_value="">754b5651fdcb480ea4d7b0c2cca0f181</sys_scope_delete>
+        <sys_update_name>sysevent_email_template_95b3e573db58e0108a521fe968961992</sys_update_name>
+        <sys_update_version display_value="sysevent_email_template_95b3e573db58e0108a521fe968961992">c67569b3db58e0108a521fe9689619cb</sys_update_version>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-11-12 12:57:18</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

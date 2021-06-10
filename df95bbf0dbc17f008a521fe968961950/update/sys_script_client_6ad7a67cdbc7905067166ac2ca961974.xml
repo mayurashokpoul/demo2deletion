@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description>On Submit Setting the value</description>
+        <field>return_method</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>On Submit Setting the value</name>
+        <order/>
+        <script><![CDATA[function onSubmit() {
+    var action = g_form.getActionName();
+    if (action == 'sysverb_insert' || action == 'u_submit') {
+        g_form.setValue('box_label_order_status', 'submitted');
+    }
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-09-02 06:27:42</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>6ad7a67cdbc7905067166ac2ca961974</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>On Submit Setting the value</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_script_client_6ad7a67cdbc7905067166ac2ca961974</sys_update_name>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-09-22 13:07:27</sys_updated_on>
+        <table>x_inmis_im_itad_box_label_order</table>
+        <type>onSubmit</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
+    <sys_ui_action action="INSERT_OR_UPDATE">
+        <action_name/>
+        <active>true</active>
+        <client>true</client>
+        <client_script_v2><![CDATA[function onClick(g_form) {
+
+}]]></client_script_v2>
+        <comments/>
+        <condition/>
+        <form_action>false</form_action>
+        <form_button>false</form_button>
+        <form_button_v2>false</form_button_v2>
+        <form_context_menu>false</form_context_menu>
+        <form_link>false</form_link>
+        <form_menu_button_v2>false</form_menu_button_v2>
+        <form_style/>
+        <hint/>
+        <isolate_script>false</isolate_script>
+        <list_action>true</list_action>
+        <list_banner_button>true</list_banner_button>
+        <list_button>true</list_button>
+        <list_choice>false</list_choice>
+        <list_context_menu>false</list_context_menu>
+        <list_link>false</list_link>
+        <list_save_with_form_button>false</list_save_with_form_button>
+        <list_style/>
+        <messages/>
+        <name>Erase</name>
+        <onclick>checkErasure()</onclick>
+        <order>100</order>
+        <script><![CDATA[function checkErasure() {
+    var selSysIds = g_list.getChecked();
+    var sysIdList = selSysIds.split(',');
+
+    if (!selSysIds) {
+        alert('Please select minimum one IMITAD Hardware assets to initiate erasure.');
+        return;
+    }
+
+    getValueByID(sysIdList);
+}
+
+
+
+function getValueByID(sys_ids) {
+
+    var ga = new GlideAjax('x_inmis_im_itad.ErasureUtils');
+    ga.addParam('sysparm_name', 'checkErasureStates');
+    ga.addParam('SysID', sys_ids);
+    ga.getXMLAnswer(checkValidations);
+
+
+    function checkValidations(response) {
+        var answer = JSON.parse(response);
+      //  alert('Answer : ' + response);
+        var flag = answer.flag;
+        if (flag.toString() == 'true' || flag == true) {
+            alert(answer.msg);
+        } else {
+            var dialog = new GlideDialogWindow("x_inmis_im_itad_Erasure_Validation"); //Render the dialog containing the UI Page 'task_comments_dialog'
+            dialog.setTitle("Please enter scheduling details"); //Set the dialog title
+            dialog.setPreference("selected_records", sys_ids);
+            dialog.setSize(400, 100);
+            dialog.render(); //Open the dialog
+        }
+    }
+}]]></script>
+        <show_insert>true</show_insert>
+        <show_multiple_update>false</show_multiple_update>
+        <show_query>false</show_query>
+        <show_update>true</show_update>
+        <sys_class_name>sys_ui_action</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-10-22 08:37:39</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>0a35ac05db8c6c1067166ac2ca96194b</sys_id>
+        <sys_mod_count>44</sys_mod_count>
+        <sys_name>Erase</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_ui_action_0a35ac05db8c6c1067166ac2ca96194b</sys_update_name>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-11-12 08:28:12</sys_updated_on>
+        <table>x_inmis_im_itad_imitad_hardware</table>
+        <ui11_compatible>true</ui11_compatible>
+        <ui16_compatible>true</ui16_compatible>
+    </sys_ui_action>
+</record_update>

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="DELETE">
+        <category>general</category>
+        <client_script><![CDATA[document.getElementById('inputLabel').setAttribute("class", "required");
+
+function checkMandatory() {
+    if (document.getElementById('schedule_date').value != "") {
+        document.getElementById('inputLabel').setAttribute("class", "notrequired");
+    } else {
+        document.getElementById('inputLabel').setAttribute("class", "required");
+    }
+}
+
+function onCancel() {
+    var c = gel('cancelled');
+	c.value = "true";
+	GlideDialogWindow.get().destroy();
+	return false;
+}
+
+function actionOK() {
+    try {
+        var scheduleDateTime = gel("schedule_date").value;
+
+        if (!scheduleDateTime) {
+            alert('Please enter "Schedule Date Time" value to initiate Erasure');
+            return;
+        } else {
+            var ga = new GlideAjax('x_inmis_im_itad.ErasureUtils');
+            ga.addParam('sysparm_name', 'checkDateDiff');
+            ga.addParam('sysparm_scheduleDateTime', scheduleDateTime);
+            ga.getXMLWait();
+
+            var answer = ga.getAnswer();
+
+            //alert('answer: ' + answer);
+            if (answer.toString() == 'true') {
+                alert("Please select 'Shedule Date Time' after 5 day's from today's date");
+                return false;
+            } else {
+
+                alert('Selected assets has been schedueld for Erasure');
+
+                // GlideDialogWindow.get().destroy(); //Close the dialog window
+				
+            }
+        }
+    } catch (e) {
+        alert('>>>Exception occured: ' + e);
+    }
+}]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_inmis_im_itad_Erasure_Validation.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+
+	<style>
+		label.required::before {
+  content: '*';
+  margin-right: 4px;
+  color: red;
+}
+label.notrequired::before {
+  content: '*';
+  margin-right: 4px;
+  color: grey;
+}
+	</style>
+	
+	
+
+	<g:ui_form> 
+		<div>
+		<div style="float: left;  padding-top: 8px;">
+			<label for="input1" id="inputLabel" >Schedule Date Time : </label> </div>
+	<g:ui_date_time style=" width: 250px;" id="schedule_date" name ="schedule_date" value="" onChange="checkMandatory()"  />
+		
+		</div>
+		
+		<div class="modal-footer">
+	<span class="pull-right"> 
+		<div class="pull-right form-group"  id="dialog-btns">
+		<g:dialog_buttons_ok_cancel ok="return actionOK();" cancel="return Cancel();"/>
+		</div>
+	</span>
+</div>
+	</g:ui_form>
+	
+	
+</j:jelly>]]></html>
+        <name>Erasure_Validation</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>chais.mcrae@ness.com</sys_created_by>
+        <sys_created_on>2020-11-04 19:55:00</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>c00df91ddb50e4108a521fe968961912</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Erasure_Validation</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_ui_page_c00df91ddb50e4108a521fe968961912</sys_update_name>
+        <sys_updated_by>chais.mcrae@ness.com</sys_updated_by>
+        <sys_updated_on>2020-11-04 19:55:00</sys_updated_on>
+    </sys_ui_page>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</application>
+        <file_path/>
+        <instance_id>c821e244dbe52b846578f22ebf9619bf</instance_id>
+        <instance_name>ven02711</instance_name>
+        <name>sys_ui_page_c00df91ddb50e4108a521fe968961912</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ui_page"&gt;&lt;sys_ui_page action="INSERT_OR_UPDATE"&gt;&lt;category&gt;general&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[document.getElementById('inputLabel').setAttribute("class", "required");
+
+function checkMandatory() {
+    if (document.getElementById('schedule_date').value != "") {
+        document.getElementById('inputLabel').setAttribute("class", "notrequired");
+    } else {
+        document.getElementById('inputLabel').setAttribute("class", "required");
+    }
+}
+
+function onCancel() {
+    var c = gel('cancelled');
+	c.value = "true";
+	GlideDialogWindow.get().destroy();
+	return false;
+}
+
+function actionOK() {
+    try {
+        var scheduleDateTime = gel("schedule_date").value;
+
+        if (!scheduleDateTime) {
+            alert('Please enter "Schedule Date Time" value to initiate Erasure');
+            return;
+        } else {
+            var ga = new GlideAjax('x_inmis_im_itad.ErasureUtils');
+            ga.addParam('sysparm_name', 'checkDateDiff');
+            ga.addParam('sysparm_scheduleDateTime', scheduleDateTime);
+            ga.getXMLWait();
+
+            var answer = ga.getAnswer();
+
+            //alert('answer: ' + answer);
+            if (answer.toString() == 'true') {
+                alert("Please select 'Shedule Date Time' after 5 day's from today's date");
+                return false;
+            } else {
+
+                alert('Selected assets has been schedueld for Erasure');
+
+                // GlideDialogWindow.get().destroy(); //Close the dialog window
+				
+            }
+        }
+    } catch (e) {
+        alert('&gt;&gt;&gt;Exception occured: ' + e);
+    }
+}]]&gt;&lt;/client_script&gt;&lt;description/&gt;&lt;direct&gt;false&lt;/direct&gt;&lt;endpoint&gt;x_inmis_im_itad_Erasure_Validation.do&lt;/endpoint&gt;&lt;html&gt;&lt;![CDATA[&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null"&gt;
+
+	&lt;style&gt;
+		label.required::before {
+  content: '*';
+  margin-right: 4px;
+  color: red;
+}
+label.notrequired::before {
+  content: '*';
+  margin-right: 4px;
+  color: grey;
+}
+	&lt;/style&gt;
+	
+	
+
+	&lt;g:ui_form&gt; 
+		&lt;div&gt;
+		&lt;div style="float: left;  padding-top: 8px;"&gt;
+			&lt;label for="input1" id="inputLabel" &gt;Schedule Date Time : &lt;/label&gt; &lt;/div&gt;
+	&lt;g:ui_date_time style=" width: 250px;" id="schedule_date" name ="schedule_date" value="" onChange="checkMandatory()"  /&gt;
+		
+		&lt;/div&gt;
+		
+		&lt;div class="modal-footer"&gt;
+	&lt;span class="pull-right"&gt; 
+		&lt;div class="pull-right form-group"  id="dialog-btns"&gt;
+		&lt;g:dialog_buttons_ok_cancel ok="return actionOK();" cancel="return Cancel();"/&gt;
+		&lt;/div&gt;
+	&lt;/span&gt;
+&lt;/div&gt;
+	&lt;/g:ui_form&gt;
+	
+	
+&lt;/j:jelly&gt;]]&gt;&lt;/html&gt;&lt;name&gt;Erasure_Validation&lt;/name&gt;&lt;processing_script/&gt;&lt;sys_class_name&gt;sys_ui_page&lt;/sys_class_name&gt;&lt;sys_created_by&gt;chais.mcrae@ness.com&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-11-04 19:55:00&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;false&lt;/sys_customer_update&gt;&lt;sys_id&gt;c00df91ddb50e4108a521fe968961912&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;Erasure_Validation&lt;/sys_name&gt;&lt;sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad"&gt;df95bbf0dbc17f008a521fe968961950&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Ingram Micro IT Asset Disposition"&gt;df95bbf0dbc17f008a521fe968961950&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_page_c00df91ddb50e4108a521fe968961912&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;chais.mcrae@ness.com&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-11-04 19:55:00&lt;/sys_updated_on&gt;&lt;/sys_ui_page&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>358254952</payload_hash>
+        <record_name>Erasure_Validation</record_name>
+        <reverted_from/>
+        <source>1c8a405adbf7d41067166ac2ca96198b</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>chais.mcrae@ness.com</sys_created_by>
+        <sys_created_on>2020-11-04 19:55:00</sys_created_on>
+        <sys_id>800df91ddb50e4108a521fe968961914</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>17594d3a7900000001</sys_recorded_at>
+        <sys_updated_by>chais.mcrae@ness.com</sys_updated_by>
+        <sys_updated_on>2020-11-04 19:55:00</sys_updated_on>
+        <type>UI Page</type>
+        <update_guid>c80df91d8c50e41067572be21289b413</update_guid>
+        <update_guid_history>c80df91d8c50e41067572be21289b413:358254952</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>chais.mcrae@ness.com</sys_created_by>
+        <sys_created_on>2020-11-04 19:55:11</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_page">sys_ui_page</sys_db_object>
+        <sys_id>455f15e84b054fc1aaf1f40fc2c45081</sys_id>
+        <sys_metadata>c00df91ddb50e4108a521fe968961912</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Erasure_Validation</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_scope_delete display_value="">754b5651fdcb480ea4d7b0c2cca0f181</sys_scope_delete>
+        <sys_update_name>sys_ui_page_c00df91ddb50e4108a521fe968961912</sys_update_name>
+        <sys_update_version display_value="sys_ui_page_c00df91ddb50e4108a521fe968961912">800df91ddb50e4108a521fe968961914</sys_update_version>
+        <sys_updated_by>chais.mcrae@ness.com</sys_updated_by>
+        <sys_updated_on>2020-11-04 19:55:11</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

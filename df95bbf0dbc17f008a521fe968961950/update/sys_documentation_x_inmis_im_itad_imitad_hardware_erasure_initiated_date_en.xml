@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="erasure_initiated_date" label="Erasure Request Initiated Date" language="en" table="x_inmis_im_itad_imitad_hardware">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>erasure_initiated_date</element>
+            <help/>
+            <hint/>
+            <label>Erasure Request Initiated Date</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_imitad_hardware</name>
+            <plural>Erasure Request Initiated Dates</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-10-27 07:59:52</sys_created_on>
+            <sys_id>229c426edb8820108a521fe96896197a</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_name>Erasure Request Initiated Date</sys_name>
+            <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+            <sys_update_name>sys_documentation_x_inmis_im_itad_imitad_hardware_erasure_initiated_date_en</sys_update_name>
+            <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+            <sys_updated_on>2021-03-24 13:51:40</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

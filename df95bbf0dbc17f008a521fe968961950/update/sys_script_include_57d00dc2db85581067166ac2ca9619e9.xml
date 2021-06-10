@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_inmis_im_itad.IMITADLocationUtils</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>IMITADLocationUtils</name>
+        <script><![CDATA[var IMITADLocationUtils = Class.create();
+IMITADLocationUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+    getLocations: function() {
+        var sysIDs = [];
+        var cmnLocation = new GlideRecord('cmn_location');
+        cmnLocation.query();
+        while (cmnLocation.next()) {
+            var IMITADLocation = new GlideRecord('x_inmis_im_itad_imitad_location');
+            IMITADLocation.addQuery('location', cmnLocation.getValue('sys_id'));
+            var qc = IMITADLocation.addQuery('itad_locationid', '!=', 'NULL');
+            qc.addOrCondition('disposal', true);
+            //    IMITADLocation.addQuery('disposal', true);
+            IMITADLocation.query();
+            while (IMITADLocation.next()) {
+                sysIDs.push(cmnLocation.getValue('sys_id'));
+            }
+        }
+        gs.info('sys_idNOT IN' + sysIDs.toString());
+        if (gs.getProperty("glide.sys.domain.partitioning") == 'true') {
+            return "company=" + new IngramUtils().getCompanyValue() + '^sys_idNOT IN' + sysIDs.toString();
+        } else {
+            return 'sys_idNOT IN' + sysIDs.toString();
+        }
+    },
+
+    resetCount: function() {
+        var result = {};
+        result.countlessArr = [];
+        result.correctArr = [];
+        var ids = this.getParameter('sysparm__sys_ids');
+       // gs.addInfoMessage(ids);
+        var gr = new GlideRecord("x_inmis_im_itad_imitad_location");
+        gr.addEncodedQuery("sys_idIN" + ids);
+        gr.query();
+        while (gr.next()) {
+            if (gr.retry_count < 5) {
+                result.countlessArr.push(gr.location.name.toString());
+            } else {
+                result.correctArr.push(gr.location.name.toString());
+            }
+        }
+        if (result.countlessArr.length > 0) {
+            result.status = "failed";
+        } else {
+            result.status = "success";
+            var gr1 = new GlideRecord("x_inmis_im_itad_imitad_location");
+            gr1.addQuery("sys_idIN" + ids);
+            gr1.query();
+            while (gr1.next()) {
+                gr1.retry_count = 0;
+                gr1.update();
+            }
+        }
+		return JSON.stringify(result);
+    },
+
+    type: 'IMITADLocationUtils'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-05-29 10:04:31</sys_created_on>
+        <sys_id>57d00dc2db85581067166ac2ca9619e9</sys_id>
+        <sys_mod_count>23</sys_mod_count>
+        <sys_name>IMITADLocationUtils</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_script_include_57d00dc2db85581067166ac2ca9619e9</sys_update_name>
+        <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+        <sys_updated_on>2021-04-20 07:47:43</sys_updated_on>
+    </sys_script_include>
+</record_update>

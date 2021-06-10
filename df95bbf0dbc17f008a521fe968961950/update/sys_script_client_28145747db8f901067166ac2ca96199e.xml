@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description>Auto populate shipping address fields based on the shipping location selected.</description>
+        <field>shipping_location</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>On change of shipping location</name>
+        <order/>
+        <script><![CDATA[function clearShippingLocationValue() {
+    g_form.setValue('shipping_address', '');
+    g_form.setValue('shipping_address2', '');
+    g_form.setValue('shipping_address3', '');
+    g_form.setValue('shipping_city', '');
+    g_form.setValue('shipping_state', '');
+    g_form.setValue('shipping_postal_code', '');
+    g_form.setValue('shipping_country', '');
+}
+
+function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+    if (isLoading || newValue === '') {
+      
+        return;
+    }
+  if (newValue === '') {
+    clearShippingLocationValue();
+}
+    var ga = new GlideAjax('BoxLabelUtils');
+    ga.addParam('sysparm_name', 'getLocation');
+    ga.addParam('sysparm_value', newValue);
+    ga.getXML(getLocationDetails);
+
+
+}
+
+
+function getLocationDetails(response) {
+    var obj1 = response.responseXML.documentElement.getAttribute('answer');
+    var userObj = JSON.parse(obj1);
+    g_form.setValue('shipping_address', userObj.street);
+    g_form.setValue('shipping_address2', userObj.street2);
+    g_form.setValue('shipping_address3', userObj.street3);
+    g_form.setValue('shipping_city', userObj.city);
+    g_form.setValue('shipping_state', userObj.state);
+    g_form.setValue('shipping_postal_code', userObj.postalCode);
+    g_form.setValue('shipping_country', userObj.country);
+
+//     var country = g_form.getValue('shipping_country');
+//     if (userObj.state && g_form.getValue('return_to') && country) {
+//         var NCBLogic = new GlideAjax('BoxLabelUtils');
+//         NCBLogic.addParam('sysparm_name', 'getNCBLocationDetails');
+//         NCBLogic.addParam('sysparm_returnTo', g_form.getValue('return_to'));
+//         NCBLogic.addParam('sysparm_state', userObj.state);
+//         NCBLogic.addParam('sysparm_shippingCountry', country);
+//         NCBLogic.getXML(NCBLocationDetails);
+//     }
+}
+
+
+// function NCBLocationDetails(response) {
+//     var answer = response.responseXML.documentElement.getAttribute("answer");
+//     // alert(answer);
+//     var array = JSON.parse(answer);
+//     var returnAddressFlag = array.returnAddressFlag;
+
+//     if (returnAddressFlag.toString() == 'true') {
+//         g_form.setValue('return_address', array.returnToAddress1);
+//         g_form.setValue('return_address2', array.returnToAddress2);
+//         g_form.setValue('return_address3', array.returnToAddress3);
+//         g_form.setValue('return_city', array.returnToCity);
+//         g_form.setValue('return_state', array.returnToState);
+//         g_form.setValue('return_postal_code', array.returnToPotalCode);
+//         g_form.setValue('return_country', array.returnToCountry);
+//         g_form.setValue('return_contact', array.returnContactName);
+//         g_form.setValue('return_contact_email', array.returnContactEmail);
+//         g_form.setValue('return_contact_phone', array.returnContactPhone);
+
+//     } else {
+//         if (array.errorMessage) {
+//             alert(array.errorMessage);
+//             g_form.clearValue('shipping_location');
+//         }
+
+//     }
+
+// }]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>INVOLR00</sys_created_by>
+        <sys_created_on>2020-09-09 10:01:42</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>28145747db8f901067166ac2ca96199e</sys_id>
+        <sys_mod_count>46</sys_mod_count>
+        <sys_name>On change of shipping location</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_script_client_28145747db8f901067166ac2ca96199e</sys_update_name>
+        <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+        <sys_updated_on>2021-02-24 14:39:28</sys_updated_on>
+        <table>x_inmis_im_itad_box_label_order</table>
+        <type>onChange</type>
+        <ui_type>0</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

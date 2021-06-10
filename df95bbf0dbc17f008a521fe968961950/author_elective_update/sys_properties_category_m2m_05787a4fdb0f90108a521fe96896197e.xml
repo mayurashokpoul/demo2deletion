@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category_m2m">
+    <sys_properties_category_m2m action="DELETE">
+        <category display_value="Box Label Order">f8ede1d6db3e1c108a521fe9689619b7</category>
+        <order>200</order>
+        <property display_value="x_inmis_im_itad.BoxLabelOrderMasterData" name="x_inmis_im_itad.BoxLabelOrderMasterData">c06e0173db2e941067166ac2ca9619a0</property>
+        <sys_class_name>sys_properties_category_m2m</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-09-09 07:25:39</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>05787a4fdb0f90108a521fe96896197e</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>x_inmis_im_itad.BoxLabelOrderMasterData.Box Label Order</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_properties_category_m2m_05787a4fdb0f90108a521fe96896197e</sys_update_name>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-09-09 07:34:22</sys_updated_on>
+    </sys_properties_category_m2m>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</application>
+        <file_path/>
+        <instance_id>c821e244dbe52b846578f22ebf9619bf</instance_id>
+        <instance_name>ven02711</instance_name>
+        <name>sys_properties_category_m2m_05787a4fdb0f90108a521fe96896197e</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category_m2m"><sys_properties_category_m2m action="INSERT_OR_UPDATE"><category display_value="Box Label Order">f8ede1d6db3e1c108a521fe9689619b7</category><order>200</order><property display_value="x_inmis_im_itad.BoxLabelOrderMasterData" name="x_inmis_im_itad.BoxLabelOrderMasterData">c06e0173db2e941067166ac2ca9619a0</property><sys_class_name>sys_properties_category_m2m</sys_class_name><sys_created_by>Munimohan.Bathala@ness.com</sys_created_by><sys_created_on>2020-09-09 07:25:39</sys_created_on><sys_customer_update>false</sys_customer_update><sys_id>05787a4fdb0f90108a521fe96896197e</sys_id><sys_mod_count>2</sys_mod_count><sys_name>x_inmis_im_itad.BoxLabelOrderMasterData.Box Label Order</sys_name><sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package><sys_policy/><sys_replace_on_upgrade>false</sys_replace_on_upgrade><sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope><sys_update_name>sys_properties_category_m2m_05787a4fdb0f90108a521fe96896197e</sys_update_name><sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by><sys_updated_on>2020-09-09 07:34:22</sys_updated_on></sys_properties_category_m2m></record_update>]]></payload>
+        <payload_hash>-432391975</payload_hash>
+        <record_name>x_inmis_im_itad.BoxLabelOrderMasterData.Box Label Order</record_name>
+        <reverted_from/>
+        <source>9f35e822db47501067166ac2ca961908</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-09-09 07:34:22</sys_created_on>
+        <sys_id>347a7283db4f90108a521fe9689619ac</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>17471c976ce0000001</sys_recorded_at>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-09-09 07:34:22</sys_updated_on>
+        <type>Category Property</type>
+        <update_guid>f87a7283424f90103331cf14557602ab</update_guid>
+        <update_guid_history>f87a7283424f90103331cf14557602ab:-432391975,ef783ecfde0f9010f01c5686323cf1f5:1105854298,c9787a4f220f9010c2d3a16cacce6a80:-432391975</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-09-23 15:17:59</sys_created_on>
+        <sys_db_object display_value="" name="sys_properties_category_m2m">sys_properties_category_m2m</sys_db_object>
+        <sys_id>1f2568f4c46c46f0852a40bbfe1f0510</sys_id>
+        <sys_metadata>05787a4fdb0f90108a521fe96896197e</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_inmis_im_itad.BoxLabelOrderMasterData.Box Label Order</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_scope_delete display_value="">754b5651fdcb480ea4d7b0c2cca0f181</sys_scope_delete>
+        <sys_update_name>sys_properties_category_m2m_05787a4fdb0f90108a521fe96896197e</sys_update_name>
+        <sys_update_version display_value="sys_properties_category_m2m_05787a4fdb0f90108a521fe96896197e">347a7283db4f90108a521fe9689619ac</sys_update_version>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-09-23 15:17:59</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

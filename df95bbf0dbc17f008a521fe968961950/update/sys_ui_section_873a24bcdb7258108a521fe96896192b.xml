@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Return/Shipping Address" section_id="873a24bcdb7258108a521fe96896192b" sys_domain="global" table="x_inmis_im_itad_box_label_order" version="3" view="">
+        <sys_ui_annotation action="INSERT_OR_UPDATE">
+            <is_plain_text>false</is_plain_text>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>c798dcd4db0750508a521fe96896191e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <text>Return Address:</text>
+            <type display_value="Info Box Blue">753f88a80f930000b12e6903cfe01206</type>
+        </sys_ui_annotation>
+        <sys_ui_annotation action="INSERT_OR_UPDATE">
+            <is_plain_text>false</is_plain_text>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>0f98dcd4db0750508a521fe96896191e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <text>Shipping Address:</text>
+            <type display_value="Info Box Blue">753f88a80f930000b12e6903cfe01206</type>
+        </sys_ui_annotation>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>0</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>d798d498db0750508a521fe968961918</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>c798dcd4db0750508a521fe96896191e</element>
+            <position>1</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>5b98d498db0750508a521fe968961918</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type>annotation</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>return_location</element>
+            <position>2</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>db98d498db0750508a521fe968961918</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>return_address</element>
+            <position>3</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>5f98d498db0750508a521fe968961918</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>return_address2</element>
+            <position>4</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>df98d498db0750508a521fe968961918</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>return_address3</element>
+            <position>5</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>5398d498db0750508a521fe968961919</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>return_city</element>
+            <position>6</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>d398d498db0750508a521fe968961919</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>return_country</element>
+            <position>7</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>5798d498db0750508a521fe968961919</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>return_state</element>
+            <position>8</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>d798d498db0750508a521fe968961919</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>return_postal_code</element>
+            <position>9</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>5b98d498db0750508a521fe968961919</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>return_contact</element>
+            <position>10</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>db98d498db0750508a521fe968961919</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>return_contact_email</element>
+            <position>11</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>5f98d498db0750508a521fe968961919</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>return_contact_phone</element>
+            <position>12</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>df98d498db0750508a521fe968961919</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>13</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>5398d498db0750508a521fe96896191a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>0f98dcd4db0750508a521fe96896191e</element>
+            <position>14</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>d398d498db0750508a521fe96896191a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type>annotation</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>shipping_location</element>
+            <position>15</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>5798d498db0750508a521fe96896191a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>shipping_address</element>
+            <position>16</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>d798d498db0750508a521fe96896191a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>shipping_address2</element>
+            <position>17</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>5b98d498db0750508a521fe96896191a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>shipping_address3</element>
+            <position>18</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>db98d498db0750508a521fe96896191a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>shipping_city</element>
+            <position>19</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>5f98d498db0750508a521fe96896191a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>shipping_country</element>
+            <position>20</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>df98d498db0750508a521fe96896191a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>shipping_state</element>
+            <position>21</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>5398d498db0750508a521fe96896191b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>shipping_postal_code</element>
+            <position>22</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>d398d498db0750508a521fe96896191b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>shipping_contact</element>
+            <position>23</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>5798d498db0750508a521fe96896191b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>shipping_contact_email</element>
+            <position>24</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>d798d498db0750508a521fe96896191b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>shipping_contact_phone</element>
+            <position>25</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>5b98d498db0750508a521fe96896191b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>26</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-31 06:43:59</sys_created_on>
+            <sys_id>db98d498db0750508a521fe96896191b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:43:59</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Return/Shipping Address</caption>
+            <header>false</header>
+            <name>x_inmis_im_itad_box_label_order</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-20 11:02:15</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>873a24bcdb7258108a521fe96896192b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_inmis_im_itad_box_label_order</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+            <sys_update_name>sys_ui_section_873a24bcdb7258108a521fe96896192b</sys_update_name>
+            <sys_updated_by>INVOLR00</sys_updated_by>
+            <sys_updated_on>2020-08-20 11:02:15</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

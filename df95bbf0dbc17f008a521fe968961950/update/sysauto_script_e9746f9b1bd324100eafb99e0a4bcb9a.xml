@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <business_calendar/>
+        <condition/>
+        <conditional>false</conditional>
+        <entered_time>1970-01-01 00:00:00</entered_time>
+        <name>Location Sync with BlueIQ</name>
+        <offset/>
+        <offset_type/>
+        <run_as display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period>1970-01-01 00:15:00</run_period>
+        <run_start>2021-04-09 11:43:14</run_start>
+        <run_time>1970-01-01 08:00:00</run_time>
+        <run_type>periodically</run_type>
+        <script><![CDATA[var summary = {};
+summary.successArr = [];
+summary.failedArr = [];
+var trigger = '';
+var gr = new GlideRecord("x_inmis_im_itad_imitad_location");
+gr.addEncodedQuery("global_imitad_location_update=true^ORlocation_statusIN1,3^retry_count<=4");
+gr.query();
+while (gr.next()) {
+    try {
+        var authenticationDetails = new IngramUtils().tokenValidation(gr);
+        gs.info('Location create/update API request started');
+        var r = new sn_ws.RESTMessageV2('x_inmis_im_itad.IngramMirco Location create update', 'post');
+        r.setStringParameterNoEscape('Token', authenticationDetails.Token);
+        r.setStringParameterNoEscape('SourceID', authenticationDetails.sourceid);
+        r.setStringParameterNoEscape('Facility', gr.itad_facility.facilityid.toString());
+        r.setStringParameterNoEscape('Currency', gr.currency.currencyid.toString());
+        r.setStringParameterNoEscape('billingAdd1', jsonEncode(gr.getValue('address_1')));
+        r.setStringParameterNoEscape('locationCity', gr.location.city.toString());
+        r.setStringParameterNoEscape('billingAdd3', jsonEncode(gr.getValue('address_3')));
+        r.setStringParameterNoEscape('locationAdd3', '');
+        r.setStringParameterNoEscape('billingAdd2', jsonEncode(gr.getValue('address_2')));
+        r.setStringParameterNoEscape('locationID', gr.itad_locationid == "" ? "0" : gr.itad_locationid.toString());
+        r.setStringParameterNoEscape('billToName', gr.billing_name.toString());
+        r.setStringParameterNoEscape('locationAdd2', '');
+        r.setStringParameterNoEscape('locationAdd1', gr.location.street.toString());
+        r.setStringParameterNoEscape('locationDesc', gr.location.name.toString());
+        r.setStringParameterNoEscape('IsCOIRequired', gr.coi_required.toString());
+        r.setStringParameterNoEscape('IsUnionLabourRequired', gr.unionlabour_required.toString());
+        r.setStringParameterNoEscape('IsDockAvailable', gr.dock_available.toString());
+        r.setStringParameterNoEscape('IsTimeLimitRequiredToLoadDock', gr.loading_timelimit.toString());
+        r.setStringParameterNoEscape('IsPalletJackAvailable', gr.palletjack_available.toString());
+        r.setStringParameterNoEscape('IsSchedulingRequired', gr.scheduling_required.toString());
+        r.setStringParameterNoEscape('CanHandcartsBeUtilizedFromBuildingEquipment', gr.handcarts_required.toString());
+        r.setStringParameterNoEscape('IsLiftGateNeeded', gr.liftgate_required.toString());
+        r.setStringParameterNoEscape('IsFreightElevatorAvailable', gr.freightelevator_available.toString());
+        r.setStringParameterNoEscape('IsPassengerElevatorAvailable', gr.passengerelevator_available.toString());
+        r.setStringParameterNoEscape('ForkliftAvailable', gr.forklift_available.toString());
+        r.setStringParameterNoEscape('IsLoadingbaydockhavingStandardHeight', gr.standard_height.toString());
+        r.setStringParameterNoEscape('Weight', gr.weight.toString());
+        r.setStringParameterNoEscape('PostalCode', gr.zip.toString());
+        r.setStringParameterNoEscape('EmailID', gr.email_id.toString());
+        r.setStringParameterNoEscape('IsPickupLocation', gr.pickup_location);
+        r.setStringParameterNoEscape('IsBillingLocation', gr.billing_location.toString());
+        r.setStringParameterNoEscape('IsShippingLocation', gr.shipping_location.toString());
+        r.setStringParameterNoEscape('ZipPostalCode', gr.location.zip.toString());
+        r.setStringParameterNoEscape('TimeZone', gr.time_zone.timezoneid.toString());
+        r.setStringParameterNoEscape('BillingCity', gr.city.toString());
+        r.setStringParameterNoEscape('BillingState', gr.state.stateid.toString());
+        r.setStringParameterNoEscape('pickupcontact', gr.pickup_contact_ref.toString());
+        r.setStringParameterNoEscape('primarycontact', gr.primary_contact.toString());
+        r.setStringParameterNoEscape('alternativecontact', gr.alternate_contact.toString());
+        r.setStringParameterNoEscape('LocationNotes', jsonEncode(gr.getValue('location_notes')));
+        r.setStringParameterNoEscape('CreateLocationbaseUrl', gs.getProperty('x_inmis_im_itad.CreateLocation'));
+
+        var response = r.execute();
+        var responseBody = response.getBody();
+        var httpStatus = response.getStatusCode();
+        var requestBody = JSON.parse(r.getRequestBody());
+        requestBody.LocationInformation.Token = "XXXXXXXXXXXXXX";
+        requestBody.BillingInformation.EmailID = "XXXXXXXXXXXXXX";
+        requestBody.ContactInformation.PickUpContactName = "XXXXXXXXXXXXXX";
+        requestBody.ContactInformation.PrimaryContactName = "XXXXXXXXXXXXXX";
+        requestBody.ContactInformation.AlternativeContactName = "XXXXXXXXXXXXXX";
+
+        gs.info('Location requestBody:' + JSON.stringify(requestBody));
+        gs.info("Location responseBody : " + responseBody);
+
+        var readResponse = JSON.parse(responseBody);
+
+        if (httpStatus == '200' && readResponse.IsSuccess.toString()=='true') {
+            var imLocIDUpdate = new GlideRecord('x_inmis_im_itad_imitad_location');
+            imLocIDUpdate.addQuery('sys_id', gr.sys_id);
+            imLocIDUpdate.query();
+            if (imLocIDUpdate.next()) {
+                if (imLocIDUpdate.itad_locationid == '') {
+                    imLocIDUpdate.setValue('location_status', '2');
+                } else {
+                    imLocIDUpdate.setValue('location_status', '4');
+                }
+                imLocIDUpdate.setValue('itad_locationid', readResponse.LocationID);
+
+                imLocIDUpdate.setValue('global_imitad_location_update', false);
+                imLocIDUpdate.setValue('retry_count', 0);
+
+                if (readResponse.FacilityInfo.Address2 == "") {
+                    imLocIDUpdate.setValue('itad_facilityaddress', readResponse.FacilityInfo.Address1 + "" + readResponse.FacilityInfo.Address2 + " " + readResponse.FacilityInfo.Address3 + "\r\n" + readResponse.FacilityInfo.City + "\r\n" + readResponse.FacilityInfo.StateDesc + " " + readResponse.FacilityInfo.ZipCode + " \r\n" + readResponse.FacilityInfo.CountryName);
+
+
+                } else {
+                    imLocIDUpdate.setValue('itad_facilityaddress', readResponse.FacilityInfo.Address1 + "\r\n" + readResponse.FacilityInfo.Address2 + " " + readResponse.FacilityInfo.Address3 + "\r\n " + readResponse.FacilityInfo.City + "\r\n" + readResponse.FacilityInfo.StateDesc + " " + readResponse.FacilityInfo.ZipCode + " \r\n" + readResponse.FacilityInfo.CountryName);
+                }
+				imLocIDUpdate.scheduler_last_run_time=new GlideDateTime();
+                imLocIDUpdate.update();
+            }
+            summary.successArr.push(imLocIDUpdate.location.name.toString());
+            gs.info('Location created/updated API successful');
+        } else {
+            summary.failedArr.push(gr.location.name.toString());
+            setFailed(gr.sys_id, readResponse.ErrorMessage);
+        }
+    } catch (ex) {
+        var message = ex.message;
+        summary.failedArr.push(gr.location.name.toString());
+        setFailed(gr.sys_id, ex);
+        gs.error(message);
+        gs.info("Location BR [IngramMicro LocationCreateUpdate]: " + ex);
+    }
+    trigger = gr.sys_id;
+}
+var trirec = new GlideRecord('x_inmis_im_itad_imitad_location');
+trirec.get(trigger);
+gs.eventQueue('x_inmis_im_itad.summarylocation', trirec, gs.getProperty('x_inmis_im_itad.Support email'), JSON.stringify(summary));
+
+function setFailed(id, error) {
+    gs.info("function called");
+    var imLocIDUpdate = new GlideRecord('x_inmis_im_itad_imitad_location');
+    imLocIDUpdate.addQuery('sys_id', id);
+    imLocIDUpdate.query();
+    if (imLocIDUpdate.next()) {
+        imLocIDUpdate.setValue('location_status', '3');
+        imLocIDUpdate.setValue('global_imitad_location_update', true);
+        imLocIDUpdate.setValue('retry_count', parseInt(imLocIDUpdate.getValue('retry_count')) + 1);
+        imLocIDUpdate.setValue('failed_reason', error);
+		imLocIDUpdate.scheduler_last_run_time=new GlideDateTime();
+        imLocIDUpdate.update();
+		
+    }
+
+}
+
+function jsonEncode(str) {
+    str = new global.JSON().encode(str);
+    return str.substring(1, str.length - 1);
+}]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>Ruthvic.voladri@ness.com</sys_created_by>
+        <sys_created_on>2021-04-09 11:47:22</sys_created_on>
+        <sys_id>e9746f9b1bd324100eafb99e0a4bcb9a</sys_id>
+        <sys_mod_count>38</sys_mod_count>
+        <sys_name>Location Sync with BlueIQ</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sysauto_script_e9746f9b1bd324100eafb99e0a4bcb9a</sys_update_name>
+        <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+        <sys_updated_on>2021-04-27 11:31:13</sys_updated_on>
+        <time_zone/>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>

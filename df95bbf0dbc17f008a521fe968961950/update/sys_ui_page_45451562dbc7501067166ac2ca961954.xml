@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[var partList = [];
+var enteredValuesSum = 0;
+
+function validateComments() {
+    var enteredValuesSum = 0;
+    partList = [];
+    var myTab = document.getElementById('tableRows');
+    var count = 1;
+    for (i = 0; i < myTab.rows.length; i++) { // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER. 
+        var objCells = myTab.rows.item(i).cells; // GET THE CELLS COLLECTION OF THE CURRENT ROW.
+        for (var j = 0; j < 1; j++) { // LOOP THROUGH EACH CELL OF THE CURENT ROW TO READ CELL VALUES. 
+            var x = count.toString() + '.0';
+            var obj = {};
+            var y = document.getElementById(x).value;
+            obj.partName = objCells.item(j).innerHTML.toString();
+            obj.enterQuantity = (y != '' ? parseInt(y) : 0);
+
+            enteredValuesSum = (parseInt(enteredValuesSum) + (y != '' ? parseInt(y) : 0));
+            partList.push(obj);
+            count++;
+        }
+    }
+    //     alert('enteredValuesSum: ' + enteredValuesSum + ', company:' + g_form.getValue('company'));
+    if (enteredValuesSum <= 0) {
+        alert('Please give "Enter Quantity" in numbers');
+        return false;
+    }
+    //   alert('JSON.stringify(partList): ' + JSON.stringify(partList));
+
+    var quantityValidation = new GlideAjax('BoxLabelUtils');
+    quantityValidation.addParam('sysparm_name', 'validateEnterQuantity');
+    quantityValidation.addParam('sysparm_company', g_form.getValue('company'));
+    quantityValidation.addParam('sysparm_enterQuantitySum', enteredValuesSum);
+    // quantityValidation.getXMLWait();
+    quantityValidation.getXML(GetAnswer);
+
+    // var answer = quantityValidation.getAnswer();
+    function GetAnswer(response) {
+        var answer = response.responseXML.documentElement.getAttribute("answer");
+    }
+
+    // alert('max count flag : ' + answer);
+    if (answer.toString() == 'false') {
+        alert('Can not create order. Your maximum box count exceed the threshold for Box Or Label Orders. Please schedule a regular truck pickup.');
+        return false;
+    } else {
+        var ga = new GlideAjax('BoxLabelUtils');
+        ga.addParam('sysparm_name', 'insertReturnAssets');
+        ga.addParam('sysparm_boxLabelSysID', g_form.getUniqueValue());
+        ga.addParam('sysparm_partList', JSON.stringify(partList));
+        ga.getXML(HelloWorldParse);
+
+    }
+
+}
+
+function HelloWorldParse(response) {
+    var answer = response.responseXML.documentElement.getAttribute("answer");
+    GlideDialogWindow.get().destroy(); //Close the dialog window
+    g_form.setReadOnly('order_type', true);
+    makeFieldsOptional();
+    g_form.save();
+
+}
+
+function makeFieldsOptional() {
+    g_form.setMandatory('order_type', false);
+    g_form.setMandatory('return_to', false);
+    g_form.setMandatory('requestor_email', false);
+    g_form.setMandatory('requested_by', false);
+    g_form.setMandatory('return_address', false);
+    g_form.setMandatory('return_city', false);
+    g_form.setMandatory('return_postal_code', false);
+    g_form.setMandatory('return_contact', false);
+    g_form.setMandatory('return_contact_email', false);
+    g_form.setMandatory('return_contact_phone', false);
+    g_form.setMandatory('shipping_address', false);
+    g_form.setMandatory('shipping_city', false);
+    g_form.setMandatory('shipping_postal_code', false);
+    g_form.setMandatory('shipping_contact', false);
+    g_form.setMandatory('shipping_contact_email', false);
+    g_form.setMandatory('shipping_contact_phone', false);
+}]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_inmis_im_itad_Box_Reclaim_Validation.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	
+	<g:evaluate var="jvar_gr" object="true">
+   var gr = new GlideRecord("x_inmis_im_itad_non_serialized_parts");
+   gr.orderBy('rowindex');
+   gr.query();
+   gr;
+</g:evaluate>
+<g:evaluate>
+
+      var i=1;
+
+</g:evaluate>
+
+
+	
+<g:ui_form>  
+   <table  id="partsList"  width="100%" style="font-family: Helvetica Neue; font-size: 13px;">
+	   <thead style="font-size: large; border: 1px solid black; border-collapse: collapse; padding: 12px;  text-align: center;">
+		   <td colspan="2" style="font-size: large; border: 1px solid black; border-collapse: collapse;">Part Description
+		   </td>
+		   <td colspan="2" style="font-size: large; border: 1px solid black; border-collapse: collapse;">Tool Tip Help
+		   </td>
+		   <td colspan="2" style="font-size: large; border: 1px solid black; border-collapse: collapse;">Enter Quantity
+		   </td>
+	   </thead> 
+	     <tbody id="tableRows" style="padding: 5px;" width="100%">
+	   <j:while test="${jvar_gr.next()}">
+     <tr >		 
+        <td colspan="2" style="border: 1px solid black; border-collapse: collapse;" id="part" >
+          ${jvar_gr.getValue('part_description')}
+        </td>
+		 <td colspan="2" style="border: 1px solid black; border-collapse: collapse;">
+          ${jvar_gr.getValue('tooltiphelp')}
+        </td>
+		 <td colspan="2" >
+			 <input type="number" id="${i}" name="${i}" placeholder="Enter Quantity" style=" width: 100%;" min="1" />
+		 </td>
+     </tr>
+		     <g:evaluate> i++ </g:evaluate>
+		</j:while>   
+	   </tbody>
+	
+     <tr id="dialog_buttons"  width="100%">
+        <td style="text-align: center;" colspan="5">
+          <g:dialog_buttons_ok_cancel ok="return validateComments()" ok_type="button" cancel_type="button" />
+			
+		 </td>
+     </tr>
+  </table>
+</g:ui_form>
+</j:jelly>]]></html>
+        <name>Box_Reclaim_Validation</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-09-07 11:19:31</sys_created_on>
+        <sys_id>45451562dbc7501067166ac2ca961954</sys_id>
+        <sys_mod_count>113</sys_mod_count>
+        <sys_name>Box_Reclaim_Validation</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_ui_page_45451562dbc7501067166ac2ca961954</sys_update_name>
+        <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+        <sys_updated_on>2021-02-02 08:08:54</sys_updated_on>
+    </sys_ui_page>
+</record_update>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[addLoadEvent( function() {
+document.getElementById("sys_script.collection").value = "cmn_location";
+document.getElementById("select2-chosen-1").innerHTML = "cmn_location [cmn_location]";
+loadFilterColumns('sys_script.filter_condition', 'collection');
+	document.getElementById('sys_script.collection').style.align   = 'left';
+	
+	var locationFilter = gel('sys_script.collection');
+	locationFilter.readOnly = true;
+	
+	gel('sys_script.filter_condition').value = getFilter('sys_script.filter_condition');
+
+
+});
+
+
+function validateForm() 
+{
+	var grproperty = new GlideRecord('sys_properties');
+	grproperty.addQuery('name','x_inmis_im_itad.ImitadLocationDetails');
+	grproperty.query();
+	if(grproperty.next())
+	{
+		grproperty.value = getFilter('sys_script.filter_condition');
+		grproperty.update();
+	}
+}]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_inmis_im_itad_IMITAD Location Filter.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	
+<g:ui_form>
+<input type="hidden" id="cancelled" name="cancelled" value="false" align="left"/>
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr><td align="left" nowrap="true">
+	<h3> Location Filters :</h3>
+	<DIV align="left">
+		<g:ui_element table="sys_script" field="collection" id="6d5f3906db011010140a7b60399619fc" align="left"></g:ui_element>
+		<g:ui_element table="sys_script" field="filter_condition" name ="filter_condition" id="8c9e7dc2db011010140a7b60399619f9" align="left"></g:ui_element>
+	</DIV>
+	</td></tr>
+	<tr><td align="left" nowrap="true"><g:dialog_buttons_ok_cancel ok="return validateForm();" cancel="return onCancel();"/></td></tr>
+</table>
+</g:ui_form>
+	<br/><g2:system_properties_categorized category="Location Properties"/>
+</j:jelly>]]></html>
+        <name>IMITAD Location Filter</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>mayur.poul</sys_created_by>
+        <sys_created_on>2021-04-12 10:43:01</sys_created_on>
+        <sys_id>7da23a981b2ba4100eafb99e0a4bcb1b</sys_id>
+        <sys_mod_count>29</sys_mod_count>
+        <sys_name>IMITAD Location Filter</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_ui_page_7da23a981b2ba4100eafb99e0a4bcb1b</sys_update_name>
+        <sys_updated_by>mayur.poul</sys_updated_by>
+        <sys_updated_on>2021-04-26 07:42:28</sys_updated_on>
+    </sys_ui_page>
+</record_update>

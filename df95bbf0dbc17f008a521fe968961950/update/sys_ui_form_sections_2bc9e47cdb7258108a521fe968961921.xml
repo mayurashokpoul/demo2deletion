@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_form_sections form_id="2bc9e47cdb7258108a521fe968961921" sys_domain="global" table="x_inmis_im_itad_box_label_order" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-20 11:00:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>2fc9e47cdb7258108a521fe968961922</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_inmis_im_itad_box_label_order" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">2bc9e47cdb7258108a521fe968961921</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">10d6ecf8db7258108a521fe968961906</sys_ui_section>
+            <sys_updated_by>INVOLR00</sys_updated_by>
+            <sys_updated_on>2020-08-20 11:00:23</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>1</position>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-20 11:01:02</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>ddf9e47cdb7258108a521fe96896194f</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_inmis_im_itad_box_label_order" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">2bc9e47cdb7258108a521fe968961921</sys_ui_form>
+            <sys_ui_section caption="Return Information" display_value="Return Information" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">5df9e47cdb7258108a521fe96896194d</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:25:51</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>2</position>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-20 11:02:15</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>8b3a24bcdb7258108a521fe96896192d</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_inmis_im_itad_box_label_order" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">2bc9e47cdb7258108a521fe968961921</sys_ui_form>
+            <sys_ui_section caption="Return/Shipping Address" display_value="Return/Shipping Address" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">873a24bcdb7258108a521fe96896192b</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:25:51</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>3</position>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-20 11:07:10</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>075b60fcdb7258108a521fe9689619bb</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_inmis_im_itad_box_label_order" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">2bc9e47cdb7258108a521fe968961921</sys_ui_form>
+            <sys_ui_section caption="Return/Shipping Label Information" display_value="Return/Shipping Label Information" name="x_inmis_im_itad_box_label_order" sys_domain="global" view="Default view">8f5b60fcdb7258108a521fe9689619b8</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-31 06:25:51</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>x_inmis_im_itad_box_label_order</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-20 11:00:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>2bc9e47cdb7258108a521fe968961921</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_inmis_im_itad_box_label_order</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+            <sys_update_name>sys_ui_form_sections_2bc9e47cdb7258108a521fe968961921</sys_update_name>
+            <sys_updated_by>INVOLR00</sys_updated_by>
+            <sys_updated_on>2020-08-20 11:00:23</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

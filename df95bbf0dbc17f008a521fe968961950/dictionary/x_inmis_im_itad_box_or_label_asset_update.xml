@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element extends="sys_import_set_row" label="Box or Label Asset Update" max_length="40" name="x_inmis_im_itad_box_or_label_asset_update" sizeclass="0" type="collection">
+        <element label="AssetTag" max_length="40" name="assettag" type="string"/>
+        <element label="CustomerID" max_length="40" name="customerid" type="string"/>
+        <element label="Facility" max_length="40" name="facility" type="string"/>
+        <element label="IMOrderId" max_length="40" name="imorderid" type="string"/>
+        <element label="OwnershipType" max_length="40" name="ownershiptype" type="string"/>
+        <element label="RequestNumber" max_length="40" name="requestnumber" type="string"/>
+        <element label="SerialNumber" max_length="40" name="serialnumber" type="string"/>
+        <element label="Site" max_length="40" name="site" type="string"/>
+        <element label="SourceID" max_length="40" name="sourceid" type="string"/>
+        <element label="State" max_length="40" name="state" type="string"/>
+        <element label="StockRoom" max_length="40" name="stockroom" type="string"/>
+        <element label="SubState" max_length="40" name="substate" type="string"/>
+        <element label="vAssetSourceKey" max_length="40" name="vassetsourcekey" type="string"/>
+    </element>
+</database>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <business_calendar/>
+        <condition/>
+        <conditional>false</conditional>
+        <entered_time>1970-01-01 00:00:00</entered_time>
+        <name>Pull Box Label Order- Release for Ship, Picking and Shipped Data from Blue IQ</name>
+        <offset/>
+        <offset_type/>
+        <run_as/>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2020-10-06 11:16:46</run_start>
+        <run_time>1970-01-01 08:00:00</run_time>
+        <run_type>daily</run_type>
+        <script><![CDATA[function callAPIS(domain) {
+    // pull Release for Ship Data
+    var RelaseForShip = new x_inmis_im_itad.BoxLabelUtils().pullBoxLabelOrderUpdateData(domain, 'Released for Ship');
+
+    // pull picking Data
+    var Picking = new x_inmis_im_itad.BoxLabelUtils().pullBoxLabelOrderUpdateData(domain, 'Picking');
+
+    // pull Shipped Data
+    var Shipped = new x_inmis_im_itad.BoxLabelUtils().pullBoxLabelOrderUpdateData(domain, 'Shipped');
+
+}
+
+var customerRegistration = new GlideRecord('x_inmis_im_itad_customer_registration');
+customerRegistration.query();
+while (customerRegistration.next()) {
+    if (gs.getProperty("glide.sys.domain.partitioning") == 'true') {
+        if (!customerRegistration.company.sys_domain.primary) {
+            callAPIS(customerRegistration);
+        }
+    } else {
+        callAPIS(customerRegistration);
+    }
+}]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-10-06 11:20:01</sys_created_on>
+        <sys_id>0e40b67fdb63901067166ac2ca961974</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>Pull Box Label Order- Release for Ship, Picking and Shipped Data from Blue IQ</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sysauto_script_0e40b67fdb63901067166ac2ca961974</sys_update_name>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-10-19 07:57:59</sys_updated_on>
+        <time_zone/>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>

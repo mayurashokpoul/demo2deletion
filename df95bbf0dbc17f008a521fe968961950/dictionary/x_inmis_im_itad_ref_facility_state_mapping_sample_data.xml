@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element extends="sys_import_set_row" label="Ref Facility State mapping sample data" max_length="40" name="x_inmis_im_itad_ref_facility_state_mapping_sample_data" sizeclass="0" type="collection">
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=dCreatedDate" label="dCreatedDate" max_length="40" name="u_dcreateddate" type="glide_date_time"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=iCountryCode" label="iCountryCode" max_length="40" name="u_icountrycode" type="integer"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=iDisposalPickup_FacilityID" label="iDisposalPickup_FacilityID" max_length="40" name="u_idisposalpickup_facilityid" type="integer"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=iFacilitiesStateMappingID" label="iFacilitiesStateMappingID" max_length="40" name="u_ifacilitiesstatemappingid" type="integer"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=iFacilityID" label="iFacilityID" max_length="40" name="u_ifacilityid" type="integer"/>
+        <element attributes="edge_encryption_enabled=true" label="Logic" max_length="40" name="u_logic" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="OrderFulfilmentReturnSetup" max_length="40" name="u_orderfulfilmentreturnsetup" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Service NOW" max_length="40" name="u_service_now" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="UI" max_length="40" name="u_ui" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vCreatedBy" label="vCreatedBy" max_length="40" name="u_vcreatedby" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vStateCode" label="vStateCode" max_length="40" name="u_vstatecode" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vStateDesc" label="vStateDesc" max_length="40" name="u_vstatedesc" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vZipCode" label="vZipCode" max_length="40" name="u_vzipcode" type="string"/>
+    </element>
+</database>

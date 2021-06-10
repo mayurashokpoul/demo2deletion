@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Box/Label Order" max_length="40" name="x_inmis_im_itad_box_label_order" sizeclass="0" type="collection">
+        <element attributes="edge_encryption_enabled=true" choice="1" default="draft" label="Box/Label Order Status" max_length="40" name="box_label_order_status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Draft" sequence="0" value="draft"/>
+                <element inactive_on_update="false" label="Submitted" sequence="1" value="submitted"/>
+                <element inactive_on_update="false" label="Released for Ship" sequence="2" value="Released for Ship"/>
+                <element inactive_on_update="false" label="Picking" sequence="3" value="Picking"/>
+                <element inactive_on_update="false" label="Shipped" sequence="4" value="Shipped"/>
+                <element inactive_on_update="false" label="Failed" sequence="5" value="failed"/>
+            </choice>
+        </element>
+        <element hint="Enter multiple emails separated ;" label="CC Email" max_length="50" name="cc_email" type="string"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" default="javascript: (gs.getProperty(&quot;glide.sys.domain.partitioning&quot;) == 'true' ) ?  new IngramUtils().getCompanyValue() : &quot;&quot;;" label="Company" max_length="32" name="company" reference="core_company" type="reference"/>
+        <element label="Customer Order No" max_length="50" name="customer_order_no" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Failed Reason" max_length="1000" name="failed_reason" type="string"/>
+        <element label="IM Order ID" max_length="40" name="im_order_id" type="string"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Box/Label Order ID" max_length="40" name="number" type="string"/>
+        <element label="Order Notes" max_length="1000" name="order_notes" type="string"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false,ref_decoration_disabled=true" choice="1" label="Order Type" max_length="40" name="order_type" reference="x_inmis_im_itad_ref_main" reference_qual="javascript: new BoxLabelUtils().getChoiceList('order_type');&#13;&#10;" type="reference" use_reference_qualifier="advanced">
+            <choice/>
+        </element>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" default="javascript: gs.getUserID();" label="Requested By" max_length="32" name="requested_by" reference="sys_user" type="reference"/>
+        <element label="Requestor Email" max_length="50" name="requestor_email" type="string"/>
+        <element label="Return Address" max_length="400" name="return_address" type="string"/>
+        <element label="Return Address2" max_length="400" name="return_address2" type="string"/>
+        <element label="Return Address3" max_length="400" name="return_address3" type="string"/>
+        <element label="Return City" max_length="200" name="return_city" type="string"/>
+        <element label="Return Contact" max_length="50" name="return_contact" type="string"/>
+        <element label="Return Contact Email" max_length="200" name="return_contact_email" type="string"/>
+        <element label="Return Contact Phone" max_length="50" name="return_contact_phone" type="string"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" choice="1" choice_field="country" choice_table="cmn_location" default="USA" label="Return Country" max_length="50" name="return_country" reference="x_inmis_im_itad_country" type="reference">
+            <choice/>
+        </element>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Return Location" max_length="32" name="return_location" reference="x_inmis_im_itad_imitad_location" reference_qual="javascript: new BoxLabelUtils().getIMITADLocationFilter();" type="reference" use_reference_qualifier="advanced"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false,ref_decoration_disabled=true" choice="3" label="#Return Method" max_length="40" name="return_method" reference="x_inmis_im_itad_ref_main" reference_qual="javascript: new BoxLabelUtils().getChoiceList('return_method');" type="reference" use_reference_qualifier="advanced">
+            <choice/>
+        </element>
+        <element label="Return Postal Code" max_length="200" name="return_postal_code" type="string"/>
+        <element label="Return Reason" max_length="1000" name="return_reason" type="string"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false,ref_decoration_disabled=true" choice="3" label="Return Signature" max_length="40" name="return_signature" reference="x_inmis_im_itad_ref_main" reference_qual="javascript: new BoxLabelUtils().getChoiceList('return_signature');" type="reference" use_reference_qualifier="advanced">
+            <choice/>
+        </element>
+        <element label="Return State" max_length="200" name="return_state" type="string"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false,ref_decoration_disabled=true" choice="1" label="Return To" max_length="40" name="return_to" reference="x_inmis_im_itad_ref_main" reference_qual="javascript: new BoxLabelUtils().getChoiceList('return_to');" type="reference" use_reference_qualifier="advanced">
+            <choice/>
+        </element>
+        <element label="Shipping Address" max_length="400" name="shipping_address" type="string"/>
+        <element label="Shipping Address2" max_length="400" name="shipping_address2" type="string"/>
+        <element label="Shipping Address3" max_length="400" name="shipping_address3" type="string"/>
+        <element label="Shipping City" max_length="200" name="shipping_city" type="string"/>
+        <element label="Shipping Contact" max_length="50" name="shipping_contact" type="string"/>
+        <element label="Shipping Contact Email" max_length="200" name="shipping_contact_email" type="string"/>
+        <element label="Shipping Contact Phone" max_length="50" name="shipping_contact_phone" type="string"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" choice="2" choice_field="country" choice_table="cmn_location" default="USA" label="Shipping Country" max_length="50" name="shipping_country" reference="x_inmis_im_itad_country" type="reference">
+            <choice/>
+        </element>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Shipping Location" max_length="32" name="shipping_location" reference="x_inmis_im_itad_imitad_location" reference_qual="javascript: new BoxLabelUtils().getIMITADLocationFilter();" type="reference" use_reference_qualifier="advanced"/>
+        <element label="Shipping Postal Code" max_length="200" name="shipping_postal_code" type="string"/>
+        <element label="Shipping State" max_length="200" name="shipping_state" type="string"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false,ref_decoration_disabled=true" choice="3" label="#Ship Method" max_length="40" name="ship_method" reference="x_inmis_im_itad_ref_main" reference_qual="javascript: new BoxLabelUtils().getChoiceList('ship_method');" type="reference" use_reference_qualifier="advanced">
+            <choice/>
+        </element>
+        <element label="Ship Reference No" max_length="50" name="ship_reference_no" type="string"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false,ref_decoration_disabled=true" choice="3" label="Signature Required" max_length="40" name="signature_required" reference="x_inmis_im_itad_ref_main" reference_qual="javascript: new BoxLabelUtils().getChoiceList('signature_required');" type="reference" use_reference_qualifier="advanced">
+            <choice/>
+        </element>
+        <element attributes="edge_encryption_enabled=true" default="javascript:current.getTableName();" dynamic_default_value="b5cb83a85f220100a9ad2572f2b4773c" label="Class" max_length="80" name="sys_class_name" type="sys_class_name" use_dynamic_default="true"/>
+        <element attributes="edge_encryption_enabled=true" label="Domain" max_length="32" name="sys_domain" type="domain_id"/>
+        <index name="index">
+            <element name="return_method"/>
+        </index>
+        <index name="index2">
+            <element name="return_location"/>
+        </index>
+        <index name="index3">
+            <element name="return_to"/>
+        </index>
+        <index name="index4">
+            <element name="shipping_location"/>
+        </index>
+        <index name="index5">
+            <element name="signature_required"/>
+        </index>
+        <index name="index6">
+            <element name="sys_class_name"/>
+        </index>
+        <index name="index7">
+            <element name="return_signature"/>
+        </index>
+        <index name="index8">
+            <element name="number"/>
+        </index>
+        <index name="index9">
+            <element name="requested_by"/>
+        </index>
+        <index name="index10">
+            <element name="sys_domain"/>
+        </index>
+        <index name="index11">
+            <element name="ship_method"/>
+        </index>
+        <index name="index12">
+            <element name="company"/>
+        </index>
+        <index name="index13">
+            <element name="return_country"/>
+        </index>
+        <index name="index14">
+            <element name="order_type"/>
+        </index>
+        <index name="index15">
+            <element name="shipping_country"/>
+        </index>
+    </element>
+</database>

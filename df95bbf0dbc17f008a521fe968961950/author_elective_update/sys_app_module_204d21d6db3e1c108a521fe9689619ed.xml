@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_module">
+    <sys_app_module action="DELETE">
+        <active>true</active>
+        <application display_value="IM-ITAD">ce80c889dbc17f008a521fe968961955</application>
+        <assessment/>
+        <content_page/>
+        <device_type/>
+        <filter/>
+        <hint>Enable Box/Label oser Service</hint>
+        <homepage/>
+        <image/>
+        <link_type>DIRECT</link_type>
+        <map_page/>
+        <mobile_title>Enable Box/Label oser Service</mobile_title>
+        <mobile_view_name>Mobile</mobile_view_name>
+        <name/>
+        <order>3</order>
+        <override_menu_roles>false</override_menu_roles>
+        <query>system_properties_ui.do?sysparm_category=Box Label Order&amp;sysparm_title=Box Label Order Service</query>
+        <report/>
+        <roles>admin</roles>
+        <survey/>
+        <survey_overwrite>true</survey_overwrite>
+        <sys_class_name>sys_app_module</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-08-25 07:51:35</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>204d21d6db3e1c108a521fe9689619ed</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Enable Box/Label Order Service</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_app_module_204d21d6db3e1c108a521fe9689619ed</sys_update_name>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-08-26 09:41:42</sys_updated_on>
+        <timeline_page/>
+        <title>Enable Box/Label Order Service</title>
+        <uncancelable>false</uncancelable>
+        <view_name/>
+        <window_name/>
+    </sys_app_module>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</application>
+        <file_path/>
+        <instance_id>c821e244dbe52b846578f22ebf9619bf</instance_id>
+        <instance_name>ven02711</instance_name>
+        <name>sys_app_module_204d21d6db3e1c108a521fe9689619ed</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_module"><sys_app_module action="INSERT_OR_UPDATE"><active>true</active><application display_value="IM-ITAD">ce80c889dbc17f008a521fe968961955</application><assessment/><content_page/><device_type/><filter/><hint>Enable Box/Label oser Service</hint><homepage/><image/><link_type>DIRECT</link_type><map_page/><mobile_title>Enable Box/Label oser Service</mobile_title><mobile_view_name>Mobile</mobile_view_name><name/><order>3</order><override_menu_roles>false</override_menu_roles><query>system_properties_ui.do?sysparm_category=Box Label Order&amp;sysparm_title=Box Label Order Service</query><report/><roles>admin</roles><survey/><survey_overwrite>true</survey_overwrite><sys_class_name>sys_app_module</sys_class_name><sys_created_by>Munimohan.Bathala@ness.com</sys_created_by><sys_created_on>2020-08-25 07:51:35</sys_created_on><sys_customer_update>false</sys_customer_update><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>204d21d6db3e1c108a521fe9689619ed</sys_id><sys_mod_count>5</sys_mod_count><sys_name>Enable Box/Label Order Service</sys_name><sys_overrides/><sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package><sys_policy/><sys_replace_on_upgrade>false</sys_replace_on_upgrade><sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope><sys_update_name>sys_app_module_204d21d6db3e1c108a521fe9689619ed</sys_update_name><sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by><sys_updated_on>2020-08-26 09:41:42</sys_updated_on><timeline_page/><title>Enable Box/Label Order Service</title><uncancelable>false</uncancelable><view_name/><window_name/></sys_app_module></record_update>]]></payload>
+        <payload_hash>-747152749</payload_hash>
+        <record_name>Enable Box/Label Order Service</record_name>
+        <reverted_from/>
+        <source>7fc870bedba614108a521fe968961916</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-08-26 09:41:42</sys_created_on>
+        <sys_id>795117e6dbb65c1067166ac2ca9619a4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1742a2502170000001</sys_recorded_at>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-08-26 09:41:42</sys_updated_on>
+        <type>Module</type>
+        <update_guid>715117e6a2b65c108d92c8f9e7bf90a4</update_guid>
+        <update_guid_history>715117e6a2b65c108d92c8f9e7bf90a4:-747152749,30b5b19e2b3e1c10767aec1a840f1a77:-1967215708,bfaf691a6d3e1c10bab7ce161654b18d:-1901424395,581f211a8e3e1c1055dee70bcde63900:-2040630246,139eedd60a3e1c100f3bac56a054ecb0:-1947446834,368eedd67b3e1c10ef85ae6f10ad821a:565984641</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">20ffd0aedb07501067166ac2ca96195f</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-09-07 07:02:21</sys_created_on>
+        <sys_db_object display_value="" name="sys_app_module">sys_app_module</sys_db_object>
+        <sys_id>16d4cf4053204710b82cc2c2ed4dee40</sys_id>
+        <sys_metadata>204d21d6db3e1c108a521fe9689619ed</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Enable Box/Label Order Service</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_scope_delete display_value="">754b5651fdcb480ea4d7b0c2cca0f181</sys_scope_delete>
+        <sys_update_name>sys_app_module_204d21d6db3e1c108a521fe9689619ed</sys_update_name>
+        <sys_update_version display_value="sys_app_module_204d21d6db3e1c108a521fe9689619ed">795117e6dbb65c1067166ac2ca9619a4</sys_update_version>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-09-07 07:02:21</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysrule_view">
+    <sysrule_view action="DELETE">
+        <active>true</active>
+        <advanced>false</advanced>
+        <condition/>
+        <description/>
+        <device_type>browser</device_type>
+        <match_conditions>ALL</match_conditions>
+        <name>Default view </name>
+        <order>100</order>
+        <overrides_user_preference>true</overrides_user_preference>
+        <script><![CDATA[(function overrideView(view, is_list) {
+
+	// Add your code here
+	answer = null;  // set the new view to answer
+
+})(view, is_list);]]></script>
+        <sys_class_name>sysrule_view</sys_class_name>
+        <sys_created_by>chais.mcrae@ness.com</sys_created_by>
+        <sys_created_on>2021-03-01 22:03:12</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>9d4c744fdbee68108a521fe96896192d</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Default view </sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sysrule_view_9d4c744fdbee68108a521fe96896192d</sys_update_name>
+        <sys_updated_by>chais.mcrae@ness.com</sys_updated_by>
+        <sys_updated_on>2021-03-01 22:05:56</sys_updated_on>
+        <table>x_inmis_im_itad_imitad_location</table>
+        <view>Default</view>
+    </sysrule_view>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</application>
+        <file_path/>
+        <instance_id>c821e244dbe52b846578f22ebf9619bf</instance_id>
+        <instance_name>ven02711</instance_name>
+        <name>sysrule_view_9d4c744fdbee68108a521fe96896192d</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sysrule_view"&gt;&lt;sysrule_view action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;advanced&gt;false&lt;/advanced&gt;&lt;condition/&gt;&lt;description/&gt;&lt;device_type&gt;browser&lt;/device_type&gt;&lt;match_conditions&gt;ALL&lt;/match_conditions&gt;&lt;name&gt;Default view &lt;/name&gt;&lt;order&gt;100&lt;/order&gt;&lt;overrides_user_preference&gt;true&lt;/overrides_user_preference&gt;&lt;script&gt;&lt;![CDATA[(function overrideView(view, is_list) {
+
+	// Add your code here
+	answer = null;  // set the new view to answer
+
+})(view, is_list);]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sysrule_view&lt;/sys_class_name&gt;&lt;sys_created_by&gt;chais.mcrae@ness.com&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2021-03-01 22:03:12&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;false&lt;/sys_customer_update&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;9d4c744fdbee68108a521fe96896192d&lt;/sys_id&gt;&lt;sys_mod_count&gt;3&lt;/sys_mod_count&gt;&lt;sys_name&gt;Default view &lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad"&gt;df95bbf0dbc17f008a521fe968961950&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Ingram Micro IT Asset Disposition"&gt;df95bbf0dbc17f008a521fe968961950&lt;/sys_scope&gt;&lt;sys_update_name&gt;sysrule_view_9d4c744fdbee68108a521fe96896192d&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;chais.mcrae@ness.com&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2021-03-01 22:05:56&lt;/sys_updated_on&gt;&lt;table&gt;x_inmis_im_itad_imitad_location&lt;/table&gt;&lt;view&gt;Default&lt;/view&gt;&lt;/sysrule_view&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-582302070</payload_hash>
+        <record_name>Default view </record_name>
+        <reverted_from/>
+        <source>613e6c83dbee68108a521fe9689619d3</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>chais.mcrae@ness.com</sys_created_by>
+        <sys_created_on>2021-03-01 22:05:56</sys_created_on>
+        <sys_id>6afc7c4fdbee68108a521fe9689619da</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>177efd392530000001</sys_recorded_at>
+        <sys_updated_by>chais.mcrae@ness.com</sys_updated_by>
+        <sys_updated_on>2021-03-01 22:05:56</sys_updated_on>
+        <type>View Rule</type>
+        <update_guid>62fc7c4f28ee6810e858afb22baba7da</update_guid>
+        <update_guid_history>62fc7c4f28ee6810e858afb22baba7da:-582302070,65fcbc4f66ee6810c6dcb83eb53a830e:1405153764,b79cf80fecee6810ab6ad222387a6faa:-582302070,2e5c744f28ee681046c3f37afd5e2340:1795461354</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>chais.mcrae@ness.com</sys_created_by>
+        <sys_created_on>2021-03-03 21:51:29</sys_created_on>
+        <sys_db_object display_value="" name="sysrule_view">sysrule_view</sys_db_object>
+        <sys_id>2efc599a8b6549dfb1b6e85348dae359</sys_id>
+        <sys_metadata>9d4c744fdbee68108a521fe96896192d</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Default view </sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_parent display_value="IMITAD Location">5e817d54dbac9c1067166ac2ca9619fc</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_scope_delete display_value="">754b5651fdcb480ea4d7b0c2cca0f181</sys_scope_delete>
+        <sys_update_name>sysrule_view_9d4c744fdbee68108a521fe96896192d</sys_update_name>
+        <sys_update_version display_value="sysrule_view_9d4c744fdbee68108a521fe96896192d">6afc7c4fdbee68108a521fe9689619da</sys_update_version>
+        <sys_updated_by>chais.mcrae@ness.com</sys_updated_by>
+        <sys_updated_on>2021-03-03 21:51:29</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

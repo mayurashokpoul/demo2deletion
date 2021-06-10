@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="all_tables.text_index_translations=true,no_attachment" audit="true" label="Filter" max_length="40" name="x_inmis_im_itad_filter" sizeclass="0" text_index="true" type="collection">
+        <element attributes="base_start=true,edge_encryption_enabled=true" label="Table" max_length="80" name="table" read_only="true" type="table_name"/>
+        <element attributes="edge_encryption_enabled=true" dependent="table" dependent_on_field="table" label="Filter" max_length="4000" name="u_filter" type="conditions" use_dependent_field="true"/>
+        <element attributes="edge_encryption_enabled=true,serializer=com.glide.script.TranslatedTextXMLSerializer" label="Title" max_length="100" name="u_title" read_only="true" type="translated_text"/>
+    </element>
+</database>

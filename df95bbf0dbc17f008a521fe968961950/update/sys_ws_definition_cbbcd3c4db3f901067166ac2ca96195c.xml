@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_definition">
+    <sys_ws_definition action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <base_uri>/api/x_inmis_im_itad/blancco_service</base_uri>
+        <consumes>application/json,application/xml,text/xml,application/x-www-form-urlencoded</consumes>
+        <consumes_customized>true</consumes_customized>
+        <default_version>No active default version</default_version>
+        <doc_link/>
+        <enforce_acl/>
+        <is_versioned>false</is_versioned>
+        <name>Blancco Service</name>
+        <namespace>x_inmis_im_itad</namespace>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <service_id>blancco_service</service_id>
+        <short_description>Blancco Service</short_description>
+        <sys_class_name>sys_ws_definition</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-10-07 09:10:09</sys_created_on>
+        <sys_id>cbbcd3c4db3f901067166ac2ca96195c</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Blancco Service</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_ws_definition_cbbcd3c4db3f901067166ac2ca96195c</sys_update_name>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-10-20 07:45:35</sys_updated_on>
+    </sys_ws_definition>
+</record_update>

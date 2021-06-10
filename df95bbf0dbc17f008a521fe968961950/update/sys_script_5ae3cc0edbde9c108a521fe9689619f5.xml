@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_inmis_im_itad_imitad_location</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="x_inmis_im_itad_imitad_location">itad_locationidISNOTEMPTY^itad_locationidVALCHANGES^ORpickup_contactVALCHANGES^ORprimary_contactVALCHANGES^ORalternate_contactVALCHANGES^EQ<item endquery="false" field="itad_locationid" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
+            <item endquery="false" field="itad_locationid" goto="false" newquery="false" operator="VALCHANGES" or="false" value=""/>
+            <item endquery="false" field="pickup_contact" goto="false" newquery="false" operator="VALCHANGES" or="true" value=""/>
+            <item endquery="false" field="primary_contact" goto="false" newquery="false" operator="VALCHANGES" or="true" value=""/>
+            <item endquery="false" field="alternate_contact" goto="false" newquery="false" operator="VALCHANGES" or="true" value=""/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Location Contact API</name>
+        <order>100</order>
+        <priority>200</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/ ) {
+    try {
+        var authenticationDetails = new IngramUtils().tokenValidation(current);
+        // To insert/update location contacts
+
+        gs.info('Location Contact create/update API started.');
+        // create pickup contact list
+        var pickupContactInformation = [];
+        var pickupcontactlist = current.pickup_contact.toString();
+        var PickupContactArray = pickupcontactlist.split(",");
+        //Prepare serialized asset level information
+        //gs.info("pickupcontactlist" + pickupcontactlist);
+        for (var PickupContactInfo = 0; PickupContactInfo < PickupContactArray.length; PickupContactInfo++) {
+            var record1 = new GlideRecord('sys_user');
+            if (record1.get(PickupContactArray[PickupContactInfo])) {
+                var contactInformation = {
+                    "PickUpContactName": record1.getDisplayValue('first_name').toString() + "" + record1.getDisplayValue('last_name').toString(),
+                    "FirstName": record1.getDisplayValue('first_name').toString(),
+                    "LastName": record1.getDisplayValue('last_name').toString(),
+                    "EmployeeStatus": "A",
+                    "Email": record1.getDisplayValue('email').toString(),
+                    "EmployeePhone": record1.getDisplayValue('phone').toString(),
+                    "EmployeeMobile": record1.getDisplayValue('mobile_phone').toString(),
+                    "HireDate": record1.getDisplayValue('sys_created_on').toString()
+
+                };
+                pickupContactInformation.push(contactInformation);
+
+            }
+        }
+        //gs.info('pickupContactInformation!!!!:' + JSON.stringify(pickupContactInformation));
+        //cretae pickup contact
+
+        var r1 = new sn_ws.RESTMessageV2('x_inmis_im_itad.Create Update Location Contact', 'post');
+        r1.setStringParameterNoEscape('Token', authenticationDetails.Token);
+        r1.setStringParameterNoEscape('SourceID', authenticationDetails.sourceid);
+        r1.setStringParameterNoEscape('locationID', current.itad_locationid);
+        r1.setStringParameterNoEscape('Facility', current.itad_facility.facilityid);
+        r1.setStringParameterNoEscape('Currency', current.currency.currencyid);
+        r1.setStringParameterNoEscape('locationCity', current.location.city);
+        r1.setStringParameterNoEscape('TimeZone', current.time_zone.timezoneid);
+        r1.setStringParameterNoEscape('ZipPostalCode', current.location.zip);
+        r1.setStringParameterNoEscape('PickUpContactInformation', JSON.stringify(pickupContactInformation));
+        r1.setStringParameterNoEscape('PrimaryContactName', current.primary_contact.first_name + " " + current.primary_contact.last_name);
+        r1.setStringParameterNoEscape('PrimaryFirstName', current.primary_contact.first_name);
+        r1.setStringParameterNoEscape('PrimaryLastName', current.primary_contact.last_name);
+        r1.setStringParameterNoEscape('PrimaryEmployeeStatus', current.primary_contact.active == true ? "A" : "D");
+        r1.setStringParameterNoEscape('PrimaryEmail', current.primary_contact.email);
+        r1.setStringParameterNoEscape('PrimaryEmployeePhone', current.primary_contact.phone);
+        r1.setStringParameterNoEscape('PrimaryEmployeeMobile', current.primary_contact.mobile_phone);
+        r1.setStringParameterNoEscape('PrimaryHireDate', current.primary_contact.sys_created_on);
+        r1.setStringParameterNoEscape('AlternateContactName', current.alternate_contact.first_name + " " + current.alternate_contact.last_name);
+        r1.setStringParameterNoEscape('AlternateFirstName', current.alternate_contact.first_name);
+        r1.setStringParameterNoEscape('AlternateLastName', current.alternate_contact.last_name);
+        r1.setStringParameterNoEscape('AlternateEmployeeStatus', current.alternate_contact.active == true ? "A" : "D");
+        r1.setStringParameterNoEscape('AlternateEmail', current.alternate_contact.email);
+        r1.setStringParameterNoEscape('AlternateEmployeePhone', current.alternate_contact.phone);
+        r1.setStringParameterNoEscape('AlternateEmployeeMobile', current.alternate_contact.mobile_phone);
+        r1.setStringParameterNoEscape('AlternateHireDate', current.alternate_contact.sys_created_on);
+        r1.setStringParameterNoEscape('CreateLocationbaseUrl', gs.getProperty('x_inmis_im_itad.CreateLocation') + 'Contact');
+
+        var response2 = r1.execute();
+        var responseBody2 = response2.getBody();
+        var httpStatus2 = response2.getStatusCode();
+        var requestBody2 = JSON.parse(r1.getRequestBody());
+        requestBody2.LocationInformation.Token = "XXXXXXXXXXXX";
+        requestBody2.PickupContactInformation = "XXXXXXXXXXXX";
+        requestBody2.PrimaryContactInformation.PrimaryContactName = "XXXXXXXXXXXX";
+        requestBody2.PrimaryContactInformation.FirstName = "XXXXXXXXXXXX";
+        requestBody2.PrimaryContactInformation.LastName = "XXXXXXXXXXXX";
+        requestBody2.PrimaryContactInformation.Email = "XXXXXXXXXXXX";
+        requestBody2.PrimaryContactInformation.EmployeePhone = "XXXXXXXXXXXX";
+        requestBody2.PrimaryContactInformation.EmployeeMobile = "XXXXXXXXXXXX";
+        requestBody2.AlternateContactInformation.AlternativeContactName = "XXXXXXXXXXXX";
+        requestBody2.AlternateContactInformation.FirstName = "XXXXXXXXXXXX";
+        requestBody2.AlternateContactInformation.LastName = "XXXXXXXXXXXX";
+        requestBody2.AlternateContactInformation.Email = "XXXXXXXXXXXX";
+        requestBody2.AlternateContactInformation.EmployeePhone = "XXXXXXXXXXXX";
+        requestBody2.AlternateContactInformation.EmployeeMobile = "XXXXXXXXXXXX";
+
+
+        gs.info('Location Contact Request Body: ' + JSON.stringify(requestBody2));
+        gs.info("Location Contact Response Body: " + responseBody2);
+
+        gs.info('Location contact create/update  request created successfully.');
+    } catch (ex) {
+        var message = ex.message;
+        gs.error(message);
+        gs.info("Location BR [Location Contact API]: " + ex);
+    }
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-07-30 08:56:23</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>5ae3cc0edbde9c108a521fe9689619f5</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Location Contact API</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_script_5ae3cc0edbde9c108a521fe9689619f5</sys_update_name>
+        <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+        <sys_updated_on>2021-04-28 10:43:45</sys_updated_on>
+        <template/>
+        <when>async</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=5ae3cc0edbde9c108a521fe9689619f5"/>
+</record_update>

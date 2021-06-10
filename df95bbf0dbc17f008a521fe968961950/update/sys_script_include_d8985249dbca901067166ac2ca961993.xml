@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_inmis_im_itad.IngramUtils</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>IngramUtils</name>
+        <script><![CDATA[var IngramUtils = Class.create();
+IngramUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+
+    tokenValidation: function(current) { 
+        var tokenDetails = {};
+        var username = '';
+        var password = '';
+        var Token = '';
+        var Tokenexpiredate = '';
+        var sourceid = '';
+
+        var icomp = new GlideRecord('x_inmis_im_itad_customer_registration');
+        if (gs.getProperty("glide.sys.domain.partitioning") == 'true') {
+            if (current && current != '') {
+                icomp.addQuery('company', current.company);
+            }
+        }
+        icomp.addQuery('company_name', gs.getProperty('instance_name'));
+        icomp.query();
+        if (icomp.next()) {
+            sourceid = icomp.getValue('source_id');
+            var Encrypter = icomp.encrypted_password.getDecryptedValue();
+            username = icomp.encrypted_username;
+            password = Encrypter;
+            Token = icomp.token.getDecryptedValue();
+            Tokenexpiredate = icomp.getValue('tokenexpiredate');
+        }
+
+        //if token is null OR Expired create token
+        var minute = 20;
+        var hour = 1;
+        if (Token != '') {
+            var today = new GlideDateTime(new GlideDateTime().getDisplayValue());
+            var tt = new GlideDateTime(Tokenexpiredate);
+            var duration = new GlideDuration(GlideDateTime.subtract(today, tt));
+            var timeSection = duration.toString().split(' ')[1]; //Gets the Time
+            minute = timeSection.split(':')[1];
+            hour = timeSection.split(':')[0];
+        }
+        //Token generation Start
+        if (Token == '' || minute > 19 || minute < 1 || hour != '00') {
+            gs.info("Token creation start...");
+            var t = new sn_ws.RESTMessageV2('x_inmis_im_itad.Create Token', 'POST');
+            t.setStringParameterNoEscape('baseUrl', gs.getProperty('x_inmis_im_itad.TestConnection').replace('ConnectionCheck', 'CreateToken'));
+            t.setStringParameterNoEscape('Username', username);
+            t.setStringParameterNoEscape('Password', password);
+            t.setEccParameter('skip_sensor', true);
+            var response1 = t.execute();
+            var responseBody = response1.getBody();
+            var httpStatus1 = response1.getStatusCode();
+            var requestBody = t.getRequestBody();
+
+            //             gs.info('Token Request Body: ' + requestBody);
+            //             gs.info('Token Respose Body: ' + responseBody);
+
+            var readResponse = JSON.parse(responseBody);
+            if (response1.haveError()) {
+                gs.info('Token generation failed:' + response1.getErrorMessage());
+            } else if ((readResponse.ResponseCode == "0" || readResponse.ErrorMessage == "") && readResponse.IsSuccess == true) {
+                gs.info('Token generated sucessfully');
+                Token = readResponse.Token;
+                Tokenexpiredate = new GlideDateTime();
+                Tokenexpiredate.addSeconds(1200);
+                var grupdates = new GlideRecord('x_inmis_im_itad_customer_registration');
+                grupdates.addQuery('source_id', sourceid);
+                grupdates.query();
+                if (grupdates.next()) {
+                    grupdates.setValue('token', Token);
+                    grupdates.setValue('tokenexpiredate', Tokenexpiredate);
+                    grupdates.update();
+                }
+            } else {
+                gs.info('Token generation failed:' + readResponse.ErrorMessage);
+                gs.addErrorMessage(readResponse.ErrorMessage);
+            }
+        }
+
+        tokenDetails.Token = Token;
+        tokenDetails.sourceid = sourceid;
+
+        return tokenDetails;
+        //Token generation End
+    },
+
+    getCompanyValue: function() {
+        var company = "";
+        var user = new GlideRecord('sys_user');
+        if (user.get(gs.getUserID())) {
+            company = user.getValue('company');
+        }
+        return company;
+    },
+
+    type: 'IngramUtils'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-07-15 07:00:47</sys_created_on>
+        <sys_id>d8985249dbca901067166ac2ca961993</sys_id>
+        <sys_mod_count>21</sys_mod_count>
+        <sys_name>IngramUtils</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_script_include_d8985249dbca901067166ac2ca961993</sys_update_name>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-08-10 14:36:21</sys_updated_on>
+    </sys_script_include>
+</record_update>

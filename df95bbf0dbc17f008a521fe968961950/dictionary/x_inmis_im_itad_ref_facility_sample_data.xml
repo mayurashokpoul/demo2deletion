@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element extends="sys_import_set_row" label="Ref Facility Sample Data" max_length="40" name="x_inmis_im_itad_ref_facility_sample_data" sizeclass="0" type="collection">
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=bAcceptDeliveries" label="bAcceptDeliveries" max_length="40" name="u_bacceptdeliveries" type="integer"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=bIsAuditQCEnabled" label="bIsAuditQCEnabled" max_length="40" name="u_bisauditqcenabled" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=bIsCCEnabled" label="bIsCCEnabled" max_length="40" name="u_bisccenabled" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=bIsQHLockedOut" label="bIsQHLockedOut" max_length="40" name="u_bisqhlockedout" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=bIsQHRLRolledout" label="bIsQHRLRolledout" max_length="40" name="u_bisqhrlrolledout" type="integer"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=bIsQHRolledOut" label="bIsQHRolledOut" max_length="40" name="u_bisqhrolledout" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=bIsSortQCEnabled" label="bIsSortQCEnabled" max_length="40" name="u_bissortqcenabled" type="integer"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=bIsSupportCrossDock" label="bIsSupportCrossDock" max_length="40" name="u_bissupportcrossdock" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=bIsSupportDayLightSaving" label="bIsSupportDayLightSaving" max_length="40" name="u_bissupportdaylightsaving" type="integer"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=cFacilityAddressStatus" label="cFacilityAddressStatus" max_length="40" name="u_cfacilityaddressstatus" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=cFacilityStatus" label="cFacilityStatus" max_length="40" name="u_cfacilitystatus" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=cWeightType" label="cWeightType" max_length="40" name="u_cweighttype" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=dCCEffectiveFrom" label="dCCEffectiveFrom" max_length="40" name="u_dcceffectivefrom" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=iCCFlowPerDay" label="iCCFlowPerDay" max_length="40" name="u_iccflowperday" type="integer"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=iCCSAPercentage" label="iCCSAPercentage" max_length="40" name="u_iccsapercentage" type="integer"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=iCountryId" label="iCountryId" max_length="40" name="u_icountryid" type="integer"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=iFacilityCodeMap" label="iFacilityCodeMap" max_length="40" name="u_ifacilitycodemap" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=iFacilityID" label="iFacilityID" max_length="40" name="u_ifacilityid" type="integer"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=IHolidayMasterID" label="IHolidayMasterID" max_length="40" name="u_iholidaymasterid" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=iTenantID" label="iTenantID" max_length="40" name="u_itenantid" type="integer"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=iTimezoneID" label="iTimezoneID" max_length="40" name="u_itimezoneid" type="integer"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vAmznVendorCode" label="vAmznVendorCode" max_length="40" name="u_vamznvendorcode" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vASURWarehouseId" label="vASURWarehouseId" max_length="40" name="u_vasurwarehouseid" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vFacilityAbbrForMobile" label="vFacilityAbbrForMobile" max_length="40" name="u_vfacilityabbrformobile" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vFacilityAddress" label="vFacilityAddress" max_length="81" name="u_vfacilityaddress" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vFacilityAddress2" label="vFacilityAddress2" max_length="52" name="u_vfacilityaddress2" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vFacilityAddress3" label="vFacilityAddress3" max_length="40" name="u_vfacilityaddress3" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vFacilityCity" label="vFacilityCity" max_length="40" name="u_vfacilitycity" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vFacilityDescripition" label="vFacilityDescripition" max_length="40" name="u_vfacilitydescripition" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vFacilityHelpDesc" label="vFacilityHelpDesc" max_length="40" name="u_vfacilityhelpdesc" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vFacilityPhysicalLoc" label="vFacilityPhysicalLoc" max_length="40" name="u_vfacilityphysicalloc" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vFacilityState" label="vFacilityState" max_length="40" name="u_vfacilitystate" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vFacilityZip" label="vFacilityZip" max_length="40" name="u_vfacilityzip" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vIFSCostCenter" label="vIFSCostCenter" max_length="40" name="u_vifscostcenter" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vOTVEmail" label="vOTVEmail" max_length="40" name="u_votvemail" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vPhone" label="vPhone" max_length="40" name="u_vphone" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vRecommendedFacilityAdd1" label="vRecommendedFacilityAdd1" max_length="40" name="u_vrecommendedfacilityadd1" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vRecommendedFacilityAdd2" label="vRecommendedFacilityAdd2" max_length="40" name="u_vrecommendedfacilityadd2" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vRecommendedFacilityAdd3" label="vRecommendedFacilityAdd3" max_length="40" name="u_vrecommendedfacilityadd3" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vRecommendedFacilityCity" label="vRecommendedFacilityCity" max_length="40" name="u_vrecommendedfacilitycity" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vRecommendedFacilityState" label="vRecommendedFacilityState" max_length="40" name="u_vrecommendedfacilitystate" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vRecommendedFacilityZip" label="vRecommendedFacilityZip" max_length="40" name="u_vrecommendedfacilityzip" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vWasteCarrierLicNo" label="vWasteCarrierLicNo" max_length="40" name="u_vwastecarrierlicno" type="string"/>
+    </element>
+</database>

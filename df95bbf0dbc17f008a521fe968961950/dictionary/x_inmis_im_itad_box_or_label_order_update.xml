@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element extends="sys_import_set_row" label="Box or Label Order Update" max_length="40" name="x_inmis_im_itad_box_or_label_order_update" sizeclass="0" type="collection">
+        <element label="IMOrderId" max_length="40" name="imorderid" type="string"/>
+        <element label="OrderStatus" max_length="40" name="orderstatus" type="string"/>
+        <element label="RequestNumber" max_length="40" name="requestnumber" type="string"/>
+        <element label="Return Tracking#" max_length="50" name="return_tracking" type="string"/>
+        <element label="ShippedDate" max_length="50" name="shippeddate" type="string"/>
+        <element label="SourceID" max_length="40" name="sourceid" type="string"/>
+        <element label="Tracking#" max_length="50" name="tracking" type="string"/>
+        <element label="TrackingNumber" max_length="50" name="trackingnumber" type="string"/>
+    </element>
+</database>

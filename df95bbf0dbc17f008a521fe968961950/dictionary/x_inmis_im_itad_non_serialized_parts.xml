@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Non-Serialized Parts" max_length="40" name="x_inmis_im_itad_non_serialized_parts" sizeclass="0" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Active" max_length="40" name="active" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Company" max_length="32" name="company" reference="core_company" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" label="MaxBoxCount" max_length="40" name="maxboxcount" type="integer"/>
+        <element label="PartNumber" max_length="40" name="partnumber" type="string"/>
+        <element display="true" label="Part Description" max_length="256" name="part_description" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="RowIndex" max_length="40" name="rowindex" type="integer"/>
+        <element label="Source ID" max_length="40" name="source_id" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Domain" max_length="32" name="sys_domain" type="domain_id"/>
+        <element label="ToolTipHelp" max_length="250" name="tooltiphelp" type="string"/>
+        <index name="index">
+            <element name="sys_domain"/>
+        </index>
+        <index name="index2">
+            <element name="company"/>
+        </index>
+    </element>
+</database>

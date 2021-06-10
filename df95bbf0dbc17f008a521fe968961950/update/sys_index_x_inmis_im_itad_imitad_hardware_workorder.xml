@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_index">
+    <sys_index action="INSERT_OR_UPDATE">
+        <col_name_string>workorder</col_name_string>
+        <index_col_name element="workorder" name="x_inmis_im_itad_imitad_hardware">f9d7f668db68dc1067166ac2ca961997</index_col_name>
+        <logical_table_name>x_inmis_im_itad_imitad_hardware</logical_table_name>
+        <sys_class_name>sys_index</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2021-04-07 06:00:32</sys_created_on>
+        <sys_id>cad24c721bd7a0100eafb99e0a4bcb8f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_inmis_im_itad_imitad_hardware</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_index_x_inmis_im_itad_imitad_hardware_workorder</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2021-04-07 06:00:32</sys_updated_on>
+        <table display_value="IMITAD Hardware" name="x_inmis_im_itad_imitad_hardware">6ee27a64db68dc1067166ac2ca96190e</table>
+        <unique_index>false</unique_index>
+    </sys_index>
+</record_update>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="" section_id="f0d982badb1460108a521fe9689619e9" sys_domain="global" table="x_inmis_im_itad_imitad_hardware" version="3" view="approval">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>hardware_assets</element>
+            <position>0</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-12-07 08:47:49</sys_created_on>
+            <sys_id>ecc02d33db34601067166ac2ca961986</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_inmis_im_itad_imitad_hardware" sys_domain="global" view="0cebef090a0006d40188d968934d3e9a">f0d982badb1460108a521fe9689619e9</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-12-07 08:47:49</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>agent_id</element>
+            <position>1</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-12-07 08:47:49</sys_created_on>
+            <sys_id>a4c02d33db34601067166ac2ca961987</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_inmis_im_itad_imitad_hardware" sys_domain="global" view="0cebef090a0006d40188d968934d3e9a">f0d982badb1460108a521fe9689619e9</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-12-07 08:47:49</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>hardware_assets.serial_number</element>
+            <position>2</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-12-07 08:47:49</sys_created_on>
+            <sys_id>28c02d33db34601067166ac2ca961987</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_inmis_im_itad_imitad_hardware" sys_domain="global" view="0cebef090a0006d40188d968934d3e9a">f0d982badb1460108a521fe9689619e9</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-12-07 08:47:49</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>hardware_assets.asset_tag</element>
+            <position>3</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-12-07 08:47:49</sys_created_on>
+            <sys_id>a8c02d33db34601067166ac2ca961987</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_inmis_im_itad_imitad_hardware" sys_domain="global" view="0cebef090a0006d40188d968934d3e9a">f0d982badb1460108a521fe9689619e9</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-12-07 08:47:49</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>hardware_assets.install_status</element>
+            <position>4</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-12-07 08:47:49</sys_created_on>
+            <sys_id>2cc02d33db34601067166ac2ca961987</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_inmis_im_itad_imitad_hardware" sys_domain="global" view="0cebef090a0006d40188d968934d3e9a">f0d982badb1460108a521fe9689619e9</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-12-07 08:47:49</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>hardware_assets.substatus</element>
+            <position>5</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-12-07 08:47:49</sys_created_on>
+            <sys_id>acc02d33db34601067166ac2ca961987</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_inmis_im_itad_imitad_hardware" sys_domain="global" view="0cebef090a0006d40188d968934d3e9a">f0d982badb1460108a521fe9689619e9</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-12-07 08:47:49</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>erasure_initiated_by</element>
+            <position>6</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-12-07 08:47:49</sys_created_on>
+            <sys_id>20c02d33db34601067166ac2ca961988</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_inmis_im_itad_imitad_hardware" sys_domain="global" view="0cebef090a0006d40188d968934d3e9a">f0d982badb1460108a521fe9689619e9</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-12-07 08:47:49</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>erasure_initiated_date</element>
+            <position>7</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-12-07 08:47:49</sys_created_on>
+            <sys_id>a0c02d33db34601067166ac2ca961988</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_inmis_im_itad_imitad_hardware" sys_domain="global" view="0cebef090a0006d40188d968934d3e9a">f0d982badb1460108a521fe9689619e9</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-12-07 08:47:49</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>erasure_expected_date</element>
+            <position>8</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-12-07 08:47:49</sys_created_on>
+            <sys_id>24c02d33db34601067166ac2ca961988</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_inmis_im_itad_imitad_hardware" sys_domain="global" view="0cebef090a0006d40188d968934d3e9a">f0d982badb1460108a521fe9689619e9</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-12-07 08:47:49</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>erasure_status</element>
+            <position>9</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-12-07 08:47:49</sys_created_on>
+            <sys_id>a4c02d33db34601067166ac2ca961988</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_inmis_im_itad_imitad_hardware" sys_domain="global" view="0cebef090a0006d40188d968934d3e9a">f0d982badb1460108a521fe9689619e9</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-12-07 08:47:49</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>approver1</element>
+            <position>10</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-12-07 08:47:49</sys_created_on>
+            <sys_id>28c02d33db34601067166ac2ca961988</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_inmis_im_itad_imitad_hardware" sys_domain="global" view="0cebef090a0006d40188d968934d3e9a">f0d982badb1460108a521fe9689619e9</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-12-07 08:47:49</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>approver2</element>
+            <position>11</position>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-12-07 08:47:49</sys_created_on>
+            <sys_id>a8c02d33db34601067166ac2ca961988</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_inmis_im_itad_imitad_hardware" sys_domain="global" view="0cebef090a0006d40188d968934d3e9a">f0d982badb1460108a521fe9689619e9</sys_ui_section>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-12-07 08:47:49</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption/>
+            <header>false</header>
+            <name>x_inmis_im_itad_imitad_hardware</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-11-09 12:41:55</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>f0d982badb1460108a521fe9689619e9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_inmis_im_itad_imitad_hardware</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+            <sys_update_name>sys_ui_section_f0d982badb1460108a521fe9689619e9</sys_update_name>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-11-09 12:41:55</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Approval" name="approval">0cebef090a0006d40188d968934d3e9a</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

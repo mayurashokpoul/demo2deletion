@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>6fea99dddb63505067166ac2ca961911</enforce_acl>
+        <http_method>POST</http_method>
+        <name>Box or Label Order Asset Level</name>
+        <operation_script><![CDATA[(function process( /*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+
+    try {
+        var body = request.body.data;
+        gs.info('Request body: ' + JSON.stringify(body));
+        var assetData = body.InputArguments;
+        var updateAssetStatus;
+
+        var SourceID = assetData.SourceID;
+        var IMOrderId = assetData.IMOrderId;
+        var RequestNumber = assetData.RequestNumber;
+        var vAssetSourceKey = assetData.vAssetSourceKey;
+        var CustomerID = assetData.CustomerID;
+        var AssetTag = assetData.AssetTag;
+        var SerialNumber = assetData.SerialNumber;
+        var OwnershipType = assetData.OwnershipType;
+        var Facility = assetData.Facility;
+        var State = assetData.State;
+        var SubState = assetData.SubState;
+        var StockRoom = assetData.StockRoom;
+        var Site = assetData.Site;
+
+        var assetRecordData = new GlideRecord('x_inmis_im_itad_box_or_label_asset_update');
+        assetRecordData.initialize();
+        assetRecordData.sourceid = SourceID;
+        assetRecordData.imorderid = IMOrderId;
+        assetRecordData.customerid = CustomerID;
+        assetRecordData.requestnumber = RequestNumber;
+        assetRecordData.vassetsourcekey = vAssetSourceKey;
+        assetRecordData.assettag = AssetTag;
+        assetRecordData.serialnumber = SerialNumber;
+        assetRecordData.ownershiptype = OwnershipType;
+        assetRecordData.facility = Facility;
+        assetRecordData.state = State;
+        assetRecordData.substate = SubState;
+        assetRecordData.stockroom = StockRoom;
+        assetRecordData.site = Site;
+        assetRecordData.insert();
+
+        if (Site == "SORT") {
+            updateAssetStatus = new x_inmis_im_itad.UpdateAssetStatus().updateStatusFromBR(vAssetSourceKey, 6, 'Received by Vendor'); // state 6 is In Stock
+        } else if (OwnershipType == "Reusable Asset" || OwnershipType == "Lease Asset") {
+            updateAssetStatus = new x_inmis_im_itad.UpdateAssetStatus().updateStatusFromBR(vAssetSourceKey, 6, 'available'); // state 6 is In Stock
+        } else if (OwnershipType == "NA") {
+            updateAssetStatus = new x_inmis_im_itad.UpdateAssetStatus().updateStatusFromBR(vAssetSourceKey, 9, 'pending_disposal'); // sate  9 is In transit
+        }
+
+
+
+        response.setContentType('application/json');
+        var responseBody = {
+            "Message": "Audit transaction update successfully:" + RequestNumber
+        };
+        response.setBody(responseBody);
+
+    } catch (ex) {
+        gs.error("There was an error doing Box or Label Order Asset Level API Call", ex);
+    }
+
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_inmis_im_itad/imitad_inbound_box_label_order/box_label_order_asset_level</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/box_label_order_asset_level</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>Ruthvic.voladri@ness.com</sys_created_by>
+        <sys_created_on>2020-10-12 11:38:24</sys_created_on>
+        <sys_id>780d25f9db3f94108a521fe968961934</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>Box or Label Order Asset Level</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_ws_operation_780d25f9db3f94108a521fe968961934</sys_update_name>
+        <sys_updated_by>INSHED00</sys_updated_by>
+        <sys_updated_on>2021-03-17 10:57:20</sys_updated_on>
+        <web_service_definition display_value="IMITAD Inbound Box Label Order">86f9dd9ddb63505067166ac2ca9619c9</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

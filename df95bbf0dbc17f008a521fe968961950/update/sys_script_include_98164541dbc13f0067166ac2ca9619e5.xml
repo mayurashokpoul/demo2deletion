@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_inmis_im_itad.companyUtil</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>companyUtil</name>
+        <script><![CDATA[var companyUtil = Class.create();
+companyUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+    getCompanyName: function() {
+        var compName = ''; // Return value
+        var grComp = new GlideRecord('core_company');
+        if (grComp.get(gs.getUser().getCompanyID())) {
+            compName = grComp.sys_id;
+        }
+        return compName;
+    },
+    requestor_info: function() {
+        var result = this.newItem("result");
+        var logged_user = gs.getUserID();
+        var user_detail = new GlideRecord('sys_user');
+        user_detail.addQuery('sys_id', logged_user);
+        user_detail.query();
+        while (user_detail.next()) {
+            result.setAttribute("phone", user_detail.mobile_phone);
+            result.setAttribute("email", user_detail.email);
+            
+        }
+    },
+
+    type: 'companyUtil'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-04-24 15:30:52</sys_created_on>
+        <sys_id>98164541dbc13f0067166ac2ca9619e5</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>companyUtil</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_script_include_98164541dbc13f0067166ac2ca9619e5</sys_update_name>
+        <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+        <sys_updated_on>2021-03-17 16:10:35</sys_updated_on>
+    </sys_script_include>
+</record_update>

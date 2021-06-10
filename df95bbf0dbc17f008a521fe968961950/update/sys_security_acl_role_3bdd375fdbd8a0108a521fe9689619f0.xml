@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-11-11 10:26:17</sys_created_on>
+        <sys_id>3bdd375fdbd8a0108a521fe9689619f0</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_inmis_im_itad_imitad_hardware.erasure_expected_date.x_inmis_im_itad.imitad_erasure_initiator</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_security_acl display_value="x_inmis_im_itad_imitad_hardware.erasure_expected_date">868d3f5fdbd8a0108a521fe9689619b2</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_3bdd375fdbd8a0108a521fe9689619f0</sys_update_name>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-11-11 10:26:17</sys_updated_on>
+        <sys_user_role display_value="x_inmis_im_itad.imitad_erasure_initiator" name="x_inmis_im_itad.imitad_erasure_initiator">a4c7a955dbccac108a521fe96896199a</sys_user_role>
+        <transaction_id/>
+    </sys_security_acl_role>
+</record_update>

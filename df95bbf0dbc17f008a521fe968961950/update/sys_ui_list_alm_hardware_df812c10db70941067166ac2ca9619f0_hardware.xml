@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="alm_hardware" relationship="df812c10db70941067166ac2ca9619f0" sys_domain="global" table="x_inmis_im_itad_imitad_hardware" version="2" view="Hardware">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>hardware_assets.display_name</element>
+            <list_id display_value="x_inmis_im_itad_imitad_hardware" element="NULL" name="x_inmis_im_itad_imitad_hardware" parent="alm_hardware" relationship="df812c10db70941067166ac2ca9619f0" sys_domain="global" view="d4c50fc8db625010eeb4a8fc13961972">8b2d85a0dba654508a521fe96896196c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-07 08:40:43</sys_created_on>
+            <sys_id>432d85a0dba654508a521fe96896196d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>INVOLR00</sys_updated_by>
+            <sys_updated_on>2020-08-07 08:40:43</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>workorder</element>
+            <list_id display_value="x_inmis_im_itad_imitad_hardware" element="NULL" name="x_inmis_im_itad_imitad_hardware" parent="alm_hardware" relationship="df812c10db70941067166ac2ca9619f0" sys_domain="global" view="d4c50fc8db625010eeb4a8fc13961972">8b2d85a0dba654508a521fe96896196c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-07 08:40:43</sys_created_on>
+            <sys_id>c32d85a0dba654508a521fe96896196d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>INVOLR00</sys_updated_by>
+            <sys_updated_on>2020-08-07 08:40:43</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>workorder_status</element>
+            <list_id display_value="x_inmis_im_itad_imitad_hardware" element="NULL" name="x_inmis_im_itad_imitad_hardware" parent="alm_hardware" relationship="df812c10db70941067166ac2ca9619f0" sys_domain="global" view="d4c50fc8db625010eeb4a8fc13961972">8b2d85a0dba654508a521fe96896196c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-07 08:40:43</sys_created_on>
+            <sys_id>472d85a0dba654508a521fe96896196d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>INVOLR00</sys_updated_by>
+            <sys_updated_on>2020-08-07 08:40:43</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>im_assetid</element>
+            <list_id display_value="x_inmis_im_itad_imitad_hardware" element="NULL" name="x_inmis_im_itad_imitad_hardware" parent="alm_hardware" relationship="df812c10db70941067166ac2ca9619f0" sys_domain="global" view="d4c50fc8db625010eeb4a8fc13961972">8b2d85a0dba654508a521fe96896196c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-07 08:40:43</sys_created_on>
+            <sys_id>c72d85a0dba654508a521fe96896196d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>INVOLR00</sys_updated_by>
+            <sys_updated_on>2020-08-07 08:40:43</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>audited_on</element>
+            <list_id display_value="x_inmis_im_itad_imitad_hardware" element="NULL" name="x_inmis_im_itad_imitad_hardware" parent="alm_hardware" relationship="df812c10db70941067166ac2ca9619f0" sys_domain="global" view="d4c50fc8db625010eeb4a8fc13961972">8b2d85a0dba654508a521fe96896196c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>4</position>
+            <sum>false</sum>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-07 08:40:43</sys_created_on>
+            <sys_id>4b2d85a0dba654508a521fe96896196d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>INVOLR00</sys_updated_by>
+            <sys_updated_on>2020-08-07 08:40:43</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>audit_status</element>
+            <list_id display_value="x_inmis_im_itad_imitad_hardware" element="NULL" name="x_inmis_im_itad_imitad_hardware" parent="alm_hardware" relationship="df812c10db70941067166ac2ca9619f0" sys_domain="global" view="d4c50fc8db625010eeb4a8fc13961972">8b2d85a0dba654508a521fe96896196c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>5</position>
+            <sum>false</sum>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-07 08:40:43</sys_created_on>
+            <sys_id>cb2d85a0dba654508a521fe96896196d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>INVOLR00</sys_updated_by>
+            <sys_updated_on>2020-08-07 08:40:43</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>asset_recovery</element>
+            <list_id display_value="x_inmis_im_itad_imitad_hardware" element="NULL" name="x_inmis_im_itad_imitad_hardware" parent="alm_hardware" relationship="df812c10db70941067166ac2ca9619f0" sys_domain="global" view="d4c50fc8db625010eeb4a8fc13961972">8b2d85a0dba654508a521fe96896196c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>6</position>
+            <sum>false</sum>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-07 08:40:43</sys_created_on>
+            <sys_id>4f2d85a0dba654508a521fe96896196d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>INVOLR00</sys_updated_by>
+            <sys_updated_on>2020-08-07 08:40:43</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>processing_fees</element>
+            <list_id display_value="x_inmis_im_itad_imitad_hardware" element="NULL" name="x_inmis_im_itad_imitad_hardware" parent="alm_hardware" relationship="df812c10db70941067166ac2ca9619f0" sys_domain="global" view="d4c50fc8db625010eeb4a8fc13961972">8b2d85a0dba654508a521fe96896196c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>7</position>
+            <sum>false</sum>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-07 08:40:43</sys_created_on>
+            <sys_id>cf2d85a0dba654508a521fe96896196d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>INVOLR00</sys_updated_by>
+            <sys_updated_on>2020-08-07 08:40:43</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_domain</element>
+            <list_id display_value="x_inmis_im_itad_imitad_hardware" element="NULL" name="x_inmis_im_itad_imitad_hardware" parent="alm_hardware" relationship="df812c10db70941067166ac2ca9619f0" sys_domain="global" view="d4c50fc8db625010eeb4a8fc13961972">8b2d85a0dba654508a521fe96896196c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>8</position>
+            <sum>false</sum>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-07 08:40:43</sys_created_on>
+            <sys_id>432d85a0dba654508a521fe96896196e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>INVOLR00</sys_updated_by>
+            <sys_updated_on>2020-08-07 08:40:43</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_inmis_im_itad_imitad_hardware</name>
+            <parent>alm_hardware</parent>
+            <position/>
+            <relationship display_value="IMITAD Audit">df812c10db70941067166ac2ca9619f0</relationship>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>INVOLR00</sys_created_by>
+            <sys_created_on>2020-08-07 08:40:43</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>8b2d85a0dba654508a521fe96896196c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_inmis_im_itad_imitad_hardware</sys_name>
+            <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+            <sys_update_name>sys_ui_list_alm_hardware_df812c10db70941067166ac2ca9619f0_Hardware</sys_update_name>
+            <sys_updated_by>INVOLR00</sys_updated_by>
+            <sys_updated_on>2020-08-07 08:40:43</sys_updated_on>
+            <sys_user/>
+            <view display_value="Hardware" name="Hardware">d4c50fc8db625010eeb4a8fc13961972</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

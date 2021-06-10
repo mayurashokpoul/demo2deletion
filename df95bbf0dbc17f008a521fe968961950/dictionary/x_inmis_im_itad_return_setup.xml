@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Return Setup" max_length="40" name="x_inmis_im_itad_return_setup" sizeclass="0" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Active" max_length="40" name="active" type="boolean"/>
+        <element label="BoxReturnSetupID" max_length="100" name="boxreturnsetupid" type="string"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Company" max_length="32" name="company" reference="core_company" type="reference"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Default Facility" max_length="32" name="default_facility" reference="x_inmis_im_itad_ref_facilities" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" label="Disable Return Address Details" max_length="40" name="disable_return_address_details" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Disable Return Contact Details" max_length="40" name="disable_return_contact_details" type="boolean"/>
+        <element label="Fixed Fulfillment Facility" max_length="100" name="fixedfullfillmentfacility" type="string"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Fixed Facility For USA" max_length="32" name="fixed_facility_for_usa" reference="x_inmis_im_itad_ref_facilities" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" label="Fixed Address" max_length="40" name="fixed_return_address" type="boolean"/>
+        <element label="FulfilledbyNearestFacility" max_length="100" name="fulfilledbynearestfacility" type="string"/>
+        <element label="iFixedFulfillmentFacility" max_length="100" name="ifixedfulfillmentfacility" type="string"/>
+        <element label="ifixedreturntofacility" max_length="100" name="ifixedreturntofacility" type="string"/>
+        <element label="iFulfillCountryID" max_length="100" name="ifulfillcountryid" type="string"/>
+        <element label="iReturnToCountryID" max_length="100" name="ireturntocountryid" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Return to Nearest IM facility" max_length="40" name="nearest_cb_facility" type="boolean"/>
+        <element label="Ship Order to Country" max_length="100" name="ordershiptocountry" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Require Default Facility" max_length="40" name="require_default_facility" type="boolean"/>
+        <element label="Returns To Type" max_length="100" name="returns_to_type" type="string"/>
+        <element label="Return Configuration" max_length="40" name="return_configuration" type="string"/>
+        <element label="ReturnToTypeID" max_length="40" name="return_to" type="string"/>
+        <element label="Return to Address1" max_length="500" name="return_to_address_1" type="string"/>
+        <element label="Return to Address2" max_length="500" name="return_to_address_2" type="string"/>
+        <element label="Return to City" max_length="50" name="return_to_city" type="string"/>
+        <element label="Return Contact" max_length="100" name="return_to_contact" type="string"/>
+        <element label="Return Contact Email" max_length="100" name="return_to_contact_email" type="string"/>
+        <element label="Return Contact Phone#" max_length="100" name="return_to_contact_phone" type="string"/>
+        <element label="Return Order to Country" max_length="40" name="return_to_country" type="string"/>
+        <element label="Return To Desc" max_length="100" name="return_to_desc" type="string"/>
+        <element label="Return to Zip" max_length="50" name="return_to_postal_code" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Return To Source Location" max_length="40" name="return_to_source_location" type="boolean"/>
+        <element label="Return to State" max_length="50" name="return_to_state" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Ship To Source Location" max_length="40" name="ship_to_source_location" type="boolean"/>
+        <element label="Source ID" max_length="40" name="source_id" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Domain" max_length="32" name="sys_domain" type="domain_id"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Fixed Return to Facility" max_length="100" name="vfixedreturntobyfacility" reference="x_inmis_im_itad_ref_facilities" type="reference"/>
+        <index name="index">
+            <element name="vfixedreturntobyfacility"/>
+        </index>
+        <index name="index2">
+            <element name="default_facility"/>
+        </index>
+        <index name="index3">
+            <element name="fixed_facility_for_usa"/>
+        </index>
+        <index name="index4">
+            <element name="sys_domain"/>
+        </index>
+        <index name="index5">
+            <element name="company"/>
+        </index>
+    </element>
+</database>

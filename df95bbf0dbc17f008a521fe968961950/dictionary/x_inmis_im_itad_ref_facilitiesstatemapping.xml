@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Ref_FacilitiesStateMapping" max_length="40" name="x_inmis_im_itad_ref_facilitiesstatemapping" sizeclass="0" type="collection">
+        <element label="CountryCode" max_length="4" name="countrycode" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="DisposalPickup_FacilityID" max_length="4" name="disposalpickup_facilityid" type="integer"/>
+        <element attributes="edge_encryption_enabled=true" label="FacilitiesStateMappingID" max_length="4" name="facilitiesstatemappingid" type="integer"/>
+        <element attributes="edge_encryption_enabled=true" label="FacilityID" max_length="4" name="facilityid" type="integer"/>
+        <element label="StateCode" max_length="20" name="statecode" type="string"/>
+        <element label="StateDesc" max_length="50" name="statedesc" type="string"/>
+        <element label="ZipCode" max_length="20" name="zipcode" type="string"/>
+        <index name="index">
+            <element name="statecode"/>
+        </index>
+    </element>
+</database>

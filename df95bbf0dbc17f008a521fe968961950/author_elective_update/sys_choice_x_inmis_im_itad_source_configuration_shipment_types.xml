@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="DELETE" field="shipment_types" table="x_inmis_im_itad_source_configuration" version="3">
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>shipment_types</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Parcel</label>
+            <language>en</language>
+            <name>x_inmis_im_itad_source_configuration</name>
+            <sequence>0</sequence>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-17 09:32:27</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>e3983037dbea941067166ac2ca961928</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-17 09:32:27</sys_updated_on>
+            <value>1</value>
+        </sys_choice>
+        <sys_choice_set action="DELETE">
+            <element>shipment_types</element>
+            <name>x_inmis_im_itad_source_configuration</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+            <sys_created_on>2020-08-17 09:32:27</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>e2e8fcf3dbea941067166ac2ca961920</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>shipment_types</sys_name>
+            <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+            <sys_update_name>sys_choice_x_inmis_im_itad_source_configuration_shipment_types</sys_update_name>
+            <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+            <sys_updated_on>2020-08-17 09:32:27</sys_updated_on>
+        </sys_choice_set>
+    </sys_choice>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</application>
+        <file_path/>
+        <instance_id>c821e244dbe52b846578f22ebf9619bf</instance_id>
+        <instance_name>ven02711</instance_name>
+        <name>sys_choice_x_inmis_im_itad_source_configuration_shipment_types</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update><sys_choice action="INSERT_OR_UPDATE" field="shipment_types" table="x_inmis_im_itad_source_configuration" version="3"><sys_choice action="INSERT_OR_UPDATE"><dependent_value/><element>shipment_types</element><hint/><inactive>false</inactive><label>Parcel</label><language>en</language><name>x_inmis_im_itad_source_configuration</name><sequence>0</sequence><sys_created_by>Munimohan.Bathala@ness.com</sys_created_by><sys_created_on>2020-08-17 09:32:27</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>e3983037dbea941067166ac2ca961928</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by><sys_updated_on>2020-08-17 09:32:27</sys_updated_on><value>1</value></sys_choice><sys_choice_set action="INSERT_OR_UPDATE"><element>shipment_types</element><name>x_inmis_im_itad_source_configuration</name><sys_class_name>sys_choice_set</sys_class_name><sys_created_by>Munimohan.Bathala@ness.com</sys_created_by><sys_created_on>2020-08-17 09:32:27</sys_created_on><sys_customer_update>false</sys_customer_update><sys_id>e2e8fcf3dbea941067166ac2ca961920</sys_id><sys_mod_count>0</sys_mod_count><sys_name>shipment_types</sys_name><sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package><sys_policy/><sys_replace_on_upgrade>false</sys_replace_on_upgrade><sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope><sys_update_name>sys_choice_x_inmis_im_itad_source_configuration_shipment_types</sys_update_name><sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by><sys_updated_on>2020-08-17 09:32:27</sys_updated_on></sys_choice_set></sys_choice></record_update>]]></payload>
+        <payload_hash>1607839215</payload_hash>
+        <record_name>Source Configuration.Shipment Types</record_name>
+        <reverted_from/>
+        <source>7fc870bedba614108a521fe968961916</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-08-20 09:33:51</sys_created_on>
+        <sys_id>80069c30db7258108a521fe9689619e6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1740b37a8de0000001</sys_recorded_at>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-08-20 09:33:51</sys_updated_on>
+        <type>Choice list</type>
+        <update_guid>48069c30687258107cadb0e2d326efe5</update_guid>
+        <update_guid_history>48069c30687258107cadb0e2d326efe5:1607839215,af19f03752ea94109ef5f188674c461d:636786685,eee8fcf375ea9410c2905fe3153a9f21:1607839215</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-08-20 09:33:51</sys_created_on>
+        <sys_db_object display_value="" name="sys_choice_set">sys_choice_set</sys_db_object>
+        <sys_id>e2e8fcf3dbea941067166ac2ca961920</sys_id>
+        <sys_metadata>e2e8fcf3dbea941067166ac2ca961920</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>shipment_types</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_scope_delete display_value="">754b5651fdcb480ea4d7b0c2cca0f181</sys_scope_delete>
+        <sys_update_name>sys_choice_x_inmis_im_itad_source_configuration_shipment_types</sys_update_name>
+        <sys_update_version display_value="sys_choice_x_inmis_im_itad_source_configuration_shipment_types">80069c30db7258108a521fe9689619e6</sys_update_version>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-08-20 09:33:51</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>6fea99dddb63505067166ac2ca961911</enforce_acl>
+        <http_method>PUT</http_method>
+        <name>Box or Label Order Update</name>
+        <operation_script><![CDATA[(function process( /*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+    try {
+        var body = request.body.data;
+        gs.info('body: ' + JSON.stringify(body));
+        var requestNumber = body.InputArguments.OrderUpdate.RequestNumber;
+        var SourceID = body.InputArguments.OrderUpdate.SourceID;
+        var IMOrderId = body.InputArguments.OrderUpdate.IMOrderId;
+        var OrderStatus = body.InputArguments.OrderUpdate.OrderStatus;
+        var ShippedDate = body.InputArguments.OrderUpdate.ShippedDate;
+        var gdt = ShippedDate ? new GlideDateTime(ShippedDate) :'';
+        var TrackingNumber = body.InputArguments.OrderUpdate.TrackingNumber;
+        var Tracking = body.InputArguments.Tracking;
+        var TrackingNo = Tracking[0].TrackingNo;
+        var ReturnTracking = Tracking[0].ReturnTracking;
+
+        var orderUpdate = new GlideRecord('x_inmis_im_itad_box_or_label_order_update');
+        orderUpdate.initialize();
+        orderUpdate.requestnumber = requestNumber;
+        orderUpdate.imorderid = IMOrderId;
+        orderUpdate.orderstatus = OrderStatus;
+        orderUpdate.sourceid = SourceID;
+        orderUpdate.shippeddate = gdt ? gdt.getDate() : '';
+        orderUpdate.trackingnumber = TrackingNumber;
+
+        orderUpdate.tracking = TrackingNo;
+        orderUpdate.return_tracking = ReturnTracking;
+        orderUpdate.insert();
+
+
+
+        response.setContentType('application/json');
+        var responseBody = {
+            "Message": "Updated Box/Label details for :" + requestNumber
+        };
+        response.setBody(responseBody);
+    } catch (ex) {
+        gs.error("There was an error doing Order Update API Call", ex);
+    }
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_inmis_im_itad/imitad_inbound_box_label_order/box_label_order_update</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/box_label_order_update</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>Ruthvic.voladri@ness.com</sys_created_by>
+        <sys_created_on>2020-09-28 10:44:03</sys_created_on>
+        <sys_id>cdcb5511dba3505067166ac2ca9619ce</sys_id>
+        <sys_mod_count>34</sys_mod_count>
+        <sys_name>Box or Label Order Update</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_ws_operation_cdcb5511dba3505067166ac2ca9619ce</sys_update_name>
+        <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+        <sys_updated_on>2021-04-19 07:57:57</sys_updated_on>
+        <web_service_definition display_value="IMITAD Inbound Box Label Order">86f9dd9ddb63505067166ac2ca9619c9</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

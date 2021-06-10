@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[var query = 'active=true';
+var sourceList = 'max_boxes_allowed_on_order,service_types_string';
+var returnSetupList = 'return_to_desc,ordershiptocountry,fixedfullfillmentfacility,ship_to_source_location,return_to_source_location,return_to_country,nearest_cb_facility,disable_return_address_details,disable_return_contact_details,fixed_return_address,return_to_address_1,return_to_address_2,return_to_city,return_to_state,return_to_postal_code';
+//var returnFacilitySetupList = 'facility.facilitydescripition,contact_name,contact_email,contact_phone';
+
+var crValue = getParmVal('sysparm_crID');
+var property = new GlideAjax('BoxLabelUtils');
+property.addParam('sysparm_name', 'getPropertyValue');
+property.getXMLWait();
+var answer = property.getAnswer(); 
+//alert('Property:' + answer);
+if (answer.toString() == 'true') {
+   // sourceList += ',company';
+   // returnSetupList += ',company';
+   // returnFacilitySetupList += ',company';
+}
+if (answer.toString() == 'true' && !crValue) {
+    //  alert('hi');
+
+    query += "^source_idISEMPTY";
+}
+
+
+
+if (crValue || answer.toString() == 'true') {
+    var ga = new GlideAjax('BoxLabelUtils');
+    ga.addParam('sysparm_name', 'getCompany');
+    ga.addParam('sysparm_customerRegistration', gel("crID").value);
+    ga.getXMLWait();
+
+    var answer1 = ga.getAnswer();
+    //      alert('getCompany: ' + answer1);
+    if (answer1) {
+        // 		alert('test');
+        query = 'active=true^company=' + answer1.trim();
+    }
+}
+
+//alert(returnFacilitySetupList);
+// alert('query: ' + query);
+var sourceParams = {
+    sysparm_table: "x_inmis_im_itad_source_configuration",
+    sysparm_type: "list",
+    sysparm_field_list: sourceList,
+    sysparm_query: query
+};
+
+
+var returnSetupParams = {
+    sysparm_table: "x_inmis_im_itad_return_setup",
+    sysparm_type: "list",
+    sysparm_field_list: returnSetupList,
+    sysparm_custom_chart_size: true,
+    sysparm_custom_chart_height: "500px",
+    sysparm_custom_chart_width: "500px",
+    sysparm_query: query
+
+};
+// var returnFacilitySetupParams = {
+//     sysparm_table: "x_inmis_im_itad_return_facility_setup",
+//     sysparm_type: "list",
+//     sysparm_field_list: returnFacilitySetupList,
+//     sysparm_query: query
+// };
+
+var divSourceConfig = $j("#report_stuff_sourceConfig");
+var divReturnSetup = $j("#report_stuff_returnSetup");
+//var divReturnFacilitySetup = $j("#report_stuff_returnFacilitySetup");
+
+embedReportByParams(divSourceConfig, sourceParams);
+embedReportByParams(divReturnSetup, returnSetupParams);
+//embedReportByParams(divReturnFacilitySetup, returnFacilitySetupParams);
+
+
+function getParmVal(name) {
+    var url = document.URL.parseQuery();
+    if (url[name]) {
+        return decodeURI(url[name]);
+    } else {
+        return;
+    }
+}
+
+// if (flag.toString() == 'true') {
+//     alert('flag' + flag);
+$('test').onclick = function(event) {
+    document.location.href = "x_inmis_im_itad_Configuration.do?sysparm_crID=" + gel("crID").value;
+};
+// }]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_inmis_im_itad_Configuration.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>	
+	<g:requires name="scripts/GlideV2ChartingIncludes.js" includes="true"/>
+     <g:inline template="reporting_includes.xml" />
+     <g:inline template="list2_js_includes.xml" />
+<style> 
+	html, 
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; 
+}
+	</style>
+	<g:evaluate var="jvar_gr" object="true">
+   var gr = new GlideRecord("sys_properties");
+   gr.addQuery("name", "glide.sys.domain.partitioning"); 
+   gr.query();
+   gr;
+</g:evaluate>
+	
+	<g:evaluate var="jvar_cr" object="true">
+   var cr = new GlideRecord("x_inmis_im_itad_customer_registration");
+   cr.query();
+   cr;
+</g:evaluate>
+	
+<g:evaluate var="jvar_property" object="true">
+	 var property = new GlideRecord('sys_properties');
+    property.addEncodedQuery('name=x_inmis_im_itad.lastRunDateTimeofScheduleJob');
+    property.query();
+	property;
+	</g:evaluate>
+	
+	<g:evaluate  var="jvar_crID" object="true">
+	var crSysID = RP.getParameterValue('sysparm_crID');		
+	var crID = new GlideRecord("x_inmis_im_itad_customer_registration");
+		if(crSysID){
+   	crID.addEncodedQuery('sys_id=' + crSysID.trim());
+		}
+		else {
+		crID.addEncodedQuery('company=' + new IngramUtils().getCompanyValue());
+		}
+    crID.query();
+    crID;       
+
+	</g:evaluate>
+	<g:evaluate  var="jvar_cmpID1" object="true">
+var crSysID1 = RP.getParameterValue('sysparm_crID');		
+	var cmpID = new GlideRecord("x_inmis_im_itad_customer_registration");
+		if(crSysID1){
+   	cmpID.addEncodedQuery('sys_id=' + crSysID1.trim());
+		}
+		else {
+		cmpID.addEncodedQuery('company=' + new IngramUtils().getCompanyValue());
+		}
+    cmpID.query();
+		
+    if(cmpID.next()){
+		var cmpID1=new GlideRecord('core_company');
+		cmpID1.addQuery('sys_id',cmpID.getValue('company'));
+		cmpID1.query();
+		cmpID1
+		} 
+	</g:evaluate>
+	
+
+<j:if test="${jvar_gr.hasNext()}">
+	<j:if test="${jvar_crID.next() || !jvar_crID.hasNext()}">	
+		<div>
+  <div style="font-size: 15px;font-family: Arial;" title="Please slect company for domain seperated"> <b> Please Select the Source Name </b> </div>
+		<j:if test="${jvar_property.next()}">
+			<div style="text-align: right; font-size: 14px;font-family: Arial;"> <b>Last updated on: ${jvar_property.getValue('value')} </b></div> 
+	</j:if>
+		</div>
+	<div>
+  <div style="float: left;width: 250px;text-align: center;margin-right: 10px;">
+	  
+  <g:ui_reference name="crID" id="crID" table="x_inmis_im_itad_customer_registration" value="${jvar_crID.getValue('sys_id')}" displayvalue="${jvar_crID.getValue('source_name')}" />   
+	  </div>
+		<input  class="btn btn-primary" type="button" id="test" value="Refresh" > </input>
+		
+		</div> 
+		<br> </br>
+<div style="">
+	<div style="font-size: 15px;font-family: Arial;"> <b> Source: </b>${jvar_crID.getValue('source_name')} </div><br> </br>
+	<j:if test="${jvar_cmpID1.next()}">
+	<div style="font-size: 15px;font-family: Arial;"> <b>Company:</b> ${jvar_cmpID1.getValue('name')} </div>
+			</j:if>
+		</div>  <br> </br>
+		<table >
+		
+		<tr>
+			<div style="font-family: Arial;font-size: 14px;  " title="Source Configuration"><b> Source Configuration: </b></div>
+		
+				<div style="overflow:scroll; float:left;width:100%;overflow-x: hidden  margin: none;
+    padding: none;
+    border: none;
+    line-height: 0;"  id="report_stuff_sourceConfig" />
+			
+		</tr>			
+		
+				<hr> </hr>
+	<tr >
+		<div style="font-family: Arial;font-size: 14px;  " title="Return Setup"><b> Return Setup: </b></div> 
+	<div style="overflow:scroll; float:left;width:100%;"  id="report_stuff_returnSetup"/> 
+		
+
+	</tr>
+				<hr> </hr>
+	<!-- <tr>
+	<div style=" font-family: Arial;font-size: 14px; " title="Return Facility Setup"> <b>Return Facility Setup: </b></div>
+		<div style="overflow:scroll; float:left;width:100%;"  id="report_stuff_returnFacilitySetup" /> 
+	</tr> -->
+
+	</table>	
+	
+	</j:if>
+</j:if>
+	
+	<j:if test="${!jvar_gr.hasNext()}">
+	<j:if test="${jvar_cr.next()}">		
+		<div>
+			<div style="font-size: 15px;font-family: Arial;"><b> Source: </b>${jvar_cr.getValue('source_name')}</div>
+		<j:if test="${jvar_property.next()}">
+			<div style="text-align: right;font-family: Arial;font-size: 14px;"> <b>Last updated on: ${jvar_property.getValue('value')}</b></div> </j:if>
+		</div>
+		<hr> </hr>
+		
+		<table >
+		
+		<tr>
+			<div style="font-family: Arial;font-size: 14px; " title="Source Configuration"> <b>Source Configuration: </b></div>
+		
+				<div style="overflow:scroll; float:left; width:100%;" id="report_stuff_sourceConfig" />
+			
+		</tr>			
+		
+				<hr> </hr>
+	<tr >
+		<div style="font-family: Arial;font-size: 14px; " title="Return Setup"><b> Return Setup: </b></div> 
+	<div style="overflow:scroll; float:left;width:100%;"  id="report_stuff_returnSetup"/> 
+		
+
+	</tr>
+				<hr> </hr>
+	<!-- <tr>
+	<div style=" font-family: Arial;font-size: 14px;" title="Return Facility Setup"> <b>Return Facility Setup:</b> </div>
+		<div style="overflow:scroll; float:left;width:100%;"  id="report_stuff_returnFacilitySetup" /> 
+	</tr> -->
+
+	</table>	
+			</j:if>
+	</j:if>
+	
+	
+		
+     </j:jelly>]]></html>
+        <name>Configuration</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-08-25 09:49:58</sys_created_on>
+        <sys_id>b0e80e1adb7e1c108a521fe9689619f3</sys_id>
+        <sys_mod_count>451</sys_mod_count>
+        <sys_name>Configuration</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sys_ui_page_b0e80e1adb7e1c108a521fe9689619f3</sys_update_name>
+        <sys_updated_by>Ruthvic.voladri@ness.com</sys_updated_by>
+        <sys_updated_on>2021-04-05 11:18:05</sys_updated_on>
+    </sys_ui_page>
+</record_update>

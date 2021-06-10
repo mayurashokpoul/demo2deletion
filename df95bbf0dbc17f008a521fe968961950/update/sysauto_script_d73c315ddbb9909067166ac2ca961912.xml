@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <business_calendar/>
+        <condition/>
+        <conditional>false</conditional>
+        <entered_time>1970-01-01 00:00:00</entered_time>
+        <name>Pull Workorder Attachments and AssetLevelAttachments Data from Blue IQ</name>
+        <offset/>
+        <offset_type/>
+        <run_as/>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2020-07-03 13:14:42</run_start>
+        <run_time>1970-01-01 20:05:00</run_time>
+        <run_type>daily</run_type>
+        <script><![CDATA[function callAPIS(domain) {
+    // pull Attachments Data
+    var Attachment = new x_inmis_im_itad.WOIntegrationDataLoad().pullWorkOrderAttachmentData(domain);
+
+    // pull AssetLevelAttachment Data
+    var AssetLevelAttachment = new x_inmis_im_itad.WOIntegrationDataLoad().pullWorkOrderAssetLevelAttachmentData(domain);
+}
+
+var customerRegistration = new GlideRecord('x_inmis_im_itad_customer_registration');
+customerRegistration.query();
+while (customerRegistration.next()) {
+    // gs.info('Domain values: ' + customerRegistration.getValue('sys_domain'));
+    if (gs.getProperty("glide.sys.domain.partitioning") == 'true') {
+        if (!customerRegistration.company.sys_domain.primary) {
+            callAPIS(customerRegistration);
+        }
+    } else {
+        callAPIS(customerRegistration);
+    }
+}]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>Munimohan.Bathala@ness.com</sys_created_by>
+        <sys_created_on>2020-07-03 13:15:43</sys_created_on>
+        <sys_id>d73c315ddbb9909067166ac2ca961912</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>Pull Workorder Attachments and AssetLevelAttachments Data from Blue IQ</sys_name>
+        <sys_package display_value="Ingram Micro IT Asset Disposition" source="x_inmis_im_itad">df95bbf0dbc17f008a521fe968961950</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Ingram Micro IT Asset Disposition">df95bbf0dbc17f008a521fe968961950</sys_scope>
+        <sys_update_name>sysauto_script_d73c315ddbb9909067166ac2ca961912</sys_update_name>
+        <sys_updated_by>Munimohan.Bathala@ness.com</sys_updated_by>
+        <sys_updated_on>2020-08-31 06:25:10</sys_updated_on>
+        <time_zone/>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>
